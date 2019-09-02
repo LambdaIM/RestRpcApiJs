@@ -1,7 +1,7 @@
 /* eslint-env browser */
 
 import { createSignMessage, createSignature } from './signature'
-import fetch from 'cross-fetch';
+import fetch from 'cross-fetch'
 
 const DEFAULT_GAS_PRICE = [{ amount: (2.5e-8).toFixed(9), denom: `uatom` }]
 
@@ -9,31 +9,31 @@ export default async function send ({ gas, gasPrices = DEFAULT_GAS_PRICE, memo =
   const signedTx = await createSignedTransaction({ gas, gasPrices, memo }, messages, signer, chainId, accountNumber, sequence)
 
   // broadcast transaction with signatures included
-  var  body = createBroadcastBody(signedTx, `block`)
-  
+  var body = createBroadcastBody(signedTx, `block`)
+
   console.log('body')
   console.log(body)
-  // body = "0x"+Buffer.from(body).toString('hex') 
+  // body = "0x"+Buffer.from(body).toString('hex')
   // console.log(body)
   // const encodeBody = await fetch('${cosmosRESTURL}/txs/encode', { method: `POST`, body })
   // var Body= await res.text();
-  const res = await fetch(`${cosmosRESTURL}/txs`, { 
+  const res = await fetch(`${cosmosRESTURL}/txs`, {
     method: `POST`,
-    body:body,
+    body: body,
     headers: {
-          'Content-Type': 'application/json',
-            },
-    })
+      'Content-Type': 'application/json'
+    }
+  })
   console.log('***************')
- 
-  console.log("状态代码",res.status)
+
+  console.log('状态代码', res.status)
   // console.log(res)
-  var dataJson= await res.json();
-  assertOk(dataJson) 
+  var dataJson = await res.json()
+  assertOk(dataJson)
   console.log(dataJson)
   console.log('***************')
-    // .then(res => res.json())
-    // .then(assertOk)
+  // .then(res => res.json())
+  // .then(assertOk)
 
   return {
     hash: dataJson.txhash,
@@ -47,7 +47,7 @@ export async function createSignedTransaction ({ gas, gasPrices = DEFAULT_GAS_PR
   console.log('createSignedTransaction')
   console.log(messages)
   console.log(signer)
-  
+
   const stdTx = createStdTx({ gas, gasPrices, memo }, messages)
   console.log('stdTx')
   console.log(stdTx)
@@ -107,17 +107,15 @@ export function createStdTx ({ gas, gasPrices, memo }, messages) {
   const fees = gasPrices.map(({ amount, denom }) => ({ amount: String(Math.round(amount * gas)), denom }))
     .filter(({ amount }) => amount > 0)
   return {
-    
-      msg: Array.isArray(messages) ? messages : [messages],
-      fee: {
-        amount: fees.length > 0 ? fees : [],
-        gas
-      },
-      signatures: null,
-      memo
 
-    
-    
+    msg: Array.isArray(messages) ? messages : [messages],
+    fee: {
+      amount: fees.length > 0 ? fees : [],
+      gas
+    },
+    signatures: null,
+    memo
+
   }
 }
 
@@ -132,13 +130,13 @@ function createBroadcastBody (signedTx, returnType = `sync`) {
 
 // adds the signature object to the tx
 function createSignedTransactionObject (tx, signature) {
-   tx.signatures=[signature]
-  
-  return tx;
+  tx.signatures = [signature]
+
+  return tx
   // return Object.assign({}, {
   //   value:{
   //     signatures: [signature]
-  //   } 
+  //   }
   // },tx)
 }
 

@@ -16,15 +16,14 @@ export function createSignMessage (
   { sequence, accountNumber, chainId }
 ) {
   // sign bytes need amount to be an array
-  console.log('createSignMessage');
-  console.log(jsonTxH);
+  console.log('createSignMessage')
+  console.log(jsonTxH)
 
   var jsonTx = jsonTxH
   const fee = {
     amount: jsonTx.fee.amount || [],
     gas: jsonTx.fee.gas
   }
-  
 
   var result = JSON.stringify(
     removeEmptyProperties({
@@ -32,13 +31,13 @@ export function createSignMessage (
       chain_id: chainId,
       fee,
       memo: jsonTx.memo,
-      msgs:msgPositionFix(jsonTx.msg) , // weird msg vs. msgs
+      msgs: msgPositionFix(jsonTx.msg), // weird msg vs. msgs
       sequence
     })
   )
   console.log('加密')
   console.log(result)
-  return result;
+  return result
 }
 
 export function createSignature (
@@ -59,45 +58,25 @@ export function createSignature (
 }
 
 export function removeEmptyProperties (jsonTx) {
-  return jsonTx;
-  
-  if (Array.isArray(jsonTx)) {
-    return jsonTx.map(removeEmptyProperties)
-  }
-
-  // string or number
-  if (typeof jsonTx !== `object`) {
-    return jsonTx
-  }
-
-  const sorted = {}
-  Object.keys(jsonTx)
-    .sort()
-    .forEach(key => {
-      if (jsonTx[key] === undefined || jsonTx[key] === null) return
-
-      sorted[key] = removeEmptyProperties(jsonTx[key])
-    })
-  return sorted
+  return jsonTx
 }
 
-function msgPositionFix(msg){
-  var newMsg=null;
-  
-    newMsg= Object.assign([],msg)
-    
-    newMsg.forEach((item)=>{
-      if(item.type=="cosmos-sdk/MsgDelegate"){
-        var oldvalue=item.value;
-        delete item.value
-        item.value={
-          amount:oldvalue.amount,
-          delegator_address:oldvalue.delegator_address,
-          validator_address:oldvalue.validator_address
-        }
+function msgPositionFix (msg) {
+  var newMsg = null
 
+  newMsg = Object.assign([], msg)
+
+  newMsg.forEach((item) => {
+    if (item.type === 'cosmos-sdk/MsgDelegate') {
+      var oldvalue = item.value
+      delete item.value
+      item.value = {
+        amount: oldvalue.amount,
+        delegator_address: oldvalue.delegator_address,
+        validator_address: oldvalue.validator_address
       }
-    })
-  
-   return newMsg;
+    }
+  })
+
+  return newMsg
 }

@@ -1,7 +1,7 @@
 /* eslint-env browser */
 
+import fetch from 'cross-fetch'
 const GAS_ADJUSTMENT = 1.5
-import fetch from 'cross-fetch';
 export default async function simulate (
   cosmosRESTURL,
   senderAddress,
@@ -28,10 +28,10 @@ export default async function simulate (
 
   const tx = createRESTPOSTObject(senderAddress, chainId, { sequence, accountNumber, memo }, msg)
 
-  const   result= await fetch(url, { method: `POST`, body: JSON.stringify(tx) }).then(res => res.json())
-  var  { gas_estimate: gasEstimate } =result
-  console.log('gas_estimategas_estimate',gasEstimate,result)
-  console.log(JSON.stringify(tx));
+  const result = await fetch(url, { method: `POST`, body: JSON.stringify(tx) }).then(res => res.json())
+  var { gas_estimate: gasEstimate } = result
+  console.log('gas_estimategas_estimate', gasEstimate, result)
+  console.log(JSON.stringify(tx))
   return Math.round(gasEstimate * GAS_ADJUSTMENT)
 }
 

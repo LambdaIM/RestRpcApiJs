@@ -76,8 +76,8 @@ describe(`Signing`, () => {
         createSignature(signature, sequence, account_number, publicKey)
       ).toMatchObject({
         signature: signature.toString(`base64`),
-        account_number,
-        sequence,
+        // account_number,
+        // sequence,
         pub_key: {
           type: `tendermint/PubKeySecp256k1`,
           value: publicKey.toString(`base64`)

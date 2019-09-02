@@ -56,17 +56,17 @@ export default class Cosmos {
   }
 
   async setChainId (chainIdpra = this.chainId) {
-    if(chainIdpra==undefined){
-      chainIdpra = this.chainId;
+    if (chainIdpra === undefined) {
+      chainIdpra = this.chainId
     }
-    
+
     if (!chainIdpra) {
-       var lastBlock=await this.get.block('latest');
+      var lastBlock = await this.get.block('latest')
       //  console.log(lastBlock);
       // const { block_meta: { header: { chain_id: chainId } } } = lastBlock
-      var chainId =lastBlock.block_meta.header.chain_id
+      var chainId = lastBlock.block_meta.header.chain_id
       this.chainId = chainId
-    }else{
+    } else {
       this.chainId = chainIdpra
     }
 

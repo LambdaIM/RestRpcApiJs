@@ -1,5 +1,5 @@
 'use strict'
-import fetch from 'cross-fetch';
+import fetch from 'cross-fetch'
 /* eslint-env browser */
 
 const RETRIES = 4
@@ -39,10 +39,9 @@ export default function Getters (cosmosRESTURL) {
         sequence: `0`,
         account_number: `0`
       }
-      
+
       return get(`/auth/accounts/${address}`)
         .then(res => {
-          
           // HACK, hope for: https://github.com/cosmos/cosmos-sdk/issues/3885
           let account = res.value || emptyAccount
           if (res.type === `auth/DelayedVestingAccount`) {
@@ -60,7 +59,7 @@ export default function Getters (cosmosRESTURL) {
             delete account.BaseAccount
             delete account.BaseVestingAccount
           }
-          
+
           return account
         })
         .catch(err => {
@@ -85,7 +84,6 @@ export default function Getters (cosmosRESTURL) {
       ]).then((txs) => [].concat(...txs))
     },
     bankTxs: function (addr) {
-      
       return Promise.all([
         get(`/txs?sender=${addr}&page=1000000`),
         get(`/txs?recipient=${addr}&page=1000000`)
@@ -95,12 +93,11 @@ export default function Getters (cosmosRESTURL) {
       return get(`/txs?tx.height=${height}`)
     },
     tx: hash => get(`/txs/${hash}`),
-    assets:function(addr){
+    assets: function (addr) {
       return Promise.all([
         get(`/txs?action=asset-pledge&address=${addr}&page=1000000`),
         get(`/txs?action=asset-drop&address=${addr}&page=1000000`)
       ]).then(([pledgeTxs, dropTxs]) => [].concat(pledgeTxs, dropTxs))
-
     },
 
     /* ============ STAKE ============ */

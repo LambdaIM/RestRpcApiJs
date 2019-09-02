@@ -29,11 +29,11 @@ export function MsgDelegate (
   return {
     type: `lambda/MsgDelegate`,
     value: {
-        amount: Coin({ amount, denom }),
-        delegator_address: senderAddress,
-        validator_address: validatorAddress,
-        validator_type: validatortype
-      
+      amount: Coin({ amount, denom }),
+      delegator_address: senderAddress,
+      validator_address: validatorAddress,
+      validator_type: validatortype
+
     }
   }
 }
@@ -150,7 +150,6 @@ export function MsgWithdrawDelegationReward (
   }
 }
 
-
 export function MsgAssetPledge (
   senderAddress,
   {
@@ -162,8 +161,8 @@ export function MsgAssetPledge (
     type: `lambda/MsgAssetPledge`,
     value: {
       address: senderAddress,
-      asset: Coin(asset) ,
-      token: Coin(amounts) 
+      asset: Coin(asset),
+      token: Coin(amounts)
     }
   }
 }
@@ -179,25 +178,17 @@ export function MsgAssetDrop (
     type: `lambda/MsgAssetDrop`,
     value: {
       address: senderAddress,
-      asset: Coin(asset) ,
-      token: Coin(amounts) 
+      asset: Coin(asset),
+      token: Coin(amounts)
     }
   }
 }
-
 
 function Coin ({ amount, denom }) {
   return ({
     amount: String(amount),
     denom
-    
-    
-  })
-}
-function CoinOtherStyle ({ amount, denom }) {
-  return ({
-    denom,
-    amount: String(amount)
+
   })
 }
 
@@ -210,6 +201,6 @@ export default {
   'MsgVote': MsgVote,
   'MsgDeposit': MsgDeposit,
   'MsgWithdrawDelegationReward': MsgWithdrawDelegationReward,
-  'MsgAssetPledge':MsgAssetPledge,
-  'MsgAssetDrop':MsgAssetDrop
+  'MsgAssetPledge': MsgAssetPledge,
+  'MsgAssetDrop': MsgAssetDrop
 }
