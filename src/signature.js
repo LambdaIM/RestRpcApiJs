@@ -25,15 +25,14 @@ export function createSignMessage (
     gas: jsonTx.fee.gas
   }
 
-  var result = JSON.stringify(
-    removeEmptyProperties({
+  var result = JSON.stringify({
       account_number: accountNumber,
       chain_id: chainId,
       fee,
       memo: jsonTx.memo,
-      msgs: msgPositionFix(jsonTx.msg), // weird msg vs. msgs
+      msgs: jsonTx.msg, // weird msg vs. msgs
       sequence
-    })
+    }
   )
   console.log('加密')
   console.log(result)
@@ -61,22 +60,4 @@ export function removeEmptyProperties (jsonTx) {
   return jsonTx
 }
 
-function msgPositionFix (msg) {
-  var newMsg = null
 
-  newMsg = Object.assign([], msg)
-
-  newMsg.forEach((item) => {
-    if (item.type === 'cosmos-sdk/MsgDelegate') {
-      var oldvalue = item.value
-      delete item.value
-      item.value = {
-        amount: oldvalue.amount,
-        delegator_address: oldvalue.delegator_address,
-        validator_address: oldvalue.validator_address
-      }
-    }
-  })
-
-  return newMsg
-}
