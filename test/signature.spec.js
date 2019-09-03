@@ -8,24 +8,23 @@ describe(`Signing`, () => {
   const tx = {
     msg: [
       {
-        type: `cosmos-sdk/Send`,
-        value: {
-          inputs: [
-            {
-              address: `cosmos1qperwt9wrnkg5k9e5gzfgjppzpqhyav5j24d66`,
-              coins: [{ denom: `STAKE`, amount: `1` }]
-            }
-          ],
-          outputs: [
-            {
-              address: `cosmos1yeckxz7tapz34kjwnjxvmxzurerquhtrmxmuxt`,
-              coins: [{ denom: `STAKE`, amount: `1` }]
-            }
-          ]
+        "type": "cosmos-sdk/MsgSend",
+        "value": {
+          "amount": [{
+            "amount": "1000000",
+            "denom": "ulamb"
+          }],
+          "from_address": "lambda163q4m634nq8les4nuvdvz49tk6aeh926t0ccsc",
+          "to_address": "lambda10a7pf73q86v06c7sq8hun2t4g4dunqnjgcrcyk"
         }
       }
     ],
-    fee: { amount: [{ denom: ``, amount: `0` }], gas: `21906` },
+    fee: { 	
+      "amount": [{
+        "amount": "985",
+        "denom": "ulamb"
+    }],
+    "gas": "39416"},
     signatures: null,
     memo: ``
   }
@@ -90,18 +89,18 @@ describe(`Signing`, () => {
     const vectors = [
       {
         tx,
-        sequence: `0`,
-        accountNumber: `1`,
-        chainId: `tendermint_test`,
-        signMessage: `{"account_number":"1","chain_id":"tendermint_test","fee":{"amount":[{"amount":"0","denom":""}],"gas":"21906"},"memo":"","msgs":[{"type":"cosmos-sdk/Send","value":{"inputs":[{"address":"cosmos1qperwt9wrnkg5k9e5gzfgjppzpqhyav5j24d66","coins":[{"amount":"1","denom":"STAKE"}]}],"outputs":[{"address":"cosmos1yeckxz7tapz34kjwnjxvmxzurerquhtrmxmuxt","coins":[{"amount":"1","denom":"STAKE"}]}]}}],"sequence":"0"}`
+        sequence: `33`,
+        accountNumber: `6`,
+        chainId: `lambda-chain-test`,
+        signMessage: `{"account_number":"6","chain_id":"lambda-chain-test","fee":{"amount":[{"amount":"985","denom":"ulamb"}],"gas":"39416"},"memo":"","msgs":[{"type":"cosmos-sdk/MsgSend","value":{"amount":[{"amount":"1000000","denom":"ulamb"}],"from_address":"lambda163q4m634nq8les4nuvdvz49tk6aeh926t0ccsc","to_address":"lambda10a7pf73q86v06c7sq8hun2t4g4dunqnjgcrcyk"}}],"sequence":"33"}`
       },
-      {
-        tx: txWithNulls,
-        sequence: `0`,
-        accountNumber: `1`,
-        chainId: `tendermint_test`,
-        signMessage: `{"account_number":"1","chain_id":"tendermint_test","fee":{"amount":[{"amount":"0","denom":""}],"gas":"21906"},"memo":"","msgs":[{"type":"cosmos-sdk/Send","value":{"inputs":[{"address":"cosmos1qperwt9wrnkg5k9e5gzfgjppzpqhyav5j24d66","coins":[{"amount":"1","denom":"STAKE"}]}],"outputs":[{"address":"cosmos1yeckxz7tapz34kjwnjxvmxzurerquhtrmxmuxt","coins":[{"amount":"1","denom":"STAKE"}]}]}}],"sequence":"0"}`
-      }
+      // {
+      //   tx: txWithNulls,
+      //   sequence: `0`,
+      //   accountNumber: `1`,
+      //   chainId: `tendermint_test`,
+      //   signMessage: `{"account_number":"1","chain_id":"tendermint_test","fee":{"amount":[{"amount":"0","denom":""}],"gas":"21906"},"memo":"","msgs":[{"type":"cosmos-sdk/Send","value":{"inputs":[{"address":"cosmos1qperwt9wrnkg5k9e5gzfgjppzpqhyav5j24d66","coins":[{"amount":"1","denom":"STAKE"}]}],"outputs":[{"address":"cosmos1yeckxz7tapz34kjwnjxvmxzurerquhtrmxmuxt","coins":[{"amount":"1","denom":"STAKE"}]}]}}],"sequence":"0"}`
+      // }
     ]
 
     vectors.forEach(
@@ -113,25 +112,5 @@ describe(`Signing`, () => {
     )
   })
 
-  it(`removeEmptyProperties`, () => {
-    expect(removeEmptyProperties({
-      a: {
-        b: undefined,
-        c: 1
-      },
-      d: "abc",
-      e: {
-        f: 'g'
-      },
-      h: null
-    })).toEqual({
-      a: {
-        c: 1
-      },
-      d: "abc",
-      e: {
-        f: 'g'
-      }
-    })
-  })
+  
 })
