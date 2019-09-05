@@ -26,13 +26,13 @@ export function createSignMessage (
   }
 
   var result = JSON.stringify({
-      account_number: accountNumber,
-      chain_id: chainId,
-      fee,
-      memo: jsonTx.memo,
-      msgs: jsonTx.msg, // weird msg vs. msgs
-      sequence
-    }
+    account_number: accountNumber,
+    chain_id: chainId,
+    fee,
+    memo: jsonTx.memo,
+    msgs: jsonTx.msg, // weird msg vs. msgs
+    sequence
+  }
   )
   console.log('加密')
   console.log(result)
@@ -59,5 +59,3 @@ export function createSignature (
 export function removeEmptyProperties (jsonTx) {
   return jsonTx
 }
-
-
