@@ -1,7 +1,7 @@
 /* eslint-env browser */
 
 import { createSignMessage, createSignature } from './signature'
-import fetch from 'cross-fetch'
+import fetch from './fetch.js'
 
 const DEFAULT_GAS_PRICE = [{ amount: (2.5e-8).toFixed(9), denom: `uatom` }]
 

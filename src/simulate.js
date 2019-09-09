@@ -1,6 +1,6 @@
 /* eslint-env browser */
 
-import fetch from 'cross-fetch'
+import fetch from './fetch.js'
 const GAS_ADJUSTMENT = 1.5
 export default async function simulate (
   cosmosRESTURL,

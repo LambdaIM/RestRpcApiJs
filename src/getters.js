@@ -1,5 +1,5 @@
 'use strict'
-import fetch from 'cross-fetch'
+import fetch from './fetch.js'
 /* eslint-env browser */
 
 const RETRIES = 4
