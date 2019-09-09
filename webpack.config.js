@@ -4,8 +4,8 @@ const config = {
   entry: ['./src/index.js'],
   output: {
     path: __dirname + '/lib',
-    filename: 'cosmos.js',
-    library: 'cosmos-js',
+    filename: 'index.js',
+    library: 'restrpcapijs',
     libraryTarget: 'umd',
     umdNamedDefine: true,
   },

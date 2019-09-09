@@ -38,6 +38,7 @@ export default async function send ({ gas, gasPrices = DEFAULT_GAS_PRICE, memo =
   return {
     hash: dataJson.txhash,
     sequence,
+    tx: dataJson,
     included: () => queryTxInclusion(dataJson.txhash, cosmosRESTURL)
   }
 }

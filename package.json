@@ -1,8 +1,8 @@
 {
-  "name": "@jswebfans/cosmos-api",
-  "version": "0.1.2",
-  "description": "Wrapper around getting and sending transactions from and to applications build on top of the Cosmos SDK",
-  "main": "lib/cosmos.js",
+  "name": "@jswebfans/rpcapijs",
+  "version": "0.1.4",
+  "description": "Wrapper around getting and sending transactions from and to lambda",
+  "main": "lib/index.js",
   "scripts": {
     "test": "jest",
     "lint": "eslint src/* --fix",
@@ -16,7 +16,6 @@
     "sdk",
     "blockchain"
   ],
-  "author": "Lunie International Software Systems Inc. <hello@lunie.io>",
   "licenses": [
     {
       "license": "Apache-2.0"
