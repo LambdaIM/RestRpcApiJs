@@ -34,13 +34,20 @@ export default function (url, options) {
           }
         })
       })
-      response.on('error', (error) => {
-        reject(error)
-      })
-      response.on('abort', (error) => {
-        reject(error)
-      })
+      
     })
+    
+    request.on('error', (error) => {
+      
+      console.log(error)
+      reject(error)
+    })
+    request.on('abort', (error) => {
+      
+      console.log(error)
+      reject(error)
+    })
+    
     if (options) {
       if (options.headers) {
         Object.keys(options.headers).forEach(function (key) {
