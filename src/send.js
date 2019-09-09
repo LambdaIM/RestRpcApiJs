@@ -157,7 +157,7 @@ function assertOk (res) {
 
   // Sometimes we get back failed transactions, which shows only by them having a `code` property
   if (res.code) {
-    const message =res.logs.map((item)=>{
+    const message = res.logs.map((item) => {
       return item.log
     }).join(',')
     console.log(message)
