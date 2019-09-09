@@ -9,7 +9,7 @@ export default async function send ({ gas, gasPrices = DEFAULT_GAS_PRICE, memo =
   const signedTx = await createSignedTransaction({ gas, gasPrices, memo }, messages, signer, chainId, accountNumber, sequence)
 
   // broadcast transaction with signatures included
-  var body = createBroadcastBody(signedTx, `block`)
+  var body = createBroadcastBody(signedTx, `async`)
 
   console.log('body')
   console.log(body)
@@ -38,7 +38,6 @@ export default async function send ({ gas, gasPrices = DEFAULT_GAS_PRICE, memo =
   return {
     hash: dataJson.txhash,
     sequence,
-    tx: dataJson,
     included: () => queryTxInclusion(dataJson.txhash, cosmosRESTURL)
   }
 }
@@ -158,7 +157,10 @@ function assertOk (res) {
 
   // Sometimes we get back failed transactions, which shows only by them having a `code` property
   if (res.code) {
-    const message = JSON.parse(res.raw_log).message
+    const message =res.logs.map((item)=>{
+      return item.log
+    }).join(',')
+    console.log(message)
     throw new Error(message)
   }
 
