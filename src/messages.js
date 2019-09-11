@@ -150,6 +150,20 @@ export function MsgWithdrawDelegationReward (
   }
 }
 
+export function MsgWithdrawValidatorCommission (
+  senderAddress,
+  {
+    validatorAddress
+  }){
+    return {
+      type: `cosmos-sdk/MsgWithdrawValidatorCommission`,
+      value: {
+        validator_address:validatorAddress
+      }
+    }
+
+}
+
 export function MsgAssetPledge (
   senderAddress,
   {
@@ -202,5 +216,6 @@ export default {
   'MsgDeposit': MsgDeposit,
   'MsgWithdrawDelegationReward': MsgWithdrawDelegationReward,
   'MsgAssetPledge': MsgAssetPledge,
-  'MsgAssetDrop': MsgAssetDrop
+  'MsgAssetDrop': MsgAssetDrop,
+  'MsgWithdrawValidatorCommission': MsgWithdrawValidatorCommission
 }

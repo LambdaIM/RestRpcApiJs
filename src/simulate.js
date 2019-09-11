@@ -22,7 +22,8 @@ export default async function simulate (
     'cosmos-sdk/MsgDeposit': () => `/gov/proposals/${msg.value.proposal_id}/deposits`,
     'cosmos-sdk/MsgWithdrawDelegationReward': () => `/distribution/delegators/${senderAddress}/rewards`,
     'lambda/MsgAssetPledge': () => `/asset/pledge`,
-    'lambda/MsgAssetDrop': () => `/asset/drop`
+    'lambda/MsgAssetDrop': () => `/asset/drop`,
+    'cosmos-sdk/MsgWithdrawValidatorCommission': () => `/distribution/delegators/${senderAddress}/rewards`
   }[type]()
   const url = `${cosmosRESTURL}${path}`
 
