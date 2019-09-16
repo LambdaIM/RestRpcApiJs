@@ -1,6 +1,7 @@
 'use strict'
 import fetch from './fetch.js'
 /* eslint-env browser */
+const hdkeyjs = require('@jswebfans/hdkeyjs');
 
 const RETRIES = 4
 
@@ -246,7 +247,9 @@ export default function Getters (cosmosRESTURL) {
     },
     /* ============ Distribution ============ */
     distributionTxs: async function (address, valAddress) {
-      var url=valAddress?`/txs?action=withdraw_validator_rewards_all&source-validator=${valAddress}&page=1000000`:`/txs?action=withdraw_validator_rewards_all&page=1000000`
+      var lambdaDevelopAdresss = hdkeyjs.address.validatorAddress(address);
+      var url=`/txs?action=withdraw_validator_rewards_all&source-validator=${lambdaDevelopAdresss}&page=1000000`;
+      //`/txs?action=withdraw_validator_rewards_all&page=1000000`
       return Promise.all([
         get(`/txs?action=set_withdraw_address&delegator=${address}&page=1000000`),
         get(`/txs?action=withdraw_delegator_reward&delegator=${address}&page=1000000`),

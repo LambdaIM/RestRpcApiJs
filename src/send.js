@@ -2,6 +2,7 @@
 
 import { createSignMessage, createSignature } from './signature'
 import fetch from './fetch.js'
+const hdkeyjs = require('@jswebfans/hdkeyjs');
 
 const DEFAULT_GAS_PRICE = [{ amount: (2.5e-8).toFixed(9), denom: `uatom` }]
 
@@ -40,6 +41,11 @@ export default async function send ({ gas, gasPrices = DEFAULT_GAS_PRICE, memo =
     sequence,
     included: () => queryTxInclusion(dataJson.txhash, cosmosRESTURL)
   }
+}
+export  async function getTxhash ({ gas, gasPrices = DEFAULT_GAS_PRICE, memo = `` }, messages, signer, cosmosRESTURL, chainId, accountNumber, sequence) {
+  const signedTx = await createSignedTransaction({ gas, gasPrices, memo }, messages, signer, chainId, accountNumber, sequence)
+  console.log(hdkeyjs.address)
+  return  hdkeyjs.address.getTxhash(JSON.stringify(signedTx))
 }
 
 export async function createSignedTransaction ({ gas, gasPrices = DEFAULT_GAS_PRICE, memo = `` }, messages, signer, chainId, accountNumber, sequence) {

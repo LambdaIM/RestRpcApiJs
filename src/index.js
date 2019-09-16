@@ -39,7 +39,8 @@ export default class Cosmos {
           return {
             message,
             simulate: ({ memo = undefined }) => this.simulate(senderAddress, { message, memo }),
-            send: ({ gas, gasPrices, memo = undefined }, signer) => this.send(senderAddress, { gas, gasPrices, memo }, message, signer)
+            send: ({ gas, gasPrices, memo = undefined }, signer) => this.send(senderAddress, { gas, gasPrices, memo }, message, signer),
+            getTxhash: ({ gas, gasPrices, memo = undefined }, signer) => this.getTxhash(senderAddress, { gas, gasPrices, memo }, message, signer)
           }
         }
       })
@@ -112,6 +113,14 @@ export default class Cosmos {
     const { sequence, accountNumber } = await this.getAccount(senderAddress)
 
     return simulate(this.url, senderAddress, chainId, message, memo, sequence, accountNumber)
+  }
+  async getTxhash (senderAddress, { gas, gasPrices, memo }, messages, signer) {
+    const chainId = await this.setChainId()
+    const { sequence, accountNumber } = await this.getAccount(senderAddress)
+
+    var  hash = await getTxhash({ gas, gasPrices, memo }, messages, signer, this.url, chainId, accountNumber, sequence)
+
+    return hash;
   }
 }
 
