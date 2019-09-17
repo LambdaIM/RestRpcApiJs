@@ -1,3 +1,5 @@
+const TerserPlugin = require('terser-webpack-plugin');
+
 const config = {
   devtool: "cheap-source-map",
   target: 'node',
@@ -8,6 +10,15 @@ const config = {
     library: 'restrpcapijs',
     libraryTarget: 'umd',
     umdNamedDefine: true,
+  },
+  optimization: {
+    minimize: false,
+    minimizer: [
+        new TerserPlugin({
+            // 将多线程关闭
+            parallel: false
+        })
+      ],
   },
   module: {
     rules: [

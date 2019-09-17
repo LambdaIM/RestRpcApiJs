@@ -1,12 +1,12 @@
 {
   "name": "@jswebfans/rpcapijs",
-  "version": "0.1.11",
+  "version": "0.1.13",
   "description": "Wrapper around getting and sending transactions from and to lambda",
   "main": "lib/index.js",
   "scripts": {
     "test": "jest",
     "lint": "eslint src/* --fix",
-    "build": "webpack",
+    "build": "webpack --sourcemap=false --progress ",
     "prepublishOnly": "git checkout master && npm run build",
     "log": "simsala log",
     "release": "git checkout develop & git pull & git push origin develop:release"
@@ -22,10 +22,10 @@
     }
   ],
   "devDependencies": {
-    "@jswebfans/hdkeyjs": "1.2.8",
     "@babel/core": "^7.4.5",
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
+    "@jswebfans/hdkeyjs": "1.2.8",
     "babel-core": "^7.0.0-0",
     "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.5",
@@ -37,13 +37,12 @@
     "eslint-plugin-standard": "^4.0.0",
     "jest": "^24.8.0",
     "simsala": "^0.0.12",
+    "terser-webpack-plugin": "^2.1.0",
     "webpack": "^4.31.0",
     "webpack-cli": "^3.3.2"
   },
   "dependencies": {
     "@babel/runtime": "^7.5.4"
-    
-    
   },
   "jest": {
     "transform": {
