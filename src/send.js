@@ -104,7 +104,7 @@ export async function queryTxInclusion (txHash, cosmosRESTURL, iterations = 60, 
     }
   }
   if (iterations <= 0) {
-    throw new Error(`The transaction was still not included in a block. We can't say for certain it will be included in the future.`)
+    throw new Error(`The transaction was still not included in a block. We can't say for certain it will be included in the future.该事务仍不包含在块中。我们不能肯定它将来会被包括在内。`)
   }
 
   assertOk(includedTx)
