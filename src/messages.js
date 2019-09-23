@@ -113,9 +113,11 @@ export function MsgVote (
   return {
     type: `cosmos-sdk/MsgVote`,
     value: {
-      voter: senderAddress,
+      option,
       proposal_id: proposalId,
-      option
+      voter: senderAddress
+      
+      
     }
   }
 }
