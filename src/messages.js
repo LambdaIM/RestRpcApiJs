@@ -58,22 +58,24 @@ export function MsgUndelegate (
   }
 }
 
-export function MsgRedelegate (
+export function MsgBeginRedelegate (
   senderAddress,
   {
     validatorSourceAddress,
     validatorDestinationAddress,
     amount,
-    denom
+    denom,
+    validatortype
   }
 ) {
   return {
-    type: `cosmos-sdk/MsgBeginRedelegate`,
+    type: `lambda/MsgBeginRedelegate`,
     value: {
+      amount: Coin({ amount, denom }),
       delegator_address: senderAddress,
-      validator_src_address: validatorSourceAddress,
       validator_dst_address: validatorDestinationAddress,
-      amount: Coin({ amount, denom })
+      validator_src_address: validatorSourceAddress,
+      validator_type: validatortype
     }
   }
 }
@@ -128,9 +130,10 @@ export function MsgDeposit (
   return {
     type: `cosmos-sdk/MsgDeposit`,
     value: {
+      amount: amounts.map(Coin),
       depositor: senderAddress,
-      proposal_id: proposalId,
-      amount: amounts.map(Coin)
+      proposal_id: proposalId
+      
     }
   }
 }
@@ -210,7 +213,7 @@ export default {
   'MsgSend': MsgSend,
   'MsgDelegate': MsgDelegate,
   'MsgUndelegate': MsgUndelegate,
-  'MsgRedelegate': MsgRedelegate,
+  'MsgBeginRedelegate': MsgBeginRedelegate,
   'MsgSubmitProposal': MsgSubmitProposal,
   'MsgVote': MsgVote,
   'MsgDeposit': MsgDeposit,

@@ -51,7 +51,8 @@ export default class Cosmos {
       return {
         messages,
         simulate: ({ memo = undefined }) => this.simulate(senderAddress, { message: messages[0], memo }), // TODO include actual mutli message simulation
-        send: ({ gas, gasPrices, memo = undefined }, signer) => this.send(senderAddress, { gas, gasPrices, memo }, messages, signer)
+        send: ({ gas, gasPrices, memo = undefined }, signer) => this.send(senderAddress, { gas, gasPrices, memo }, messages, signer),
+        getTxhash: ({ gas, gasPrices, memo = undefined }, signer) => this.getTxhash(senderAddress, { gas, gasPrices, memo }, messages, signer)
       }
     }
   }
