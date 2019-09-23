@@ -16,7 +16,7 @@ export default async function simulate (
     'cosmos-sdk/MsgSend': () => `/bank/accounts/${senderAddress}/transfers`,
     'lambda/MsgDelegate': () => `/staking/delegators/${senderAddress}/delegations`,
     'lambda/MsgUndelegate': () => `/staking/delegators/${senderAddress}/unbonding_delegations`,
-    'cosmos-sdk/MsgBeginRedelegate': () => `/staking/delegators/${senderAddress}/redelegations`,
+    'lambda/MsgBeginRedelegate': () => `/staking/delegators/${senderAddress}/redelegations`,
     'cosmos-sdk/MsgSubmitProposal': () => `/gov/proposals`,
     'cosmos-sdk/MsgVote': () => `/gov/proposals/${msg.value.proposal_id}/votes`,
     'cosmos-sdk/MsgDeposit': () => `/gov/proposals/${msg.value.proposal_id}/deposits`,
