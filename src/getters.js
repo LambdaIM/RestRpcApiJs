@@ -97,8 +97,14 @@ export default function Getters (cosmosRESTURL) {
     assets: function (addr) {
       return Promise.all([
         get(`/txs?action=asset-pledge&address=${addr}&page=1000000`),
-        get(`/txs?action=asset-drop&address=${addr}&page=1000000`)
-      ]).then(([pledgeTxs, dropTxs]) => [].concat(pledgeTxs, dropTxs))
+        get(`/txs?action=asset-drop&address=${addr}&page=1000000`),
+        get(`/txs?action=asset-create&address=${addr}&page=1000000`),
+        get(`/txs?action=asset-mint&address=${addr}&page=1000000`),
+        get(`/txs?action=asset-destroy&address=${addr}&page=1000000`),
+        get(`/txs?action=asset-ruin&address=${addr}&page=1000000`),
+        get(`/txs?action=lockAsset&address=${addr}&page=1000000`),
+        get(`/txs?action=unLockAsset&address=${addr}&page=1000000`)
+      ]).then(([pledgeTxs, dropTxs,create,mint,destroy,ruin,lock,unLock]) => [].concat(pledgeTxs, dropTxs,create,mint,destroy,ruin,lock,unLock))
     },
 
     /* ============ STAKE ============ */
