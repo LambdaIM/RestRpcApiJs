@@ -95,6 +95,39 @@ describe("messgages", () => {
 
     })
 
+    it(`MsgBeginRedelegate`, () => {
+        var amount = "1000000";
+        var denom = "utbb";
+        var validatortype = 1;
+        var validatorSourceAddress="lambdavaloper18j63yncsd8awmf5a6057rlfzxmqlfdntqnktef";
+        var validatorDestinationAddress="lambdavaloper19zptal4p80w29kqjv4wrwyd4qm2y4u7wnjwcec";
+
+        var result = MessageConstructors.MsgBeginRedelegate(senderAddress, {
+            validatorSourceAddress,
+            validatorDestinationAddress,
+            amount,
+            denom,
+            validatortype
+        })
+
+        expect(result).toMatchObject(
+            {
+                "type": "lambda/MsgBeginRedelegate",
+                "value": {
+                    "amount": {
+                        "amount": "1000000",
+                        "denom": "utbb"
+                    },
+                    "delegator_address": "lambda163q4m634nq8les4nuvdvz49tk6aeh926t0ccsc",
+                    "validator_dst_address": "lambdavaloper19zptal4p80w29kqjv4wrwyd4qm2y4u7wnjwcec",
+                    "validator_src_address": "lambdavaloper18j63yncsd8awmf5a6057rlfzxmqlfdntqnktef",
+                    "validator_type": 1
+                }
+            }
+        )
+
+    })
+
     it(`MsgWithdrawDelegationReward`, () => {
         
 
@@ -108,6 +141,24 @@ describe("messgages", () => {
                 "value": {
                     "delegator_address": "lambda163q4m634nq8les4nuvdvz49tk6aeh926t0ccsc",
                     "validator_address": "lambdavaloper1prrcl9674j4aqrgrzmys5e28lkcxmntxuvjpcl"
+                }
+            }
+        )
+
+    })
+
+    it(`MsgWithdrawValidatorCommission`, () => {
+        
+
+        var result = MessageConstructors.MsgWithdrawValidatorCommission(senderAddress, {
+            validatorAddress,
+        })
+
+        expect(result).toMatchObject(
+            {
+                "type": "cosmos-sdk/MsgWithdrawValidatorCommission",
+                "value": {
+                    "validator_address": validatorAddress
                 }
             }
         )
@@ -162,6 +213,51 @@ describe("messgages", () => {
                         "amount": "3000000000",
                         "denom": "ulamb"
                     }
+                }
+            }
+        )
+
+    })
+
+    it(`MsgVote`, () => {
+        
+        var  proposalId=1;
+        var option = 'yes';
+        var result = MessageConstructors.MsgVote(senderAddress, {
+            proposalId,
+            option
+        })
+
+        expect(result).toMatchObject(
+            {
+                "type": "cosmos-sdk/MsgVote",
+                "value": {
+                    option,
+                    proposal_id: proposalId,
+                    voter: senderAddress
+                }
+            }
+        )
+
+    })
+
+    it(`MsgDeposit`, () => {
+        
+        var  proposalId=1;
+    
+        var result = MessageConstructors.MsgDeposit(senderAddress, {
+            proposalId,
+            amounts
+        })
+
+        expect(result).toMatchObject(
+            {
+                "type": "cosmos-sdk/MsgDeposit",
+                "value": {
+                    amount:amounts,
+                    depositor: senderAddress,
+                    proposal_id: proposalId,
+                    
                 }
             }
         )
