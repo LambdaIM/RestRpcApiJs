@@ -292,6 +292,25 @@ export default function Getters (cosmosRESTURL) {
     },
     distributionOutstandingRewards: function () {
       return get(`/distribution/outstanding_rewards`)
-    }
+    },
+    /* ------市场相关--------- */
+        marketlist: function () {
+          return get(`/market/listinfo`)
+        },
+        marketinfo: function (name) {
+          return get(`/market/marketinfo/${name}`)
+        },
+        marketOrderslist: function () {
+          return get(`/market/orderslist`)
+        },
+        marketSellOrderslist: function (address) {
+          return get(`/market/sellorderslist/${address}`)
+        },
+        marketUserOrderslist: function (address) {
+          return get(`/market/userorderslist/${address}`)
+        },
+        marketOrderinfo: function (Orderid) {
+          return get(`/market/Orderinfo/${Orderid}`)
+        }
   }
 }
