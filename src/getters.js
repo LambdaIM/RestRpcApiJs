@@ -152,6 +152,9 @@ export default function Getters (cosmosRESTURL) {
         true
       )
     },
+    partnerundelegations: function (addr) {
+      return get(`/staking/delegators/${addr}/unbonding_partner_delegations`)
+    },
     redelegations: function (addr) {
       return get(`/staking/redelegations?delegator=${addr}`)
     },
