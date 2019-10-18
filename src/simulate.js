@@ -23,7 +23,9 @@ export default async function simulate (
     'cosmos-sdk/MsgWithdrawDelegationReward': () => `/distribution/delegators/${senderAddress}/rewards`,
     'lambda/MsgAssetPledge': () => `/asset/pledge`,
     'lambda/MsgAssetDrop': () => `/asset/drop`,
-    'cosmos-sdk/MsgWithdrawValidatorCommission': () => `/distribution/delegators/${senderAddress}/rewards`
+    'cosmos-sdk/MsgWithdrawValidatorCommission': () => `/distribution/delegators/${senderAddress}/rewards`,
+    'lambda/MsgCreateSellOrder': () => `/market/create-sellorder`,
+    'lambda/MsgCreateBuyOrder': () => `/market/create-buyorder`
   }[type]()
   const url = `${cosmosRESTURL}${path}`
 
