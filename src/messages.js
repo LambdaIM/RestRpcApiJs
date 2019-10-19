@@ -203,6 +203,62 @@ export function MsgAssetDrop (
   }
 }
 
+export function MsgCreateSellOrder (
+  senderAddress,
+  {
+    marketName,
+    price,
+    rate,
+    sellSize,
+    machineName,
+    cancelTimeDuration,
+    minBuySize,
+    minBuyDuration,
+    maxBuyDuration
+  }
+) {
+  return {
+    type: `lambda/MsgCreateSellOrder`,
+    value: {
+      address: senderAddress,
+      cancelTimeDuration,
+      machineName,
+      marketName,
+      maxBuyDuration,
+      minBuyDuration,
+      minBuySize,
+      price,
+      rate,
+      sellSize,
+      
+      
+      
+    }
+  }
+}
+
+export function MsgCreateBuyOrder (
+  senderAddress,
+  {
+    duration,
+    size,
+    sellOrderId,
+    marketName
+  }
+) {
+  return {
+    type: `lambda/MsgCreateBuyOrder`,
+    value: {
+      address: senderAddress,
+      duration,
+      marketName,
+      sellOrderId: sellOrderId,
+      size
+    }
+  }
+}
+
+
 function Coin ({ amount, denom }) {
   return ({
     amount: String(amount),
@@ -222,5 +278,7 @@ export default {
   'MsgWithdrawDelegationReward': MsgWithdrawDelegationReward,
   'MsgAssetPledge': MsgAssetPledge,
   'MsgAssetDrop': MsgAssetDrop,
-  'MsgWithdrawValidatorCommission': MsgWithdrawValidatorCommission
+  'MsgWithdrawValidatorCommission': MsgWithdrawValidatorCommission,
+  'MsgCreateSellOrder': MsgCreateSellOrder,
+  'MsgCreateBuyOrder': MsgCreateBuyOrder
 }

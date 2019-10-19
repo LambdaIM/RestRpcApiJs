@@ -81,7 +81,8 @@ export default function Getters (cosmosRESTURL) {
         this.governanceTxs(addr),
         this.distributionTxs(addr),
         this.stakingTxs(addr),
-        this.assets(addr)
+        this.assets(addr),
+        this.marketTxs()
       ]).then((txs) => [].concat(...txs))
     },
     bankTxs: function (addr) {
@@ -295,6 +296,45 @@ export default function Getters (cosmosRESTURL) {
     },
     distributionOutstandingRewards: function () {
       return get(`/distribution/outstanding_rewards`)
+    },
+    /* ------市场相关--------- */
+    marketlist: function () {
+      return get(`/market/markets`)
+    },
+    marketinfo: function (name) {
+      return get(`/market/params`)
+    },
+    marketOrderslist: function (marketName,orderType,page,limit) { 
+      return get(`/market/sellorders/${marketName}/${orderType}/${page}/${limit}`)
+    },
+    marketminermachines: function (address,page,limit) {
+      return get(`/market/miner/machines/${address}/${page}/${limit}`)
+    },
+    marketSellOrderslist: function (address,page,limit) {
+      return get(`/market/miner/sellorders/${address}/${page}/${limit}`)
+    },
+    marketUserOrderslist: function (address,page,limit) {
+      return get(`/market/matchorders/${address}/${page}/${limit}`)
+    },
+    marketOrderinfo: function (Orderid) {
+      return get(`/market/matchorder/${Orderid}`)
+    },
+    marketTxs: async function (address) {
+      return Promise.all([
+        get(`/txs?action=createMiner&address=${address}&page=1000000`),
+        get(`/txs?action=createMachine&address=${address}&page=1000000`),
+        get(`/txs?action=editMachine&address=${address}&page=1000000`),
+        get(`/txs?action=minerWithdraw&address=${address}&page=1000000`),
+        get(`/txs?action=createMarket&address=${address}&page=1000000`),
+        get(`/txs?action=editMarket&address=${address}&page=1000000`),
+        get(`/txs?action=withdrawMarket&address=${address}&page=1000000`),
+        get(`/txs?action=createSellOrder&address=${address}&page=1000000`),
+        get(`/txs?action=cancelOrder&address=${address}&page=1000000`),
+        get(`/txs?action=createBuyOrder&address=${address}&page=1000000`),
+        
+      ]).then(([data1, data2, data3,data4,data5,data6,data7,data8,data9,data10]) =>
+        [].concat(data1, data2, data3,data4,data5,data6,data7,data8,data9,data10)
+      )
     }
   }
 }
