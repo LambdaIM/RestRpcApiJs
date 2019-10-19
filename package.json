@@ -1,6 +1,8 @@
 {
   "name": "@jswebfans/rpcapijs",
+
   "version": "0.1.23",
+
   "description": "Wrapper around getting and sending transactions from and to lambda",
   "main": "lib/index.js",
   "scripts": {
