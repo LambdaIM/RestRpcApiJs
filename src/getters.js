@@ -334,10 +334,11 @@ export default function Getters (cosmosRESTURL) {
         get(`/txs?action=createSellOrder&address=${address}&page=1000000`),
         get(`/txs?action=cancelOrder&address=${address}&page=1000000`),
         get(`/txs?action=createBuyOrder&address=${address}&page=1000000`),
+        get(`/txs?action=minerWithdrawMachine&address=${address}&page=1000000`)
         
-      ]).then(([data1, data2, data3,data4,data5,data6,data7,data8,data9,data10]) =>
-        [].concat(data1, data2, data3,data4,data5,data6,data7,data8,data9,data10)
-      )
+      ]).then((datalist) =>
+          [].concat(...datalist)
+        )
     }
   }
 }
