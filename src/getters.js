@@ -82,7 +82,7 @@ export default function Getters (cosmosRESTURL) {
         this.distributionTxs(addr),
         this.stakingTxs(addr),
         this.assets(addr),
-        this.marketTxs()
+        this.marketTxs(addr)
       ]).then((txs) => [].concat(...txs))
     },
     bankTxs: function (addr) {
@@ -318,6 +318,9 @@ export default function Getters (cosmosRESTURL) {
     },
     marketOrderinfo: function (Orderid) {
       return get(`/market/matchorder/${Orderid}`)
+    },
+    marketmachineinfo: function (address,machineName) {
+      return get(`/market/machine/${address}/${machineName}`)
     },
     marketTxs: async function (address) {
       return Promise.all([
