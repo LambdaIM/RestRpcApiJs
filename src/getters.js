@@ -1,7 +1,7 @@
 'use strict'
 import fetch from './fetch.js'
 /* eslint-env browser */
-const hdkeyjs = require('@jswebfans/hdkeyjs');
+const hdkeyjs = require('@jswebfans/hdkeyjs')
 
 const RETRIES = 4
 
@@ -105,7 +105,7 @@ export default function Getters (cosmosRESTURL) {
         get(`/txs?action=ruinAsset&address=${addr}&page=1000000`),
         get(`/txs?action=lockAsset&address=${addr}&page=1000000`),
         get(`/txs?action=unLockAsset&address=${addr}&page=1000000`)
-      ]).then(([pledgeTxs, dropTxs,create,mint,destroy,ruin,lock,unLock]) => [].concat(pledgeTxs, dropTxs,create,mint,destroy,ruin,lock,unLock))
+      ]).then(([pledgeTxs, dropTxs, create, mint, destroy, ruin, lock, unLock]) => [].concat(pledgeTxs, dropTxs, create, mint, destroy, ruin, lock, unLock))
     },
 
     /* ============ STAKE ============ */
@@ -257,9 +257,9 @@ export default function Getters (cosmosRESTURL) {
     },
     /* ============ Distribution ============ */
     distributionTxs: async function (address, valAddress) {
-      var lambdaDevelopAdresss = hdkeyjs.address.validatorAddress(address);
-      var url=`/txs?action=withdraw_validator_rewards_all&source-validator=${lambdaDevelopAdresss}&page=1000000`;
-      //`/txs?action=withdraw_validator_rewards_all&page=1000000`
+      var lambdaDevelopAdresss = hdkeyjs.address.validatorAddress(address)
+      var url = `/txs?action=withdraw_validator_rewards_all&source-validator=${lambdaDevelopAdresss}&page=1000000`
+      // `/txs?action=withdraw_validator_rewards_all&page=1000000`
       return Promise.all([
         get(`/txs?action=set_withdraw_address&delegator=${address}&page=1000000`),
         get(`/txs?action=withdraw_delegator_reward&delegator=${address}&page=1000000`),
@@ -304,22 +304,22 @@ export default function Getters (cosmosRESTURL) {
     marketinfo: function (name) {
       return get(`/market/params`)
     },
-    marketOrderslist: function (marketName,orderType,page,limit) { 
+    marketOrderslist: function (marketName, orderType, page, limit) {
       return get(`/market/sellorders/${marketName}/${orderType}/${page}/${limit}`)
     },
-    marketminermachines: function (address,page,limit) {
+    marketminermachines: function (address, page, limit) {
       return get(`/market/miner/machines/${address}/${page}/${limit}`)
     },
-    marketSellOrderslist: function (address,page,limit) {
+    marketSellOrderslist: function (address, page, limit) {
       return get(`/market/miner/sellorders/${address}/${page}/${limit}`)
     },
-    marketUserOrderslist: function (address,page,limit) {
+    marketUserOrderslist: function (address, page, limit) {
       return get(`/market/matchorders/${address}/${page}/${limit}`)
     },
     marketOrderinfo: function (Orderid) {
       return get(`/market/matchorder/${Orderid}`)
     },
-    marketmachineinfo: function (address,machineName) {
+    marketmachineinfo: function (address, machineName) {
       return get(`/market/machine/${address}/${machineName}`)
     },
     marketTxs: async function (address) {
@@ -335,10 +335,10 @@ export default function Getters (cosmosRESTURL) {
         get(`/txs?action=cancelOrder&address=${address}&page=1000000`),
         get(`/txs?action=createBuyOrder&address=${address}&page=1000000`),
         get(`/txs?action=minerWithdrawMachine&address=${address}&page=1000000`)
-        
+
       ]).then((datalist) =>
-          [].concat(...datalist)
-        )
+        [].concat(...datalist)
+      )
     }
   }
 }

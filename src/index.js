@@ -1,5 +1,5 @@
 import _Getters from './getters'
-import send,{getTxhash}from './send'
+import send, { getTxhash } from './send'
 import simulate from './simulate'
 import * as MessageConstructors from './messages'
 
@@ -119,9 +119,9 @@ export default class Cosmos {
     const chainId = await this.setChainId()
     const { sequence, accountNumber } = await this.getAccount(senderAddress)
 
-    var  hash = await getTxhash({ gas, gasPrices, memo }, messages, signer, this.url, chainId, accountNumber, sequence)
+    var hash = await getTxhash({ gas, gasPrices, memo }, messages, signer, this.url, chainId, accountNumber, sequence)
 
-    return hash;
+    return hash
   }
 }
 
