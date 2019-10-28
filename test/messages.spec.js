@@ -265,4 +265,80 @@ describe("messgages", () => {
     })
 
 
+
+    it(`MsgCreateSellOrder`, () => {
+        var marketName='testname';
+        var price='1';
+        var rate=1;
+        var sellSize=1;
+        var machineName='xxxxName';
+        var cancelTimeDuration=1;
+        var minBuySize=1;
+        var minBuyDuration=2;
+        var maxBuyDuration=4;
+
+        var result = MessageConstructors.MsgCreateSellOrder(senderAddress, {
+            marketName,
+            price,
+            rate,
+            sellSize,
+            machineName,
+            cancelTimeDuration,
+            minBuySize,
+            minBuyDuration,
+            maxBuyDuration
+        })
+
+        expect(result).toMatchObject(
+            {
+                "type": "lambda/MsgCreateSellOrder",
+                "value": {
+                    address: senderAddress,
+                    cancelTimeDuration:cancelTimeDuration,
+                    machineName:machineName,
+                    marketName:marketName,
+                    maxBuyDuration:maxBuyDuration,
+                    minBuyDuration:minBuyDuration,
+                    minBuySize:minBuySize,
+                    price:price,
+                    rate:rate,
+                    sellSize:sellSize
+                
+                    
+                }
+            }
+        )
+
+    })
+
+    it(`MsgCreateBuyOrder`, () => {
+        var duration='1';
+        var size='1';
+        var sellOrderId='1';
+        var marketName='name';
+
+
+        var result = MessageConstructors.MsgCreateBuyOrder(senderAddress, {
+            duration,
+            size,
+            sellOrderId,
+            marketName
+        })
+
+        expect(result).toMatchObject(
+            {
+                "type": "lambda/MsgCreateBuyOrder",
+                "value": {
+                    duration:duration,
+                    size:size,
+                    sellOrderId:sellOrderId,
+                    marketName:marketName
+                    
+                }
+            }
+        )
+
+    })
+
+
 })

@@ -116,8 +116,7 @@ export function MsgVote (
       option,
       proposal_id: proposalId,
       voter: senderAddress
-      
-      
+
     }
   }
 }
@@ -135,7 +134,7 @@ export function MsgDeposit (
       amount: amounts.map(Coin),
       depositor: senderAddress,
       proposal_id: proposalId
-      
+
     }
   }
 }
@@ -159,14 +158,13 @@ export function MsgWithdrawValidatorCommission (
   senderAddress,
   {
     validatorAddress
-  }){
-    return {
-      type: `cosmos-sdk/MsgWithdrawValidatorCommission`,
-      value: {
-        validator_address:validatorAddress
-      }
+  }) {
+  return {
+    type: `cosmos-sdk/MsgWithdrawValidatorCommission`,
+    value: {
+      validator_address: validatorAddress
     }
-
+  }
 }
 
 export function MsgAssetPledge (
@@ -229,10 +227,8 @@ export function MsgCreateSellOrder (
       minBuySize,
       price,
       rate,
-      sellSize,
-      
-      
-      
+      sellSize
+
     }
   }
 }
@@ -257,7 +253,6 @@ export function MsgCreateBuyOrder (
     }
   }
 }
-
 
 function Coin ({ amount, denom }) {
   return ({
