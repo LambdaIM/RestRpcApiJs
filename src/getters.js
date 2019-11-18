@@ -107,6 +107,7 @@ export default function Getters (cosmosRESTURL) {
         get(`/txs?action=unLockAsset&address=${addr}&page=1000000`)
       ]).then(([pledgeTxs, dropTxs, create, mint, destroy, ruin, lock, unLock]) => [].concat(pledgeTxs, dropTxs, create, mint, destroy, ruin, lock, unLock))
     },
+    assetAll: hash => get(`/asset/all`),
 
     /* ============ STAKE ============ */
     stakingTxs: async function (address, valAddress) {
