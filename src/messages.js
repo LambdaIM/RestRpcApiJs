@@ -254,6 +254,39 @@ export function MsgCreateBuyOrder (
   }
 }
 
+export function MsgCreateMiner (
+  senderAddress
+) {
+  return {
+    type: `lambda/MsgCreateMiner`,
+    value: {
+      address: senderAddress
+    }
+  }
+}
+
+
+export function MsgCreateMachine (
+  senderAddress,
+  {
+    name,
+    peerId,
+    dhtId,
+    pubKey
+  }
+) {
+  return {
+    type: `lambda/MsgCreateMachine`,
+    value: {
+      address: senderAddress,
+      name,
+      peerId,
+      dhtId,
+      pubKey
+    }
+  }
+}
+
 function Coin ({ amount, denom }) {
   return ({
     amount: String(amount),
@@ -275,5 +308,7 @@ export default {
   'MsgAssetDrop': MsgAssetDrop,
   'MsgWithdrawValidatorCommission': MsgWithdrawValidatorCommission,
   'MsgCreateSellOrder': MsgCreateSellOrder,
-  'MsgCreateBuyOrder': MsgCreateBuyOrder
+  'MsgCreateBuyOrder': MsgCreateBuyOrder,
+  'MsgCreateMiner': MsgCreateMiner,
+  'MsgCreateMachine': MsgCreateMachine
 }

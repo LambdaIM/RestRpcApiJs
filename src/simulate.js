@@ -25,7 +25,9 @@ export default async function simulate (
     'lambda/MsgAssetDrop': () => `/asset/drop`,
     'cosmos-sdk/MsgWithdrawValidatorCommission': () => `/distribution/delegators/${senderAddress}/rewards`,
     'lambda/MsgCreateSellOrder': () => `/market/create-sellorder`,
-    'lambda/MsgCreateBuyOrder': () => `/market/create-buyorder`
+    'lambda/MsgCreateBuyOrder': () => `/market/create-buyorder`,
+    'lambda/MsgCreateMiner': () => `/market/create-miner`,
+    'lambda/MsgCreateMachine': () => `/market/create-machine`
   }[type]()
   const url = `${cosmosRESTURL}${path}`
 
