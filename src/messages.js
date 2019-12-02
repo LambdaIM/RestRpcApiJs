@@ -279,9 +279,9 @@ export function MsgCreateMachine (
     type: `lambda/MsgCreateMachine`,
     value: {
       address: senderAddress,
+      dhtId,
       name,
       peerId,
-      dhtId,
       pubKey
     }
   }
