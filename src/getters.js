@@ -294,7 +294,7 @@ export default function Getters (cosmosRESTURL) {
     },
     MinerRewards: function (Addr) {
       var MinerAddress = hdkeyjs.address.MinerAddress(Addr)
-      return get(`distribution/miners/${MinerAddress}`)
+      return get(`/distribution/miners/${MinerAddress}`)
     },
     distributionParameters: function () {
       return get(`/distribution/parameters`)
