@@ -292,6 +292,10 @@ export default function Getters (cosmosRESTURL) {
     validatorRewards: function (validatorAddr) {
       return get(`/distribution/validators/${validatorAddr}/rewards`)
     },
+    MinerRewards: function (Addr) {
+      var MinerAddress = hdkeyjs.address.MinerAddress(Addr)
+      return get(`distribution/miners/${MinerAddress}`)
+    },
     distributionParameters: function () {
       return get(`/distribution/parameters`)
     },
