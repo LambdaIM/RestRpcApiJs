@@ -274,6 +274,18 @@ export function MsgCreateMiner (
   }
 }
 
+export function MsgWithdrawMinerRewards (
+  senderAddress,
+  {
+    minerAddress
+  }) {
+  return {
+    type: `cosmos-sdk/MsgWithdrawMinerRewards`,
+    value: {
+      miner_address: minerAddress
+    }
+  }
+}
 
 export function MsgCreateMachine (
   senderAddress,
@@ -319,5 +331,6 @@ export default {
   'MsgCreateSellOrder': MsgCreateSellOrder,
   'MsgCreateBuyOrder': MsgCreateBuyOrder,
   'MsgCreateMiner': MsgCreateMiner,
-  'MsgCreateMachine': MsgCreateMachine
+  'MsgCreateMachine': MsgCreateMachine,
+  'MsgWithdrawMinerRewards': MsgWithdrawMinerRewards
 }
