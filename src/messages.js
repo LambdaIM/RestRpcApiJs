@@ -254,13 +254,22 @@ export function MsgCreateBuyOrder (
   }
 }
 
+
 export function MsgCreateMiner (
-  senderAddress
+  senderAddress,
+  {
+    miningAddress,
+    dhtId,
+    pubKey
+  }
 ) {
   return {
     type: `lambda/MsgCreateMiner`,
     value: {
-      address: senderAddress
+      address: senderAddress,
+      dhtId,
+      miningAddress,
+      pubKey
     }
   }
 }

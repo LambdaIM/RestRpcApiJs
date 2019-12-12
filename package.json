@@ -1,7 +1,7 @@
 {
   "name": "@jswebfans/rpcapijs",
 
-  "version": "0.1.28",
+  "version": "0.1.31",
 
   "description": "Wrapper around getting and sending transactions from and to lambda",
   "main": "lib/index.js",
@@ -27,7 +27,7 @@
     "@babel/core": "^7.4.5",
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
-    "@jswebfans/hdkeyjs": "1.2.9",
+    "@jswebfans/hdkeyjs": "1.2.11",
     "babel-core": "^7.0.0-0",
     "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.5",
