@@ -208,7 +208,6 @@ export function MsgCreateSellOrder (
     price,
     rate,
     sellSize,
-    machineName,
     cancelTimeDuration,
     minBuySize,
     minBuyDuration,
@@ -220,7 +219,6 @@ export function MsgCreateSellOrder (
     value: {
       address: senderAddress,
       cancelTimeDuration,
-      machineName,
       marketName,
       maxBuyDuration,
       minBuyDuration,
@@ -259,8 +257,7 @@ export function MsgCreateMiner (
   senderAddress,
   {
     miningAddress,
-    dhtId,
-    pubKey
+    dhtId
   }
 ) {
   return {
@@ -268,8 +265,7 @@ export function MsgCreateMiner (
     value: {
       address: senderAddress,
       dhtId,
-      miningAddress,
-      pubKey
+      miningAddress
     }
   }
 }
