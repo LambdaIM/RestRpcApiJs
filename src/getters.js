@@ -75,21 +75,13 @@ export default function Getters (cosmosRESTURL) {
           throw err
         })
     },
-    txs: function (addr) {
+    txs: function (addr,height) {
       return Promise.all([
-        this.bankTxs(addr),
-        this.governanceTxs(addr),
-        this.distributionTxs(addr),
-        this.stakingTxs(addr),
-        this.assets(addr),
-        this.marketTxs(addr)
+        this.bankTxs(addr,height)
       ]).then((txs) => [].concat(...txs))
     },
-    bankTxs: function (addr) {
-      return Promise.all([
-        get(`/txs?sender=${addr}&page=1000000`),
-        get(`/txs?recipient=${addr}&page=1000000`)
-      ]).then(([senderTxs, recipientTxs]) => [].concat(senderTxs, recipientTxs))
+    bankTxs: function (addr,height) {
+      return get(`/txs?address=${addr}&tx.gHeight=${height}&page=1000000&limit=100`)
     },
     txsByHeight: function (height) {
       return get(`/txs?tx.height=${height}`)
@@ -309,8 +301,8 @@ export default function Getters (cosmosRESTURL) {
     marketinfo: function (name) {
       return get(`/market/params`)
     },
-    marketOrderslist: function (marketName, orderType, page, limit) {
-      return get(`/market/sellorders/${marketName}/${orderType}/${page}/${limit}`)
+    marketOrderslist: function (marketName, orderType, statusType, page, limit) {
+      return get(`/market/sellorders/${marketName}/${orderType}/${statusType}/${page}/${limit}`)
     },
     marketminermachines: function (address, page, limit) {
       return get(`/market/miner/machines/${address}/${page}/${limit}`)

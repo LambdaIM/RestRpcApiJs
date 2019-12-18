@@ -276,7 +276,7 @@ export function MsgWithdrawMinerRewards (
     minerAddress
   }) {
   return {
-    type: `cosmos-sdk/MsgWithdrawMinerRewards`,
+    type: `lambda/MsgWithdrawMinerRewards`,
     value: {
       miner_address: minerAddress
     }
