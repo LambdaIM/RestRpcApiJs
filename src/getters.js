@@ -21,6 +21,20 @@ export default function Getters (cosmosRESTURL) {
     }
   }
 
+  function gettxt (path, tries = RETRIES) {
+    while (tries) {
+      try {
+        console.log('get url gettxt')
+        console.log(cosmosRESTURL + path)
+        return fetch(cosmosRESTURL + path).then(res => res.text())
+      } catch (err) {
+        if (--tries === 0) {
+          throw err
+        }
+      }
+    }
+  }
+
   return {
     url: cosmosRESTURL,
 
@@ -336,6 +350,10 @@ export default function Getters (cosmosRESTURL) {
       ]).then((datalist) =>
         [].concat(...datalist)
       )
+    },
+    /***minting***/
+    mintingAnnualprovisions: function () {
+      return gettxt(`/minting/annual-provisions`)
     }
   }
 }
