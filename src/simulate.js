@@ -37,6 +37,9 @@ export default async function simulate (
   const result = await fetch(url, { method: `POST`, body: JSON.stringify(tx) }).then(res => res.json())
   var { gas_estimate: gasEstimate } = result
   console.log('gas_estimategas_estimate', gasEstimate, result)
+  if(result.error!=undefined){
+    throw new Error(result.error)
+  }
   console.log(JSON.stringify(tx))
   return Math.round(gasEstimate * GAS_ADJUSTMENT)
 }
