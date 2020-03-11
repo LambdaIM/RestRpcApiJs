@@ -42,13 +42,7 @@ export default async function send ({ gas, gasPrices = DEFAULT_GAS_PRICE, memo =
     included: () => queryTxInclusion(dataJson.txhash, cosmosRESTURL)
   }
 }
-export async function getTxhash ({ gas, gasPrices = DEFAULT_GAS_PRICE, memo = `` }, messages, signer, cosmosRESTURL, chainId, accountNumber, sequence) {
-  const signedTx = await createSignedTransaction({ gas, gasPrices, memo }, messages, signer, chainId, accountNumber, sequence)
 
-  var txhash = hdkeyjs.address.getTxhash(JSON.parse(JSON.stringify(signedTx)))
-
-  return txhash.toString('hex').toUpperCase()
-}
 
 export async function createSignedTransaction ({ gas, gasPrices = DEFAULT_GAS_PRICE, memo = `` }, messages, signer, chainId, accountNumber, sequence) {
   // sign transaction
