@@ -1,5 +1,5 @@
 import _Getters from './getters'
-import send, from './send'
+import send from './send'
 import simulate from './simulate'
 import * as MessageConstructors from './messages'
 
