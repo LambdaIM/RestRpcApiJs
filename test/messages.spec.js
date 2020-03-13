@@ -282,7 +282,7 @@ describe("messgages", () => {
             price,
             rate,
             sellSize,
-            machineName,
+            
             cancelTimeDuration,
             minBuySize,
             minBuyDuration,
@@ -295,7 +295,7 @@ describe("messgages", () => {
                 "value": {
                     address: senderAddress,
                     cancelTimeDuration:cancelTimeDuration,
-                    machineName:machineName,
+                    
                     marketName:marketName,
                     maxBuyDuration:maxBuyDuration,
                     minBuyDuration:minBuyDuration,

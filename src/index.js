@@ -1,5 +1,5 @@
 import _Getters from './getters'
-import send, { getTxhash } from './send'
+import send from './send'
 import simulate from './simulate'
 import * as MessageConstructors from './messages'
 
@@ -40,7 +40,7 @@ export default class Cosmos {
             message,
             simulate: ({ memo = undefined }) => this.simulate(senderAddress, { message, memo }),
             send: ({ gas, gasPrices, memo = undefined }, signer) => this.send(senderAddress, { gas, gasPrices, memo }, message, signer),
-            getTxhash: ({ gas, gasPrices, memo = undefined }, signer) => this.getTxhash(senderAddress, { gas, gasPrices, memo }, message, signer)
+            
           }
         }
       })
@@ -52,7 +52,7 @@ export default class Cosmos {
         messages,
         simulate: ({ memo = undefined }) => this.simulate(senderAddress, { message: messages[0], memo }), // TODO include actual mutli message simulation
         send: ({ gas, gasPrices, memo = undefined }, signer) => this.send(senderAddress, { gas, gasPrices, memo }, messages, signer),
-        getTxhash: ({ gas, gasPrices, memo = undefined }, signer) => this.getTxhash(senderAddress, { gas, gasPrices, memo }, messages, signer)
+        
       }
     }
   }
@@ -115,14 +115,7 @@ export default class Cosmos {
 
     return simulate(this.url, senderAddress, chainId, message, memo, sequence, accountNumber)
   }
-  async getTxhash (senderAddress, { gas, gasPrices, memo }, messages, signer) {
-    const chainId = await this.setChainId()
-    const { sequence, accountNumber } = await this.getAccount(senderAddress)
-
-    var hash = await getTxhash({ gas, gasPrices, memo }, messages, signer, this.url, chainId, accountNumber, sequence)
-
-    return hash
-  }
+  
 }
 
 export { createSignedTransaction } from './send'

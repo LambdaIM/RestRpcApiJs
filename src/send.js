@@ -3,8 +3,9 @@
 import { createSignMessage, createSignature } from './signature'
 import fetch from './fetch.js'
 const hdkeyjs = require('@jswebfans/hdkeyjs')
+const { throwErrorCode, errorList } = require('./throwErrorCode.js');
 
-const DEFAULT_GAS_PRICE = [{ amount: (2.5e-8).toFixed(9), denom: `uatom` }]
+const DEFAULT_GAS_PRICE = [{ amount: 0.25, denom: `ulamb` }]
 
 export default async function send ({ gas, gasPrices = DEFAULT_GAS_PRICE, memo = `` }, messages, signer, cosmosRESTURL, chainId, accountNumber, sequence) {
   const signedTx = await createSignedTransaction({ gas, gasPrices, memo }, messages, signer, chainId, accountNumber, sequence)
@@ -42,13 +43,7 @@ export default async function send ({ gas, gasPrices = DEFAULT_GAS_PRICE, memo =
     included: () => queryTxInclusion(dataJson.txhash, cosmosRESTURL)
   }
 }
-export async function getTxhash ({ gas, gasPrices = DEFAULT_GAS_PRICE, memo = `` }, messages, signer, cosmosRESTURL, chainId, accountNumber, sequence) {
-  const signedTx = await createSignedTransaction({ gas, gasPrices, memo }, messages, signer, chainId, accountNumber, sequence)
 
-  var txhash = hdkeyjs.address.getTxhash(JSON.parse(JSON.stringify(signedTx)))
-
-  return txhash.toString('hex').toUpperCase()
-}
 
 export async function createSignedTransaction ({ gas, gasPrices = DEFAULT_GAS_PRICE, memo = `` }, messages, signer, chainId, accountNumber, sequence) {
   // sign transaction
@@ -66,7 +61,9 @@ export async function createSignedTransaction ({ gas, gasPrices = DEFAULT_GAS_PR
   try {
     ({ signature, publicKey } = await signer(signMessage))
   } catch (err) {
-    throw new Error('Signing failed: ' + err.message)
+    console.log('Signing failed: ' + err.message)
+    throwErrorCode(errorList.Signing_failed,err.message)
+    // throw new Error('Signing failed: ' + err.message)
   }
   console.log('after signer')
   console.log(signature)
@@ -102,7 +99,7 @@ export async function queryTxInclusion (txHash, cosmosRESTURL, iterations = 60, 
     }
   }
   if (iterations <= 0) {
-    throw new Error(`The transaction was still not included in a block. We can't say for certain it will be included in the future.该事务仍不包含在块中。我们不能肯定它将来会被包括在内。`)
+    throwErrorCode(errorList.transaction_was_still_not_included)
   }
 
   assertOk(includedTx)
@@ -154,7 +151,7 @@ function assertOk (res) {
   console.log(res)
   console.log('assertOk')
   if (Array.isArray(res)) {
-    if (res.length === 0) throw new Error(`Error sending transaction`)
+    if (res.length === 0) throwErrorCode(errorList.Error_sending_transaction)
 
     res.forEach(assertOk)
   }
@@ -169,7 +166,8 @@ function assertOk (res) {
       return item.log
     }).join(',')
     console.log(message)
-    throw new Error(message)
+    
+    throw new Error( JSON.stringify({code:res.code,message}) )
   }
 
   if (!res.txhash) {
