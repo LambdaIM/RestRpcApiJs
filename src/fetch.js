@@ -1,4 +1,5 @@
 
+import log from './log.js'
 export default function (url, options) {
   var netoptions = {
     url: url,
@@ -19,6 +20,8 @@ export default function (url, options) {
               try {
                 resolve(JSON.parse(body))
               } catch (error) {
+                log(url)
+                log(error)
                 reject(error)
               }
             })
@@ -28,6 +31,8 @@ export default function (url, options) {
               try {
                 resolve(body)
               } catch (error) {
+                log(url)
+                log(error)
                 reject(error)
               }
             })
