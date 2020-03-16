@@ -1,6 +1,8 @@
 /* eslint-env browser */
 
 import fetch from './fetch.js'
+import log from './log.js'
+
 const GAS_ADJUSTMENT = 1.5
 export default async function simulate (
   cosmosRESTURL,
@@ -37,10 +39,16 @@ export default async function simulate (
   const result = await fetch(url, { method: `POST`, body: JSON.stringify(tx) }).then(res => res.json())
   var { gas_estimate: gasEstimate } = result
   console.log('gas_estimategas_estimate', gasEstimate, result)
+  log('gas_estimategas_estimate start')
+  log(url)
+  log(tx)
+  log(result)
+  log(gasEstimate)
   if(result.error!=undefined){
     throw new Error(result.error)
   }
   console.log(JSON.stringify(tx))
+  log('gas_estimategas_estimate end')
   return Math.round(gasEstimate * GAS_ADJUSTMENT)
 }
 
