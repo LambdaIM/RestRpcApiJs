@@ -4,6 +4,7 @@ import { createSignMessage, createSignature } from './signature'
 import fetch from './fetch.js'
 const hdkeyjs = require('@jswebfans/hdkeyjs')
 const { throwErrorCode, errorList } = require('./throwErrorCode.js');
+import log from './log.js'
 
 const DEFAULT_GAS_PRICE = [{ amount: 0.25, denom: `ulamb` }]
 
@@ -15,10 +16,10 @@ export default async function send ({ gas, gasPrices = DEFAULT_GAS_PRICE, memo =
 
   console.log('body')
   console.log(body)
-  // body = "0x"+Buffer.from(body).toString('hex')
-  // console.log(body)
-  // const encodeBody = await fetch('${cosmosRESTURL}/txs/encode', { method: `POST`, body })
-  // var Body= await res.text();
+  
+  log('post Transaction data parameters')
+  log(body)
+
   const res = await fetch(`${cosmosRESTURL}/txs`, {
     method: `POST`,
     body: body,
