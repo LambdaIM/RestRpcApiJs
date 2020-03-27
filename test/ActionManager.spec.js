@@ -35,15 +35,15 @@ describe('ActionManager', () => {
 
     })
 
-    it('send', async () => {
+    it('sendTransaction', async () => {
         var transactiondata = preTxdata.msgSend('lambda16h3lwqvak8t8zrr9thetajf3yqzxj0kcsjlsck', 1, 'ulamb', '');
 
         var actionManagerObj = new ActionManager();
-        const SIGN_METHODS = {
-            LOCAL: `local`,
-            LEDGER: `ledger`,
-            EXTENSION: `extension`
-        };
+        // const SIGN_METHODS = {
+        //     LOCAL: `local`,
+        //     LEDGER: `ledger`,
+        //     EXTENSION: `extension`
+        // };
 
         //= ========
         const { type, memo, ...transactionProperties } = transactiondata;
@@ -60,7 +60,7 @@ describe('ActionManager', () => {
         const feeProperties = {
             gasEstimate: gasEstimate,
             gasPrice: gasPrice,
-            submitType: SIGN_METHODS.LOCAL
+            // submitType: SIGN_METHODS.LOCAL
         };
 
         if (actionManagerObj != undefined) {
@@ -76,10 +76,7 @@ describe('ActionManager', () => {
         var walletjson = `{"salt":"dZ56yoFQRYmr4RVRjhqXVQ==","privateKey":"M4Cg7zxsbFSRGqjac17XGoJUKN2wmZ1CM6YQhvQzHuMICpYtq4y90hDadv29fKb5Bid/rvWT6Ds4qtGvttR1WdH0YY6/Fw2of8E72j4=","name":"常用钱包1","address":"lambda163q4m634nq8les4nuvdvz49tk6aeh926t0ccsc","publicKey":"lambdapub1addwnpepq0zuqpchp295d4lgll9wcf4z0nex7lj0a99t07qnhxqn80y470t9zhrhpn6"}`;
 
         walletjson = JSON.parse(walletjson);
-        const signerFn = getSigner({}, SIGN_METHODS.LOCAL, {
-            address: 'lambda1hqlr7uekgeu5mxz4cmwkssf7g7mjageaq5jqm4',
-            password: '123456'
-        });
+        const signerFn = hdkey.keyStore.getSigner(walletjson,'123456')
 
         const { included, hash } = await actionManagerObj.send(
             memo,
@@ -89,32 +86,7 @@ describe('ActionManager', () => {
         expect(hash).toHaveLength(64)
 
 
-        function getSigner(config, submitType = "", { address, password }) {
-            console.log("getSigner");
-
-            var privatekey = hdkey.keyStore.checkJson(
-                walletjson,
-                password
-            );
-            var publicKey = hdkey.publicKey.getBytes(walletjson.publicKey);
-            console.log("校验密码ok");
-            return signMessage => {
-                console.log("数据签名");
-                console.log(signMessage);
-                const signature = hdkey.crypto.sign(
-                    Buffer.from(signMessage),
-                    privatekey
-                );
-                return {
-                    signature,
-                    publicKey: publicKey
-                };
-            };
-            //////
-
-
-
-        }
+      
     })
 
 
@@ -141,3 +113,31 @@ describe('ActionManager', () => {
     // })
     ///
 })
+
+
+/*
+
+exports.getSigner= function (walletjson, password ) {
+  console.log("getSigner");
+
+  var privatekey = this.checkJson(
+      walletjson,
+      password
+  );
+  var publicKey = cosPubKey.getBytes(walletjson.publicKey);
+  console.log("校验密码ok");
+  return signMessage => {
+      console.log("数据签名");
+      console.log(signMessage);
+      const signature = coscrypto.sign(
+          Buffer.from(signMessage),
+          privatekey
+      );
+      return {
+          signature,
+          publicKey: publicKey
+      };
+  };
+  //////
+
+*/
