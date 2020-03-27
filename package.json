@@ -42,7 +42,8 @@
     "webpack-cli": "^3.3.2"
   },
   "dependencies": {
-    "@babel/runtime": "^7.5.4"
+    "@babel/runtime": "^7.5.4",
+    "cross-fetch": "^3.0.4"
   },
   "jest": {
     "transform": {

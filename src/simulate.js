@@ -36,7 +36,10 @@ export default async function simulate (
 
   const tx = createRESTPOSTObject(senderAddress, chainId, { sequence, accountNumber, memo }, msg)
 
-  const result = await fetch(url, { method: `POST`, body: JSON.stringify(tx) }).then(res => res.json())
+  const result = await fetch(url, { method: `POST`, body: JSON.stringify(tx) }).then(res => {
+    
+  return  res.json()
+  })
   var { gas_estimate: gasEstimate } = result
   console.log('gas_estimategas_estimate', gasEstimate, result)
   log('gas_estimategas_estimate start')
