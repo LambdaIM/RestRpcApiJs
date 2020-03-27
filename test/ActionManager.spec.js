@@ -5,11 +5,7 @@ const hdkey = require('@jswebfans/hdkeyjs')
 
 describe('ActionManager', () => {
     it('MsgSend preTxdata', () => {
-        console.log('===')
-        console.log(preTxdata)
-        console.log('===')
         var result = preTxdata.msgSend('lambda16h3lwqvak8t8zrr9thetajf3yqzxj0kcsjlsck', 1, 'ulamb', '');
-
         console.log(result)
         expect(result).toMatchObject({})
 
@@ -39,13 +35,7 @@ describe('ActionManager', () => {
         var transactiondata = preTxdata.msgSend('lambda16h3lwqvak8t8zrr9thetajf3yqzxj0kcsjlsck', 1, 'ulamb', '');
 
         var actionManagerObj = new ActionManager();
-        // const SIGN_METHODS = {
-        //     LOCAL: `local`,
-        //     LEDGER: `ledger`,
-        //     EXTENSION: `extension`
-        // };
-
-        //= ========
+  
         const { type, memo, ...transactionProperties } = transactiondata;
         var gasprice = 0.25;
         var gasEstimate = 500000; // 需要接口读取
@@ -59,8 +49,7 @@ describe('ActionManager', () => {
 
         const feeProperties = {
             gasEstimate: gasEstimate,
-            gasPrice: gasPrice,
-            // submitType: SIGN_METHODS.LOCAL
+            gasPrice: gasPrice
         };
 
         if (actionManagerObj != undefined) {
