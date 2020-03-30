@@ -1,4 +1,4 @@
-import ActionManager from '../src/ActionManager.js'
+import ActionManager from '../src/index.js'
 import preTxdata from '../src/preTxdata.js'
 
 const hdkey = require('@jswebfans/hdkeyjs')

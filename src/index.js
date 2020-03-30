@@ -1,122 +1,206 @@
+import Rpcapijs from "./action.js";
+import transaction from "./transactionTypes";
 import _Getters from './getters'
-import send from './send'
-import simulate from './simulate'
-import * as MessageConstructors from './messages'
+import preTxdata from './preTxdata'
 
-/*
-* Sender object to build and send transactions
-* Example:
-* const cosmos = Cosmos("https://stargate.lunie.io", "cosmos1abcd1234")
-* const msg = cosmos
-* .MsgSend({toAddress: 'cosmos1abcd09876', amounts: [{ denom: 'stake', amount: 10 }})
-* const gasEstimate = await msg.simulate()
-* const ledgerSigner = ... // async (signMessage: string) => { signature: Buffer, publicKey: Buffer }
-* const { included }= await msg.send({ gas: gasEstimate }, ledgerSigner)
-* await included()
-*/
-
-export default class Cosmos {
-  constructor (cosmosRESTURL, chainId = undefined) {
-    this.url = cosmosRESTURL
-    this.get = {}
-    this.accounts = {} // storing sequence numbers to not send two transactions with the same sequence number
-    this.chainId = chainId
-    console.log('constructor')
-    console.log(cosmosRESTURL)
-    console.log(this.chainId)
-
+export default class ActionManager {
+  constructor(cosmosRESTURL,chainId,userAddress) {
+    this.context = null;
+    this.cosmos = null;
+    this.message = null;
+    this.get = {};
+    this.preTxdata=preTxdata;
+    
     const getters = _Getters(cosmosRESTURL)
     Object.keys(getters).forEach(getter => {
       this.get[getter] = getters[getter]
     })
 
-    // add message constructors to the Sender to provide a simple API
-    Object.entries(MessageConstructors)
-      .forEach(([name, messageConstructor]) => {
-        this[name] = function (senderAddress, args) {
-          const message = messageConstructor(senderAddress, args)
+    this.cosmos = new Rpcapijs({
+      url:cosmosRESTURL || "",
+      chainId:chainId|| ""
+    });
+    this.context = {
+      url:cosmosRESTURL || "",
+      chainId:chainId|| "",
+      userAddress:userAddress
 
-          return {
-            message,
-            simulate: ({ memo = undefined }) => this.simulate(senderAddress, { message, memo }),
-            send: ({ gas, gasPrices, memo = undefined }, signer) => this.send(senderAddress, { gas, gasPrices, memo }, message, signer),
-            
-          }
-        }
-      })
+    };
+  }
 
-    this.MultiMessage = function (senderAddress, ...messageObjects) {
-      const allMessageObjects = [].concat(...messageObjects)
-      const messages = allMessageObjects.map(({ message }) => message)
-      return {
-        messages,
-        simulate: ({ memo = undefined }) => this.simulate(senderAddress, { message: messages[0], memo }), // TODO include actual mutli message simulation
-        send: ({ gas, gasPrices, memo = undefined }, signer) => this.send(senderAddress, { gas, gasPrices, memo }, messages, signer),
-        
-      }
+  setContext(context = null) {
+    if (!context) {
+      throw Error("Context cannot be empty");
+    }
+    /**
+     url ,
+     chainId,
+     userAddress
+      **/
+    this.context = context;
+    this.cosmos = new Rpcapijs(
+      this.context.url || "",
+      this.context.chainId || ""
+    );
+  }
+
+  readyCheck() {
+    if (!this.context) {
+      throw Error("This modal has no context.");
+    }
+
+    if (!this.context.connected) {
+      throw Error(
+        `Currently not connected to a secure node. Please try again when Lunie has secured a connection.`
+      );
+    }
+
+    if (!this.message) {
+      throw Error(`No message to send.`);
     }
   }
 
-  async setChainId (chainIdpra = this.chainId) {
-    if (chainIdpra === undefined) {
-      chainIdpra = this.chainId
+  messageTypeCheck(msgType) {
+    if (!msgType) {
+      throw Error("No message type present.");
     }
 
-    if (!chainIdpra) {
-      var lastBlock = await this.get.block('latest')
-      //  console.log(lastBlock);
-      // const { block_meta: { header: { chain_id: chainId } } } = lastBlock
-      var chainId = lastBlock.block_meta.header.chain_id
-      this.chainId = chainId
-    } else {
-      this.chainId = chainIdpra
-    }
-
-    return this.chainId
-  }
-
-  async getAccount (senderAddress) {
-    const { sequence, account_number: accountNumber } = await this.get.account(senderAddress)
-    this.accounts[senderAddress] = {
-      // prevent downgrading a sequence number as we assume we send a transaction that hasn't affected the remote sequence number yet
-      sequence: this.accounts[senderAddress] && sequence < this.accounts[senderAddress].sequence
-        ? this.accounts[senderAddress].sequence
-        : sequence,
-      accountNumber
-    }
-
-    return this.accounts[senderAddress]
-  }
-
-  /*
-  * message: object
-  * signer: async (signMessage: string) => { signature: Buffer, publicKey: Buffer }
-  */
-  async send (senderAddress, { gas, gasPrices, memo }, messages, signer) {
-    const chainId = await this.setChainId()
-    const { sequence, accountNumber } = await this.getAccount(senderAddress)
-
-    const {
-      hash,
-      included
-    } = await send({ gas, gasPrices, memo }, messages, signer, this.url, chainId, accountNumber, sequence)
-    this.accounts[senderAddress].sequence += 1
-
-    return {
-      hash,
-      sequence,
-      included
+    const isKnownType = Object.values(transaction).includes(msgType);
+    if (!isKnownType) {
+      throw Error(`Invalid message type: ${msgType}.`);
     }
   }
 
-  async simulate (senderAddress, { message, memo = undefined }) {
-    const chainId = await this.setChainId()
-    const { sequence, accountNumber } = await this.getAccount(senderAddress)
+  setMessage(type, transactionProperties) {
+    if (!this.context) {
+      throw Error("This modal has no context.");
+    }
 
-    return simulate(this.url, senderAddress, chainId, message, memo, sequence, accountNumber)
+    this.messageTypeCheck(type);
+    this.messageType = type;
+
+    // console.log(this.cosmos);
+
+    this.message = this.cosmos[type](
+      this.context.userAddress,
+      transactionProperties
+    );
   }
-  
+
+  async simulate(memo) {
+    // this.readyCheck()
+    console.log("*******", memo, "||||", typeof memo);
+    const gasEstimate = await this.message.simulate({
+      memo: memo
+    });
+    return gasEstimate;
+  }
+
+  async send(memo, txMetaData, signerFn) {
+    // this.readyCheck()
+
+    const { gasEstimate, gasPrice } = txMetaData;
+
+    if (this.messageType === transaction.WITHDRAW) {
+      this.message = await this.createWithdrawTransaction();
+    }
+
+    const { included, hash } = await this.message.send(
+      {
+        gas: String(gasEstimate),
+        gasPrices: convertCurrencyData([gasPrice]),
+        memo
+      },
+      signerFn
+    );
+
+    return { included, hash };
+  }
+
+ 
+
+
+
+  async createWithdrawTransaction() {
+    const addresses = await getTop5RewardsValidators(
+      this.context.userAddress,
+      this.cosmos
+    );
+    return this.createMultiMessage(
+      transaction.WITHDRAW,
+      this.context.userAddress,
+      { validatorAddresses: addresses }
+    );
+  }
+
+  // Withdrawing is a multi message for all validators you have bonds with
+  createMultiMessage(type, senderAddress, { validatorAddresses }) {
+    const messages = validatorAddresses.map(validatorAddress =>
+      this.cosmos[type](senderAddress, { validatorAddress })
+    );
+    return this.cosmos.MultiMessage(senderAddress, messages);
+  }
 }
 
-export { createSignedTransaction } from './send'
-export { createSignMessage } from './signature'
+function convertCurrencyData(amounts) {
+  return amounts.map(({ amount, denom }) => ({
+    amount: toMicroAtomString(amount),
+    denom
+  }));
+}
+
+function toMicroAtomString(amount) {
+  return String(amount);
+  // return String(uatoms(amount))
+}
+
+// // limitation of the block, so we pick the top 5 rewards and inform the user.
+async function getTop5RewardsValidators(operator_address, cosmos) {
+  // Compares the amount in a [address1, {denom: amount}] array
+  // 1 获取我的质押列表
+  // 2 获取我的收益列表
+  // 3 选择前5条数据 因为出块大小限制
+  console.log("getTop5RewardsValidators");
+
+  // return;
+  var delegationsList = await cosmos.get.delegations(operator_address);
+  var partnerDelegations = await cosmos.get.partnerDelegations(
+    operator_address
+  );
+  if (delegationsList == null) {
+    delegationsList = [];
+  }
+  if (partnerDelegations == null) {
+    partnerDelegations = [];
+  }
+  delegationsList = delegationsList.concat(partnerDelegations);
+
+  delegationsList.forEach(async item => {
+    var Rewards = await cosmos.get.delegatorRewardsFromValidator(
+      operator_address,
+      item.validator_address
+    );
+    item.Rewards = coinListFormart(Rewards);
+  });
+
+  const byBalanceOfDenom = denom => (a, b) => b.Rewards - a.Rewards;
+  const validatorList = delegationsList
+    .sort(byBalanceOfDenom)
+    .slice(0, 5) // Just the top 5
+    .map(item => item.validator_address);
+
+  return validatorList;
+}
+
+function coinListFormart(list) {
+  var result = 0;
+  list.forEach(item => {
+    if (item.denom == "lamb") {
+      result = item.amount;
+    }
+    result.push(item.amount + item.denom);
+  });
+  return result;
+}
+
+
