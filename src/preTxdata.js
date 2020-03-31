@@ -30,14 +30,14 @@ function msgSend(to, amount, denom, memo) {
     memo: memo || ""
   };
   this.transactiondata=result;
-  this.laststep=result;
   return this;
 }
 
 function msgDelegation(to, amount, gas, isdege, validatorType) {
+  var result;
   if (isdege) {
     // 质押
-    return {
+    result= {
       type: transaction.DELEGATE,
       validatorAddress: to,
       amount: amount,
@@ -46,7 +46,7 @@ function msgDelegation(to, amount, gas, isdege, validatorType) {
     };
   } else {
     // 取消质押
-    return {
+    result= {
       type: transaction.UNDELEGATE,
       validatorAddress: to,
       amount: amount,
@@ -54,11 +54,14 @@ function msgDelegation(to, amount, gas, isdege, validatorType) {
       validatortype: validatorType
     };
   }
+  this.transactiondata=result;
+  return this;
 }
 
 
 function msgRedelegate(validatorSourceAddress, validatorDestinationAddress, amount, validatortype) {
-  return {
+  var result;
+  result= {
     type: transaction.REDELEGATE,
     validatorSourceAddress,
     validatorDestinationAddress,
@@ -66,23 +69,32 @@ function msgRedelegate(validatorSourceAddress, validatorDestinationAddress, amou
     validatortype: validatortype,
     denom: 'utbb'
   };
+
+  this.transactiondata=result;
+  return this;
 }
 
 function msgDeposit(ProposalID, amount) {
-
-  return {
+var result;
+result = {
     type: transaction.DEPOSIT,
     proposalId: ProposalID,
     amounts: [{ amount: amount, denom: defaultdenom }]
   };
+this.transactiondata=result;
+return this;
+
 }
 
 function msgVote(ProposalID, option) {
-  return {
+  var result;
+  result = {
     type: transaction.VOTE,
     proposalId: ProposalID,
     option: option
   };
+  this.transactiondata=result;
+  return this;
 }
 
 function msgCreateSellOrder(marketName,
@@ -94,7 +106,8 @@ function msgCreateSellOrder(marketName,
   minBuySize,
   minBuyDuration,
   maxBuyDuration) {
-  return {
+    var result;
+    result = {
     type: transaction.CreateSellOrder,
     marketName,
     price,
@@ -106,44 +119,56 @@ function msgCreateSellOrder(marketName,
     minBuyDuration,
     maxBuyDuration
   };
+  this.transactiondata=result;
+  return this;
 };
 
 function msgCreateBuyOrder(duration,
   size,
   sellOrderId,
   marketName) {
-  return {
+    var result;
+    result = {
     type: transaction.CreateBuyOrder,
     duration,
     size,
     sellOrderId,
     marketName
   };
+  this.transactiondata=result;
+  return this;
 }
 
 function msgCreateMiner(miningAddress, dhtId, pubKey) {
-  return {
+  var result;
+  result = {
     type: transaction.CreateMiner,
     miningAddress,
     dhtId,
     pubKey
   };
+  this.transactiondata=result;
+  return this;
 }
 
 function msgWithdrawValidatorCommission(address, amount, gas, isdege) {
   console.log('TransferwithdrawalDistribution')
   var lambdaDevelopAdresss = hdkey.address.validatorAddress(address);
 
-  return {
+  var result;
+  result = {
     type: transaction.WithdrawValidatorCommission,
     amount: amount,
     denom: defaultdenom,
     validatorAddress: lambdaDevelopAdresss
   };
+  this.transactiondata=result;
+  return this;
 }
 function msgAssetPledge(amount, asset, gas, isdege) {
+  var result;
   if (isdege) {
-    return {
+    result = {
       type: transaction.AssetPledge,
       amounts: {
         amount: amount,
@@ -156,7 +181,7 @@ function msgAssetPledge(amount, asset, gas, isdege) {
 
     };
   } else {
-    return {
+    result = {
       type: transaction.AssetDrop,
       amounts: {
         amount: amount,
@@ -169,19 +194,27 @@ function msgAssetPledge(amount, asset, gas, isdege) {
 
     };
   }
+  this.transactiondata=result;
+  return this;
 }
 
 function msgWithdrawal(to, amount, gas, isdege) {
-  return {
+  var result;
+  result = {
     type: transaction.WITHDRAW,
     amount: amount,
     denom: defaultdenom
   };
+  this.transactiondata=result;
+  return this;
 }
 
 function msgMinerwithdrawal(address, amount, gas, isdege) {
-  return {
+  var result;
+  result =  {
     type: transaction.WithdrawMinerRewards,
     minerAddress: hdkeyjs.address.MinerAddress(address)
   }
+  this.transactiondata=result;
+  return this;
 }
