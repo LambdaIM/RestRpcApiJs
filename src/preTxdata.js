@@ -29,7 +29,9 @@ function msgSend(to, amount, denom, memo) {
     ],
     memo: memo || ""
   };
-  return result;
+  this.transactiondata=result;
+  this.laststep=result;
+  return this;
 }
 
 function msgDelegation(to, amount, gas, isdege, validatorType) {

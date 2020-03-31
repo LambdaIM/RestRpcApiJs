@@ -9,17 +9,25 @@ export default class ActionManager {
     this.cosmos = null;
     this.message = null;
     this.get = {};
-    this.preTxdata=preTxdata;
-    
-    const getters = _Getters(cosmosRESTURL)
+    this.laststep=null;
+    // this.preTxdata=preTxdata;
+    console.log('constructor cosmosRESTURL',cosmosRESTURL)
+    const getters = _Getters(cosmosRESTURL);
+
     Object.keys(getters).forEach(getter => {
       this.get[getter] = getters[getter]
     })
+    console.log('=====')
+    Object.keys(preTxdata).forEach(getter => {
+      this[getter] = preTxdata[getter]
+      
+    })
+    console.log('=====')
 
-    this.cosmos = new Rpcapijs({
-      url:cosmosRESTURL || "",
-      chainId:chainId|| ""
-    });
+    this.cosmos = new Rpcapijs(
+      cosmosRESTURL,
+      chainId
+    );
     this.context = {
       url:cosmosRESTURL || "",
       chainId:chainId|| "",
@@ -87,20 +95,35 @@ export default class ActionManager {
     );
   }
 
-  async simulate(memo) {
+  async simulate() {
     // this.readyCheck()
-    console.log("*******", memo, "||||", typeof memo);
+    const {type, memo, ...properties } = this.transactiondata;
+        
+    this.setMessage(type, properties);
     const gasEstimate = await this.message.simulate({
       memo: memo
     });
-    return gasEstimate;
+    return gasEstimate
+  }
+  setsigner(signerFn){
+    this._signerFn=signerFn;
+    return this
+  }
+  setfee(gasEstimate,gasPrice){
+    this.feeProperties = {
+      gasEstimate: gasEstimate,
+      gasPrice: gasPrice
+    }
+  return this;
+
   }
 
-  async send(memo, txMetaData, signerFn) {
+  async send() {
     // this.readyCheck()
+    const {type, memo, ...properties } = this.transactiondata;
 
-    const { gasEstimate, gasPrice } = txMetaData;
-
+    const { gasEstimate, gasPrice } = this.feeProperties;
+    this.setMessage(type, properties);
     if (this.messageType === transaction.WITHDRAW) {
       this.message = await this.createWithdrawTransaction();
     }
@@ -111,10 +134,13 @@ export default class ActionManager {
         gasPrices: convertCurrencyData([gasPrice]),
         memo
       },
-      signerFn
+      this._signerFn
     );
 
     return { included, hash };
+  }
+  value(){
+   return  this.laststep;
   }
 
  

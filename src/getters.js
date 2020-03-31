@@ -7,6 +7,7 @@ const RETRIES = 4
 
 export default function Getters (cosmosRESTURL) {
   // request and retry
+  console.log('cosmosRESTURL',cosmosRESTURL)
   function get (path, tries = RETRIES) {
     while (tries) {
       try {
