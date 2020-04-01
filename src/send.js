@@ -8,11 +8,16 @@ import log from './log.js'
 
 const DEFAULT_GAS_PRICE = [{ amount: 0.25, denom: `ulamb` }]
 
-export default async function send ({ gas, gasPrices = DEFAULT_GAS_PRICE, memo = `` }, messages, signer, cosmosRESTURL, chainId, accountNumber, sequence) {
+export default async function send ({ gas, gasPrices = DEFAULT_GAS_PRICE, memo = `` }, messages, signer, cosmosRESTURL, chainId, accountNumber, sequence,issync) {
   const signedTx = await createSignedTransaction({ gas, gasPrices, memo }, messages, signer, chainId, accountNumber, sequence)
 
   // broadcast transaction with signatures included
-  var body = createBroadcastBody(signedTx, `async`)
+  var BroadcastType = 'block'
+  if(issync==true){
+    BroadcastType='async'
+  }
+  
+  var body = createBroadcastBody(signedTx, BroadcastType)
 
   console.log('body')
   console.log(body)

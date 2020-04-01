@@ -8,26 +8,25 @@ export default class ActionManager {
     this.context = null;
     this.cosmos = null;
     this.message = null;
+    this.transactiondata=null;
     this.get = {};
-    this.laststep=null;
-    // this.preTxdata=preTxdata;
-    console.log('constructor cosmosRESTURL',cosmosRESTURL)
+ 
     const getters = _Getters(cosmosRESTURL);
 
     Object.keys(getters).forEach(getter => {
       this.get[getter] = getters[getter]
     })
-    console.log('=====')
+  
     Object.keys(preTxdata).forEach(getter => {
       this[getter] = preTxdata[getter]
       
     })
-    console.log('=====')
-
+  
     this.cosmos = new Rpcapijs(
       cosmosRESTURL,
       chainId
     );
+
     this.context = {
       url:cosmosRESTURL || "",
       chainId:chainId|| "",
@@ -56,14 +55,13 @@ export default class ActionManager {
     if (!this.context) {
       throw Error("This modal has no context.");
     }
-
-    if (!this.context.connected) {
-      throw Error(
-        `Currently not connected to a secure node. Please try again when Lunie has secured a connection.`
-      );
-    }
-
-    if (!this.message) {
+    // if (!this.context.connected) {
+    //   throw Error(
+    //     `Currently not connected to a secure node. Please try again when Lunie has secured a connection.`
+    //   );
+    // }
+    
+    if (this.transactiondata==null) {
       throw Error(`No message to send.`);
     }
   }
@@ -96,7 +94,7 @@ export default class ActionManager {
   }
 
   async simulate() {
-    // this.readyCheck()
+    this.readyCheck()
     const {type, memo, ...properties } = this.transactiondata;
         
     this.setMessage(type, properties);
@@ -118,8 +116,8 @@ export default class ActionManager {
 
   }
 
-  async send() {
-    // this.readyCheck()
+  async send(issync) {
+    this.readyCheck()
     const {type, memo, ...properties } = this.transactiondata;
 
     const { gasEstimate, gasPrice } = this.feeProperties;
@@ -134,18 +132,12 @@ export default class ActionManager {
         gasPrices: convertCurrencyData([gasPrice]),
         memo
       },
-      this._signerFn
+      this._signerFn,
+      issync
     );
 
     return { included, hash };
   }
-  value(){
-   return  this.laststep;
-  }
-
- 
-
-
 
   async createWithdrawTransaction() {
     const addresses = await getTop5RewardsValidators(
