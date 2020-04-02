@@ -1,6 +1,7 @@
 
 import log from './log.js'
-import fetch from 'cross-fetch';
+// import fetch from 'cross-fetch';
+import 'cross-fetch/polyfill'
 
 // export default fetch;
 export default function (url, options) {

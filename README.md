@@ -1,5 +1,7 @@
 # Cosmos API
 Cosmos API is a library for interacting with applications built on the Cosmos SDK.
+# It currently supports the mocking with the cross-fetch polyfill
+它目前支持使用交叉获取polyfill进行模拟 以 polyfill 形式引入的
 
 ## Install
 
