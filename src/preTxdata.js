@@ -1,5 +1,5 @@
 import transaction from './transactionTypes.js'
-const hdkey = require('@jswebfans/hdkeyjs')
+const hdkey = require('@jswebfans/hdkeytest')
 export default {
   msgSend,
   msgDelegation,

@@ -1,5 +1,5 @@
 var Api = require('./lib/index.js').default;
-const hdkey = require('@jswebfans/hdkeyjs')
+const hdkey = require('@jswebfans/hdkeytest')
 
 var cosmosRESTURL, chainId, userAddress;
 

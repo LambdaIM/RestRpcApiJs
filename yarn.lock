@@ -752,10 +752,10 @@
   version "2.4.4"
   resolved "https://registry.npmjs.org/@jswebfans/bcryptjs/-/bcryptjs-2.4.4.tgz#79894242110e73df25ee928b01210f79b558d386"
 
-"@jswebfans/hdkeyjs@1.3.13":
-  version "1.3.13"
-  resolved "https://registry.npmjs.org/@jswebfans/hdkeyjs/-/hdkeyjs-1.3.13.tgz#6d4b82967cfba52ff3d57df4886b8b1c167f4b10"
-  integrity sha512-o4YgOFEgVY4UlHsoSCKZQrvYjAxl3k4x4MYwsPQnlMGA6Bn6RJ7gQHGOVEEzYanz28H52RjCPrgUM/QkfFKYDw==
+"@jswebfans/hdkeytest@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.npmjs.org/@jswebfans/hdkeytest/-/hdkeytest-0.0.2.tgz#075d3e70bad39e09690031cbfcc0e6cec51b51c5"
+  integrity sha512-2ZOwTupmFIl9wnW5eSlAhFQp6pxttEaJqNfV9j4a60g8pNKiEvvy6kRxuT9kOcDGQgNcpYA6Hus3FSeQmapHrg==
   dependencies:
     "@jswebfans/amino-js" "0.4.5"
     "@jswebfans/bcryptjs" "2.4.4"

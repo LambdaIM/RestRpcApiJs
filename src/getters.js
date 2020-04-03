@@ -1,7 +1,7 @@
 'use strict'
 import fetch from './fetch.js'
 /* eslint-env browser */
-const hdkeyjs = require('@jswebfans/hdkeyjs')
+const hdkeyjs = require('@jswebfans/hdkeytest')
 
 const RETRIES = 4
 

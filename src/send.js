@@ -2,7 +2,7 @@
 
 import { createSignMessage, createSignature } from './signature'
 import fetch from './fetch.js'
-const hdkeyjs = require('@jswebfans/hdkeyjs')
+const hdkeyjs = require('@jswebfans/hdkeytest')
 const { throwErrorCode, errorList } = require('./throwErrorCode.js');
 import log from './log.js'
 
