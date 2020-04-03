@@ -130,11 +130,14 @@ function msgCreateBuyOrder(duration,
   size,
   sellOrderId,
   marketName) {
+    //duration=2592000000000000
+    // 自动购买
+    //var sellOrderId='[do-not-input-value]'
     var result;
     result = {
     type: transaction.CreateBuyOrder,
-    duration,
-    size,
+    duration:String(duration),
+    size:String(size),
     sellOrderId,
     marketName
   };

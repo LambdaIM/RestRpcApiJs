@@ -23,7 +23,9 @@ const signerFn = hdkey.keyStore.getSigner(walletjson,'123456')
 
 // msgVote()
 
-msgDeposit()
+// msgDeposit()
+
+msgCreateBuyOrder()
 
 async function msgSendgas(){
     var result = await lambdaAPI
@@ -90,6 +92,44 @@ async function msgDeposit(){
     .setfee(759550,0)
     .send();
 }
+
+//msgCreateSellOrder 这个账户做不了 需要矿工的账户
+
+
+
+async function msgCreateBuyOrder(){
+    var duration=2592000000000000;
+    var size=1;
+    var sellOrderId='95FB18E99DEB1C2E55A5AB89377898B1A86BF105'
+    var marketName='LambdaMarket'
+
+    var result = await lambdaAPI
+    .msgCreateBuyOrder(duration,
+        size,
+        sellOrderId,
+        marketName) 
+    .setsigner(signerFn)
+    .setfee(759550,0)
+    .send();
+}
+
+async function msgCreateBuyOrderAuto(){
+    var duration="2592000000000000";
+    var size=1;
+    var sellOrderId='[do-not-input-value]'
+    var marketName='LambdaMarket'
+
+    var result = await lambdaAPI
+    .msgCreateBuyOrder(duration,
+        size,
+        sellOrderId,
+        marketName) 
+    .setsigner(signerFn)
+    .setfee(759550,0)
+    .send();
+}
+
+//[do-not-input-value]
 
 
 
