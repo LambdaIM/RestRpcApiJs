@@ -28,7 +28,8 @@ const signerFn = hdkey.keyStore.getSigner(walletjson,'123456')
 // msgCreateBuyOrder()
 
 // msgCreateBuyOrderAuto()
-msgWithdrawal()
+// msgWithdrawal()
+msgCreateMiner()
 
 async function msgSendgas(){
     var result = await lambdaAPI
@@ -143,6 +144,17 @@ async function msgWithdrawal(){
 }
 
 //[do-not-input-value]
+
+//msgCreateMiner
+
+async function msgCreateMiner(){
+    
+    var result = await lambdaAPI
+    .msgCreateMiner('lambda1kwk9qv7nncusukv7zx7j7j4mlt3eyrf6ecdwpu','8F57Uf1ckRsYpUT9mrPCwnQXrx99Ac7K5QGabwybksH1') 
+    .setsigner(signerFn)
+    .setfee(759550,0)
+    .send();
+}
 
 
 

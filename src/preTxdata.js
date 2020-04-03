@@ -145,13 +145,12 @@ function msgCreateBuyOrder(duration,
   return this;
 }
 
-function msgCreateMiner(miningAddress, dhtId, pubKey) {
+function msgCreateMiner(miningAddress, dhtId) {
   var result;
   result = {
     type: transaction.CreateMiner,
     miningAddress,
-    dhtId,
-    pubKey
+    dhtId
   };
   this.transactiondata=result;
   return this;
