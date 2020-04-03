@@ -41,7 +41,8 @@ const signerFn = hdkey.keyStore.getSigner(walletjson,'123456')
 
 // msgWithdrawValidatorCommission()
 
-msgMinerwithdrawal()
+// msgMinerwithdrawal()
+msgDelegation()
 
 async function msgSendgas(){
     var result = await lambdaAPI
@@ -67,7 +68,8 @@ async function msgSend(){
 
 
 async function msgDelegation(){
-    var result = await lambdaAPI.msgDelegation('lambdavaloper19v66hl7dlryn44z65l78sg5nmhqys6pcc7439l',1000000,true,1)
+    var result = await lambdaAPI.msgDelegation('lambdavaloper19v66hl7dlryn44z65l78sg5nmhqys6pcc7439l',
+    1000000,true)
     .setsigner(signerFn)
     .setfee(759550,0)
     .send();
@@ -77,7 +79,7 @@ async function msgDelegation(){
 async function msgRedelegate(){
     var result = await lambdaAPI.msgRedelegate('lambdavaloper19v66hl7dlryn44z65l78sg5nmhqys6pcc7439l',
     'lambdavaloper1dc69vwjlry0ny6k8k5d4vqn2elhv03m0wjdmpd',
-    1,1)
+    1)
     .setsigner(signerFn)
     .setfee(759550,0)
     .send();
@@ -86,7 +88,7 @@ async function msgRedelegate(){
 
 async function msgunDelegation(){
     var result = await lambdaAPI.msgDelegation('lambdavaloper19v66hl7dlryn44z65l78sg5nmhqys6pcc7439l',
-    1,false,1)
+    1,false)
     .setsigner(signerFn)
     .setfee(759550,0)
     .send();

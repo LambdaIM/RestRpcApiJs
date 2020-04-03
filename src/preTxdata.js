@@ -44,7 +44,7 @@ function msgDelegation(to, amount, isdege, validatorType) {
       validatorAddress: to,
       amount: amount,
       denom: 'utbb',
-      validatortype: validatorType
+      validatortype: validatorType||1
     };
   } else {
     // 取消质押
@@ -53,7 +53,7 @@ function msgDelegation(to, amount, isdege, validatorType) {
       validatorAddress: to,
       amount: amount,
       denom: 'utbb',
-      validatortype: validatorType
+      validatortype: validatorType||1
     };
   }
   this.transactiondata=result;
@@ -68,7 +68,7 @@ function msgRedelegate(validatorSourceAddress, validatorDestinationAddress, amou
     validatorSourceAddress,
     validatorDestinationAddress,
     amount: amount,
-    validatortype: validatortype,
+    validatortype: validatortype||1,
     denom: 'utbb'
   };
 
@@ -91,6 +91,11 @@ return this;
 function msgVote(ProposalID, option) {
   //option value Yes No NoWithVeto Abstain
   //
+  var list=['Yes', 'No', 'NoWithVeto', 'Abstain']
+  if(list.includes(option)==false){
+    throw new Error('option is in Yes No NoWithVeto Abstain')
+
+  }
   var result;
   result = {
     type: transaction.VOTE,
