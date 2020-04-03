@@ -44,6 +44,17 @@ export default class Cosmos {
           }
         }
       })
+    
+    this.MultiMessage = function (senderAddress, ...messageObjects) {
+        const allMessageObjects = [].concat(...messageObjects)
+        const messages = allMessageObjects.map(({ message }) => message)
+        return {
+          messages,
+          simulate: ({ memo = undefined }) => this.simulate(senderAddress, { message: messages[0], memo }), // TODO include actual mutli message simulation
+          send: ({ gas, gasPrices, memo = undefined }, signer,issync) => this.send(senderAddress, { gas, gasPrices, memo }, messages, signer,issync),
+          
+        }
+      }
 
   }
 

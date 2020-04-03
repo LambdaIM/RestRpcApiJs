@@ -25,7 +25,10 @@ const signerFn = hdkey.keyStore.getSigner(walletjson,'123456')
 
 // msgDeposit()
 
-msgCreateBuyOrder()
+// msgCreateBuyOrder()
+
+// msgCreateBuyOrderAuto()
+msgWithdrawal()
 
 async function msgSendgas(){
     var result = await lambdaAPI
@@ -114,7 +117,7 @@ async function msgCreateBuyOrder(){
 }
 
 async function msgCreateBuyOrderAuto(){
-    var duration="2592000000000000";
+    var duration=2592000000000000;
     var size=1;
     var sellOrderId='[do-not-input-value]'
     var marketName='LambdaMarket'
@@ -124,6 +127,16 @@ async function msgCreateBuyOrderAuto(){
         size,
         sellOrderId,
         marketName) 
+    .setsigner(signerFn)
+    .setfee(759550,0)
+    .send();
+}
+
+
+async function msgWithdrawal(){
+    
+    var result = await lambdaAPI
+    .msgWithdrawal() 
     .setsigner(signerFn)
     .setfee(759550,0)
     .send();

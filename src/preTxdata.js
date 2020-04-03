@@ -204,12 +204,10 @@ function msgAssetPledge(amount, asset, gas, isdege) {
   return this;
 }
 
-function msgWithdrawal(to, amount, gas, isdege) {
+function msgWithdrawal() {
   var result;
   result = {
     type: transaction.WITHDRAW,
-    amount: amount,
-    denom: defaultdenom
   };
   this.transactiondata=result;
   return this;
