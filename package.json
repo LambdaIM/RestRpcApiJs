@@ -1,5 +1,5 @@
 {
-  "name": "@jswebfans/chainAPItest",
+  "name": "@jswebfans/chainapitest",
   "version": "0.0.1",
   "description": "Wrapper around getting and sending transactions from and to lambda",
   "main": "src/index.js",
