@@ -109,18 +109,25 @@ function msgCreateSellOrder(marketName,
   minBuySize,
   minBuyDuration,
   maxBuyDuration) {
-    var result;
+    
+     if (rate == 0.5) {
+      rate = rate + '00000000000000000';
+      } else if(rate==1) {
+        rate = rate + '.000000000000000000';
+      }
+    
+  var result;
     result = {
     type: transaction.CreateSellOrder,
     marketName,
-    price,
-    rate,
-    sellSize,
+    price:String(price),
+    rate:String(rate),
+    sellSize:String(sellSize),
     memo: description || '',
-    cancelTimeDuration,
-    minBuySize,
-    minBuyDuration,
-    maxBuyDuration
+    cancelTimeDuration:String(cancelTimeDuration),
+    minBuySize:String(minBuySize),
+    minBuyDuration:String(minBuyDuration),
+    maxBuyDuration:String(maxBuyDuration)
   };
   this.transactiondata=result;
   return this;
