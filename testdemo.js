@@ -37,7 +37,11 @@ const signerFn = hdkey.keyStore.getSigner(walletjson,'123456')
 // msgAssetPledgetoken()
 // msgAssetPledgeassert()
 
-msgAssetDrop()
+// msgAssetDrop()
+
+// msgWithdrawValidatorCommission()
+
+msgMinerwithdrawal()
 
 async function msgSendgas(){
     var result = await lambdaAPI
@@ -204,6 +208,25 @@ async function msgAssetPledgetoken(){
 async function msgAssetDrop(){
     var result = await lambdaAPI
     .msgAssetDrop(1e6,3000e6,true) 
+    .setsigner(signerFn)
+    .setfee(759550,0)
+    .send();
+}
+
+async function msgWithdrawValidatorCommission(){
+    var result = await lambdaAPI
+    .msgWithdrawValidatorCommission(userAddress) 
+    .setsigner(signerFn)
+    .setfee(759550,0)
+    .send();
+}
+
+
+
+
+async function msgMinerwithdrawal(){
+    var result = await lambdaAPI
+    .msgMinerwithdrawal(userAddress) 
     .setsigner(signerFn)
     .setfee(759550,0)
     .send();

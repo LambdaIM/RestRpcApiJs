@@ -164,14 +164,12 @@ function msgCreateMiner(miningAddress, dhtId) {
   return this;
 }
 
-function msgWithdrawValidatorCommission(address, amount, gas, isdege) {
+function msgWithdrawValidatorCommission(address) {
   console.log('TransferwithdrawalDistribution')
   var lambdaDevelopAdresss = hdkey.address.validatorAddress(address);
-
   var result;
   result = {
     type: transaction.WithdrawValidatorCommission,
-    amount: amount,
     denom: defaultdenom,
     validatorAddress: lambdaDevelopAdresss
   };
@@ -227,11 +225,11 @@ function msgWithdrawal() {
   return this;
 }
 
-function msgMinerwithdrawal(address, amount, gas, isdege) {
+function msgMinerwithdrawal(address) {
   var result;
   result =  {
     type: transaction.WithdrawMinerRewards,
-    minerAddress: hdkeyjs.address.MinerAddress(address)
+    minerAddress: hdkey.address.MinerAddress(address)
   }
   this.transactiondata=result;
   return this;
