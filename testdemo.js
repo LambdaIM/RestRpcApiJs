@@ -32,7 +32,12 @@ const signerFn = hdkey.keyStore.getSigner(walletjson,'123456')
 
 //=需要特殊账户
 // msgCreateMiner()
-msgCreateSellOrder()
+// msgCreateSellOrder()
+
+// msgAssetPledgetoken()
+// msgAssetPledgeassert()
+
+msgAssetDrop()
 
 async function msgSendgas(){
     var result = await lambdaAPI
@@ -186,5 +191,22 @@ async function msgCreateSellOrder(){
     .send();
 }
 
+
+//msgAssetPledge
+async function msgAssetPledgetoken(){
+    var result = await lambdaAPI
+    .msgAssetPledge(3000e6,1e6,true) 
+    .setsigner(signerFn)
+    .setfee(759550,0)
+    .send();
+}
+
+async function msgAssetDrop(){
+    var result = await lambdaAPI
+    .msgAssetDrop(1e6,3000e6,true) 
+    .setsigner(signerFn)
+    .setfee(759550,0)
+    .send();
+}
 
 

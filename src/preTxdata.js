@@ -11,6 +11,7 @@ export default {
   msgCreateMiner,
   msgWithdrawValidatorCommission,
   msgAssetPledge,
+  msgAssetDrop,
   msgWithdrawal,
   msgMinerwithdrawal
 }
@@ -177,9 +178,8 @@ function msgWithdrawValidatorCommission(address, amount, gas, isdege) {
   this.transactiondata=result;
   return this;
 }
-function msgAssetPledge(amount, asset, gas, isdege) {
+function msgAssetPledge(amount, asset) {
   var result;
-  if (isdege) {
     result = {
       type: transaction.AssetPledge,
       amounts: {
@@ -192,7 +192,15 @@ function msgAssetPledge(amount, asset, gas, isdege) {
       }
 
     };
-  } else {
+  
+  
+  this.transactiondata=result;
+  return this;
+}
+
+function msgAssetDrop(asset,amount) {
+  var result;
+
     result = {
       type: transaction.AssetDrop,
       amounts: {
@@ -205,7 +213,7 @@ function msgAssetPledge(amount, asset, gas, isdege) {
       }
 
     };
-  }
+  
   this.transactiondata=result;
   return this;
 }
