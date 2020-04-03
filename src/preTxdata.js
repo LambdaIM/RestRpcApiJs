@@ -33,7 +33,8 @@ function msgSend(to, amount, denom, memo) {
   return this;
 }
 
-function msgDelegation(to, amount, gas, isdege, validatorType) {
+function msgDelegation(to, amount, isdege, validatorType) {
+  
   var result;
   if (isdege) {
     // 质押
@@ -87,6 +88,8 @@ return this;
 }
 
 function msgVote(ProposalID, option) {
+  //option value Yes No NoWithVeto Abstain
+  //
   var result;
   result = {
     type: transaction.VOTE,

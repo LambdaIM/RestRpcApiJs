@@ -4,120 +4,94 @@ const hdkey = require('@jswebfans/hdkeyjs')
 var cosmosRESTURL, chainId, userAddress;
 
 cosmosRESTURL = 'http://182.92.242.59:13659';
-chainId = 'test';
-userAddress = 'lambda16h3lwqvak8t8zrr9thetajf3yqzxj0kcsjlsck';
+chainId = undefined;
+userAddress = 'lambda163q4m634nq8les4nuvdvz49tk6aeh926t0ccsc';
 
 console.log('cosmosRESTURLcosmosRESTURL',cosmosRESTURL)
 var lambdaAPI = new Api(cosmosRESTURL, chainId, userAddress)
 
-// test();
+var walletjson = `{"salt":"dZ56yoFQRYmr4RVRjhqXVQ==","privateKey":"M4Cg7zxsbFSRGqjac17XGoJUKN2wmZ1CM6YQhvQzHuMICpYtq4y90hDadv29fKb5Bid/rvWT6Ds4qtGvttR1WdH0YY6/Fw2of8E72j4=","name":"常用钱包1","address":"lambda163q4m634nq8les4nuvdvz49tk6aeh926t0ccsc","publicKey":"lambdapub1addwnpepq0zuqpchp295d4lgll9wcf4z0nex7lj0a99t07qnhxqn80y470t9zhrhpn6"}`;
 
-// getgas();
+walletjson = JSON.parse(walletjson);
+const signerFn = hdkey.keyStore.getSigner(walletjson,'123456')
 
-// senddata();
-test3()
+// msgSendgas()
+// msgSend()
+// msgDelegation()
+// msgRedelegate()
+// msgunDelegation()
 
-async function test2(){
-    console.log('lambdaAPI.simulate')
-    console.log(lambdaAPI.simulate)
-    // console.log(lambdaAPI)
-    var ss = await lambdaAPI
+// msgVote()
+
+msgDeposit()
+
+async function msgSendgas(){
+    var result = await lambdaAPI
     .msgSend('lambda16h3lwqvak8t8zrr9thetajf3yqzxj0kcsjlsck', 1, 'ulamb', '')
     .simulate();
     
-    console.log('=======***************===========')
-    console.log(ss)
+    
+    console.log(arguments.callee.name,result)
 }
 
 
-async function test3(){
-    console.log('lambdaAPI.simulate')
-    console.log(lambdaAPI.simulate)
-    // console.log(lambdaAPI)
-    var walletjson = `{"salt":"dZ56yoFQRYmr4RVRjhqXVQ==","privateKey":"M4Cg7zxsbFSRGqjac17XGoJUKN2wmZ1CM6YQhvQzHuMICpYtq4y90hDadv29fKb5Bid/rvWT6Ds4qtGvttR1WdH0YY6/Fw2of8E72j4=","name":"常用钱包1","address":"lambda163q4m634nq8les4nuvdvz49tk6aeh926t0ccsc","publicKey":"lambdapub1addwnpepq0zuqpchp295d4lgll9wcf4z0nex7lj0a99t07qnhxqn80y470t9zhrhpn6"}`;
-
-    walletjson = JSON.parse(walletjson);
-    const signerFn = hdkey.keyStore.getSigner(walletjson,'123456')
-    var ss = await lambdaAPI
+async function msgSend(){
+    
+    var result = await lambdaAPI
     .msgSend('lambda16h3lwqvak8t8zrr9thetajf3yqzxj0kcsjlsck', 1, 'ulamb', '')
     .setsigner(signerFn)
     .setfee(35955,2)
     .send();
     
     console.log('=======***************===========')
-    console.log(ss)
-}
-
-async function test(){
-    console.log('链接')
-    var isconnected = await lambdaAPI.get.connected();
-    console.log('isconnected', isconnected)
-
-
-
+    console.log(result)
 }
 
 
-async function getgas(){
-    console.log('gas')
-        var transactiondata = lambdaAPI.preTxdata.msgSend('lambda16h3lwqvak8t8zrr9thetajf3yqzxj0kcsjlsck', 1, 'ulamb', '');
-
-        var actionManagerObj = lambdaAPI;
-        
-        const { type, memo, ...properties } = transactiondata;
-        
-        actionManagerObj.setMessage(type, properties);
-        var gasEstimate = await actionManagerObj.simulate(memo || "");
-
-        console.log(gasEstimate)
-        /**
-         * var api=new API(*****);
-         * api.msgsend(*****).simulate()
-         ***/
-
-
+async function msgDelegation(){
+    var result = await lambdaAPI.msgDelegation('lambdavaloper19v66hl7dlryn44z65l78sg5nmhqys6pcc7439l',1000000,true,1)
+    .setsigner(signerFn)
+    .setfee(759550,0)
+    .send();
 
 }
 
-async  function senddata(){
-    console.log('send tx')
-    var transactiondata = lambdaAPI.preTxdata.msgSend('lambda16h3lwqvak8t8zrr9thetajf3yqzxj0kcsjlsck', 1, 'ulamb', '');
-
-        var actionManagerObj = lambdaAPI;
-  
-        const { type, memo, ...transactionProperties } = transactiondata;
-        var gasprice = 0.25;
-        var gasEstimate = 500000; // 需要接口读取
-        var default_gas_price = gasprice;
-
-        const gasPrice = {
-            amount: default_gas_price.toFixed(9),
-            // denom: this.bondDenom
-            denom: "ulamb"
-        };
-
-        const feeProperties = {
-            gasEstimate: gasEstimate,
-            gasPrice: gasPrice
-        };
-
-        actionManagerObj.setMessage(type, transactionProperties);
-        //返回一个签名的函数
-        //////
-        var walletjson = `{"salt":"dZ56yoFQRYmr4RVRjhqXVQ==","privateKey":"M4Cg7zxsbFSRGqjac17XGoJUKN2wmZ1CM6YQhvQzHuMICpYtq4y90hDadv29fKb5Bid/rvWT6Ds4qtGvttR1WdH0YY6/Fw2of8E72j4=","name":"常用钱包1","address":"lambda163q4m634nq8les4nuvdvz49tk6aeh926t0ccsc","publicKey":"lambdapub1addwnpepq0zuqpchp295d4lgll9wcf4z0nex7lj0a99t07qnhxqn80y470t9zhrhpn6"}`;
-
-        walletjson = JSON.parse(walletjson);
-        const signerFn = hdkey.keyStore.getSigner(walletjson,'123456')
-
-        const { included, hash } = await actionManagerObj.send(
-            memo,
-            feeProperties,
-            signerFn
-        );
-        console.log(hash)
-        /**
-         * var api=new API(*****);
-         * api.msgsend(*****).setsigner(*****).setfee(****).send()
-         ***/
+async function msgRedelegate(){
+    var result = await lambdaAPI.msgRedelegate('lambdavaloper19v66hl7dlryn44z65l78sg5nmhqys6pcc7439l',
+    'lambdavaloper1dc69vwjlry0ny6k8k5d4vqn2elhv03m0wjdmpd',
+    1,1)
+    .setsigner(signerFn)
+    .setfee(759550,0)
+    .send();
 
 }
+
+async function msgunDelegation(){
+    var result = await lambdaAPI.msgDelegation('lambdavaloper19v66hl7dlryn44z65l78sg5nmhqys6pcc7439l',
+    1,false,1)
+    .setsigner(signerFn)
+    .setfee(759550,0)
+    .send();
+
+}
+
+async function msgVote(){
+    var result = await lambdaAPI.msgVote('2',
+    'Yes') //Yes No NoWithVeto Abstain
+    .setsigner(signerFn)
+    .setfee(759550,0)
+    .send();
+}
+
+async function msgDeposit(){
+    var result = await lambdaAPI.msgDeposit('2',
+    1) //Yes No NoWithVeto Abstain
+    .setsigner(signerFn)
+    .setfee(759550,0)
+    .send();
+}
+
+
+
+
+
