@@ -43,6 +43,7 @@ const config = {
     library: 'restrpcapijs',
     libraryTarget: 'umd',
     umdNamedDefine: true,
+    library: "lambdaApi", // string,
   },
   optimization: {
     minimize: false,
@@ -66,4 +67,4 @@ const config = {
     ]
   }
 }
-module.exports = config;
+module.exports = [config,confignode];

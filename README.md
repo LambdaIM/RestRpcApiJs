@@ -3,24 +3,41 @@ Cosmos API is a library for interacting with applications built on the Cosmos SD
 # It currently supports the mocking with the cross-fetch polyfill
 它目前支持使用交叉获取polyfill进行模拟 以 polyfill 形式引入的
 
+这个库 还是只能在node、 electron、 react native 中使用
+
+还不能在浏览器中使用，读取的数据是跨域，如果要在浏览器中使用，
+链上的接口需要支持跨域
+或者配合浏览器钱包使用
+
+记得当时做eos 应用的时候，eos读取数据的接口是支持跨域的
+
+在electron 中使用的时候，需要将请求数据的方式改为 使用原生的net作为网络请求
+
+```
+import { net } from 'electron';
+global.__net = net;
+```
+
+
 ## Install
 
 ```
 yarn add @jswebfans/chainapitest
 ```
-在webpack作为开发环境的项目中使用
-```
-import Cosmos from "@jswebfans/chainapitest"
-```
+
 在node中使用引入
 ```
-import Cosmos from "@jswebfans/chainapitest/lib/node"
+import Cosmos from "@jswebfans/chainapitest"
 ```
 在浏览器中使用引入
 ```
 import Cosmos from "@jswebfans/chainapitest/lib/browser"
 ```
 
+在webpack作为开发环境的项目中使用
+```
+import Cosmos from "@jswebfans/chainapitest/src/"
+```
 
 ## Use
 
@@ -74,3 +91,29 @@ async function msgSend(){
 
 
 ```
+lambdaAPI.msg***包含的交易类型
+支持的交易类型
+
+```
+msgSend,
+msgDelegation,
+msgRedelegate,
+msgDeposit,
+msgVote,
+msgCreateSellOrder,
+msgCreateBuyOrder,
+msgCreateMiner,
+msgWithdrawValidatorCommission,
+msgAssetPledge,
+msgAssetDrop,
+msgWithdrawal,
+msgMinerwithdrawal
+```
+读取链上数据的接口
+lambdaAPI.get.****
+
+
+例如  lambdaAPI.get.nodeVersion()
+
+
+

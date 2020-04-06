@@ -1,4 +1,4 @@
-var Api = require('./lib/index.js').default;
+var Api = require('./lib/node.js').default;
 const hdkey = require('@jswebfans/hdkeytest')
 
 var cosmosRESTURL, chainId, userAddress;
@@ -15,7 +15,7 @@ var walletjson = `{"salt":"dZ56yoFQRYmr4RVRjhqXVQ==","privateKey":"M4Cg7zxsbFSRG
 walletjson = JSON.parse(walletjson);
 const signerFn = hdkey.keyStore.getSigner(walletjson,'123456')
 
-// msgSendgas()
+msgSendgas()
 // msgSend()
 // msgDelegation()
 // msgRedelegate()
@@ -42,7 +42,7 @@ const signerFn = hdkey.keyStore.getSigner(walletjson,'123456')
 // msgWithdrawValidatorCommission()
 
 // msgMinerwithdrawal()
-msgDelegation()
+// msgDelegation()
 
 async function msgSendgas(){
     var result = await lambdaAPI
