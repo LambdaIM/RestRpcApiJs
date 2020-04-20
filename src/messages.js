@@ -304,6 +304,24 @@ export function MsgCreateMachine (
   }
 }
 
+
+export function MsgOrderRenewal (
+  senderAddress,
+  {
+    duration,
+    orderId
+  }
+) {
+  return {
+    type: `lambda/MsgOrderRenewal`,
+    value: {
+      address: senderAddress,
+      duration,
+      orderId
+    }
+  }
+}
+
 function Coin ({ amount, denom }) {
   return ({
     amount: String(amount),
@@ -328,5 +346,6 @@ export default {
   'MsgCreateBuyOrder': MsgCreateBuyOrder,
   'MsgCreateMiner': MsgCreateMiner,
   'MsgCreateMachine': MsgCreateMachine,
-  'MsgWithdrawMinerRewards': MsgWithdrawMinerRewards
+  'MsgWithdrawMinerRewards': MsgWithdrawMinerRewards,
+  'MsgOrderRenewal':MsgOrderRenewal
 }
