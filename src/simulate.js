@@ -26,16 +26,20 @@ export default async function simulate (
     'lambda/MsgAssetPledge': () => `/asset/pledge`,
     'lambda/MsgAssetDrop': () => `/asset/drop`,
     'cosmos-sdk/MsgWithdrawValidatorCommission': () => `/distribution/delegators/${senderAddress}/rewards`,
-    'lambda/MsgCreateSellOrder': () => `/market/create-sellorder`,
-    'lambda/MsgCreateBuyOrder': () => `/market/create-buyorder`,
-    'lambda/MsgCreateMiner': () => `/market/create-miner`,
-    'lambda/MsgCreateMachine': () => `/market/create-machine`,
-    'lambda/MsgWithdrawMinerRewards': () => `/distribution/miners/${msg.value.miner_address}/rewards`
+    'lambda/MsgCreateSellOrder': () => `/market/sellorder/create`,
+    'lambda/MsgCreateBuyOrder': () => `/market/buyorder/create`,
+    'lambda/MsgCreateMiner': () => `/market/miner/create`,
+    'lambda/MsgOrderRenewal': () => `/market/buyorder/renewal`,
+    'lambda/MsgWithdrawMinerRewards': () => `/distribution/miners/${msg.value.miner_address}/rewards`,
+    'lambda/MsgCreateMarket': () => `/market/create`,
+    'lambda/MsgEditMarket': () => `/market/edit`,
+    'lambda/MsgWithDrawMarket': () => `/market/withdraw`
   }[type]()
   const url = `${cosmosRESTURL}${path}`
 
   const tx = createRESTPOSTObject(senderAddress, chainId, { sequence, accountNumber, memo }, msg)
-
+  console.log('tx')
+  console.log(tx)
   const result = await fetch(url, { method: `POST`, body: JSON.stringify(tx) }).then(res => {
     
   return  res.json()

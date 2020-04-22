@@ -304,6 +304,68 @@ export function MsgCreateMachine (
   }
 }
 
+
+export function MsgCreateMarket (
+  senderAddress,
+  {
+    name,
+    address,
+    profit,
+    feeRate,
+    commissionRate
+  }
+) {
+  return {
+    type: `lambda/MsgCreateMarket`,
+    value: {
+      address: senderAddress,
+      commissionRate,
+      feeRate,
+      name,
+      profit
+    }
+  }
+}
+
+export function MsgEditMarket (
+  senderAddress,
+  {
+    address,
+    profit,
+    feeRate,
+    commissionRate
+  }
+) {
+  return {
+    type: `lambda/MsgEditMarket`,
+    value: {
+      address: senderAddress,
+      commissionRate,
+      feeRate,
+      profit
+    }
+  }
+}
+
+export function MsgWithDrawMarket (
+  senderAddress,
+  {
+    address,
+    profit,
+    feeRate,
+    commissionRate
+  }
+) {
+  return {
+    type: `lambda/MsgWithDrawMarket`,
+    value: {
+      address: senderAddress
+    }
+  }
+}
+
+
+
 function Coin ({ amount, denom }) {
   return ({
     amount: String(amount),
@@ -328,5 +390,8 @@ export default {
   'MsgCreateBuyOrder': MsgCreateBuyOrder,
   'MsgCreateMiner': MsgCreateMiner,
   'MsgCreateMachine': MsgCreateMachine,
-  'MsgWithdrawMinerRewards': MsgWithdrawMinerRewards
+  'MsgWithdrawMinerRewards': MsgWithdrawMinerRewards,
+  'MsgCreateMarket':MsgCreateMarket,
+  'MsgEditMarket':MsgEditMarket,
+  'MsgWithDrawMarket':MsgWithDrawMarket
 }

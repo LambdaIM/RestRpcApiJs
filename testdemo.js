@@ -3,7 +3,7 @@ const hdkey = require('@jswebfans/hdkeytest')
 
 var cosmosRESTURL, chainId, userAddress;
 
-cosmosRESTURL = 'http://182.92.242.59:13659';
+cosmosRESTURL = 'http://39.105.67.149:13659';
 chainId = undefined;
 userAddress = 'lambda163q4m634nq8les4nuvdvz49tk6aeh926t0ccsc';
 
@@ -15,7 +15,15 @@ var walletjson = `{"salt":"dZ56yoFQRYmr4RVRjhqXVQ==","privateKey":"M4Cg7zxsbFSRG
 walletjson = JSON.parse(walletjson);
 const signerFn = hdkey.keyStore.getSigner(walletjson,'123456')
 
-msgSendgas()
+// msgSendgas()
+// msgCreateMarket()
+
+// msgCreateMarketgas()
+// msgCreateMarket()
+
+// msgEditMarketgas()
+// msgEditMarket()
+
 // msgSend()
 // msgDelegation()
 // msgRedelegate()
@@ -43,6 +51,18 @@ msgSendgas()
 
 // msgMinerwithdrawal()
 // msgDelegation()
+
+// msgWithDrawMarketgas()
+msgWithDrawMarket()
+
+
+
+
+
+
+
+
+
 
 async function msgSendgas(){
     var result = await lambdaAPI
@@ -233,5 +253,65 @@ async function msgMinerwithdrawal(){
     .setfee(759550,0)
     .send();
 }
+
+async function msgCreateMarket(){
+    var rate='0.5'+'00000000000000000';
+    var result = await lambdaAPI
+    .msgCreateMarket('llll',userAddress,userAddress,rate,rate)
+    .setsigner(signerFn)
+    .setfee(759550,0)
+    .send();
+}
+
+async function msgCreateMarketgas(){
+    var rate='0.5'+'00000000000000000';
+    var result = await lambdaAPI
+    .msgCreateMarket('shichangming',
+    userAddress,userAddress,
+    rate,rate)
+    .simulate();
+    
+    
+    console.log(arguments.callee.name,result)
+}
+
+async function msgEditMarketgas(){
+    var rate='0.6'+'00000000000000000';
+    var result = await lambdaAPI
+    .msgEditMarket(
+    userAddress,userAddress,
+    rate,rate)
+    .simulate();
+    console.log(arguments.callee.name,result)
+}
+
+async function msgEditMarket(){
+    var rate='0.6'+'00000000000000000';
+    var result = await lambdaAPI
+    .msgEditMarket(userAddress,userAddress,rate,rate)
+    .setsigner(signerFn)
+    .setfee(759550,0)
+    .send();
+}
+
+
+async function msgWithDrawMarketgas(){
+    
+    var result = await lambdaAPI
+    .msgWithDrawMarket()
+    .simulate();
+    console.log(arguments.callee.name,result)
+}
+
+async function msgWithDrawMarket(){
+    
+    var result = await lambdaAPI
+    .msgWithDrawMarket()
+    .setsigner(signerFn)
+    .setfee(759550,0)
+    .send();
+}
+
+
 
 

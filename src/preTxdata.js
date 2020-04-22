@@ -13,7 +13,10 @@ export default {
   msgAssetPledge,
   msgAssetDrop,
   msgWithdrawal,
-  msgMinerwithdrawal
+  msgMinerwithdrawal,
+  msgCreateMarket,
+  msgEditMarket,
+  msgWithDrawMarket
 }
 
 const defaultdenom = 'ulamb';
@@ -235,6 +238,58 @@ function msgMinerwithdrawal(address) {
   result =  {
     type: transaction.WithdrawMinerRewards,
     minerAddress: hdkey.address.MinerAddress(address)
+  }
+  this.transactiondata=result;
+  return this;
+}
+
+function msgCreateMarket(name,
+  address,
+  profit,
+  feeRate,
+  commissionRate) {
+
+  var result;
+  result =  {
+    type: transaction.CreateMarket,
+    address: address,
+    commissionRate:commissionRate,
+    feeRate:feeRate,
+    name:name,
+    profit:profit,
+    
+    
+  }
+  this.transactiondata=result;
+  return this;
+}
+
+
+function msgEditMarket(
+  address,
+  profit,
+  feeRate,
+  commissionRate) {
+
+  var result;
+  result =  {
+    type: transaction.EditMarket,
+    address: address,
+    commissionRate:commissionRate,
+    feeRate:feeRate,
+    profit:profit,
+    
+    
+  }
+  this.transactiondata=result;
+  return this;
+}
+
+
+function msgWithDrawMarket() {
+  var result;
+  result =  {
+    type: transaction.WithDrawMarket
   }
   this.transactiondata=result;
   return this;
