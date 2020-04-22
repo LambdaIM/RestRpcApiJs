@@ -322,6 +322,28 @@ export function MsgOrderRenewal (
   }
 }
 
+
+
+export function MsgMinerWithDrawCount (
+  senderAddress,
+  {
+    page,
+    limit
+  }
+) {
+  return {
+    type: `lambda/MsgMinerWithDrawCount`,
+    value: {
+      address: senderAddress,
+      limit,
+      page
+      
+    }
+  }
+}
+
+
+
 function Coin ({ amount, denom }) {
   return ({
     amount: String(amount),
@@ -347,5 +369,6 @@ export default {
   'MsgCreateMiner': MsgCreateMiner,
   'MsgCreateMachine': MsgCreateMachine,
   'MsgWithdrawMinerRewards': MsgWithdrawMinerRewards,
-  'MsgOrderRenewal':MsgOrderRenewal
+  'MsgOrderRenewal':MsgOrderRenewal,
+  'MsgMinerWithDrawCount':MsgMinerWithDrawCount
 }
