@@ -397,6 +397,55 @@ export function MsgMinerWithDraw (
 }
 
 
+export function MsgMaintain (
+  senderAddress,
+  {
+    address
+  }
+) {
+  return {
+    type: `lambda/MsgMaintain`,
+    value: {
+      address: senderAddress,
+      
+    }
+  }
+}
+
+
+
+export function MsgUnMaintain (
+  senderAddress,
+  {
+    address
+  }
+) {
+  return {
+    type: `lambda/MsgUnMaintain`,
+    value: {
+      address: senderAddress,
+      
+    }
+  }
+}
+
+
+export function MsgUnjailMiner (
+  senderAddress,
+  {
+    address
+  }
+) {
+  return {
+    type: `lambda/MsgUnjailMiner`,
+    value: {
+      address: senderAddress,
+      
+    }
+  }
+}
+
+
 
 function Coin ({ amount, denom }) {
   return ({
@@ -427,5 +476,9 @@ export default {
   'MsgEditMarket':MsgEditMarket,
   'MsgWithDrawMarket':MsgWithDrawMarket,
   'MsgCancelSellOrder':MsgCancelSellOrder,
-  'MsgMinerWithDraw':MsgMinerWithDraw
+  'MsgMinerWithDraw':MsgMinerWithDraw,
+  'MsgMaintain':MsgMaintain,
+  'MsgUnMaintain':MsgUnMaintain,
+  'MsgUnjailMiner':MsgUnjailMiner
+  
 }

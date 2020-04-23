@@ -65,9 +65,17 @@ const signerFn = hdkey.keyStore.getSigner(walletjson,'12345678')
 // msgCancelSellOrder()
 
 // msgMinerWithDrawgas()
-msgMinerWithDraw()
+// msgMinerWithDraw()
 
+// msgMaintaingas()
 
+// msgMaintain();
+// msgUnMaintaingas();
+
+// msgUnMaintain();
+
+//msgUnjailMineras();
+msgUnjailMiner()
 
 
 
@@ -353,6 +361,60 @@ async function msgMinerWithDraw(){
     
     var result = await lambdaAPI
     .msgMinerWithDraw('02562541615FB58EF0513BFF85F15C925B296F90')
+    .setsigner(signerFn)
+    .setfee(759550,0)
+    .send();
+}
+
+
+async function msgMaintaingas(){
+    var result = await lambdaAPI
+    .msgMaintain()
+    .simulate();
+    console.log(arguments.callee.name,result)
+}
+
+async function msgMaintain(){
+    
+    var result = await lambdaAPI
+    .msgMaintain()
+    .setsigner(signerFn)
+    .setfee(759550,0)
+    .send();
+}
+
+
+
+
+async function msgUnMaintaingas(){
+    var result = await lambdaAPI
+    .msgUnMaintain()
+    .simulate();
+    console.log(arguments.callee.name,result)
+}
+
+async function msgUnMaintain(){
+    
+    var result = await lambdaAPI
+    .msgUnMaintain()
+    .setsigner(signerFn)
+    .setfee(759550,0)
+    .send();
+}
+
+
+async function msgUnjailMineras(){
+    var result = await lambdaAPI
+    .msgUnjailMiner()
+    .simulate();
+    console.log(arguments.callee.name,result)
+}
+
+
+async function msgUnjailMiner(){
+    
+    var result = await lambdaAPI
+    .msgUnjailMiner()
     .setsigner(signerFn)
     .setfee(759550,0)
     .send();
