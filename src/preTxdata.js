@@ -21,7 +21,9 @@ export default {
   msgMinerWithDraw,
   msgMaintain,
   msgUnMaintain,
-  msgUnjailMiner
+  msgUnjailMiner,
+  msgOrderRenewal,
+  msgMinerWithDrawCount
 }
 
 const defaultdenom = 'ulamb';
@@ -345,6 +347,31 @@ function msgUnjailMiner() {
   result =  {
     type: transaction.UnjailMiner,
     
+  }
+  this.transactiondata=result;
+  return this;
+}
+
+
+
+function msgOrderRenewal(orderId,duration) {
+  var result;
+  result =  {
+    type: transaction.OrderRenewal,
+    orderId:orderId,
+    duration:duration
+    
+  }
+  this.transactiondata=result;
+  return this;
+}
+
+function msgMinerWithDrawCount(orderId,duration) {
+  var result;
+  result =  {
+    type: transaction.OrderRenewal,
+    page:page,
+    limit:limit
   }
   this.transactiondata=result;
   return this;

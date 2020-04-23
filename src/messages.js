@@ -447,6 +447,47 @@ export function MsgUnjailMiner (
 
 
 
+
+export function MsgOrderRenewal (
+  senderAddress,
+  {
+    duration,
+    orderId
+  }
+) {
+  return {
+    type: `lambda/MsgOrderRenewal`,
+    value: {
+      address: senderAddress,
+      duration,
+      orderId
+      
+    }
+  }
+}
+
+
+
+export function MsgMinerWithDrawCount (
+  senderAddress,
+  {
+    page,
+    limit
+  }
+) {
+  return {
+    type: `lambda/MsgMinerWithDrawCount`,
+    value: {
+      address: senderAddress,
+      page,
+      limit
+      
+    }
+  }
+}
+
+
+
 function Coin ({ amount, denom }) {
   return ({
     amount: String(amount),
@@ -479,6 +520,8 @@ export default {
   'MsgMinerWithDraw':MsgMinerWithDraw,
   'MsgMaintain':MsgMaintain,
   'MsgUnMaintain':MsgUnMaintain,
-  'MsgUnjailMiner':MsgUnjailMiner
+  'MsgUnjailMiner':MsgUnjailMiner,
+  'MsgOrderRenewal':MsgOrderRenewal,
+  'MsgMinerWithDrawCount':MsgMinerWithDrawCount
   
 }
