@@ -5,15 +5,21 @@ var cosmosRESTURL, chainId, userAddress;
 
 cosmosRESTURL = 'http://47.94.197.75:13659';
 chainId = undefined;
-userAddress = 'lambda163q4m634nq8les4nuvdvz49tk6aeh926t0ccsc';
+userAddress = 'lambda1l2gr903w63rrklqxyqr8jy37s9hyndl9dgas4p';
 
 console.log('cosmosRESTURLcosmosRESTURL',cosmosRESTURL)
 var lambdaAPI = new Api(cosmosRESTURL, chainId, userAddress)
 
-var walletjson = `{"salt":"dZ56yoFQRYmr4RVRjhqXVQ==","privateKey":"M4Cg7zxsbFSRGqjac17XGoJUKN2wmZ1CM6YQhvQzHuMICpYtq4y90hDadv29fKb5Bid/rvWT6Ds4qtGvttR1WdH0YY6/Fw2of8E72j4=","name":"常用钱包1","address":"lambda163q4m634nq8les4nuvdvz49tk6aeh926t0ccsc","publicKey":"lambdapub1addwnpepq0zuqpchp295d4lgll9wcf4z0nex7lj0a99t07qnhxqn80y470t9zhrhpn6"}`;
+var walletjson = `{
+    "salt": "3RDTC4m13SYVbzp9MHAGKA==",
+    "privateKey": "vYjBmhSjsHMj1HtYekfxLThQfd3+bIiwCIBP0XAq98kL/7JJXVGhCdPj69Kjqw6gWQqmI32gyWh0F7Xf1pCenzx8hoFO2f5z44BsG08=",
+    "name": "jm-测试账户",
+    "address": "lambda1l2gr903w63rrklqxyqr8jy37s9hyndl9dgas4p",
+    "publicKey": "lambdapub1addwnpepqv3a5n70awc4gvel9yvqyutxhe4r3h2ehs0susmsrzukmq5nuvx7jens4t8"
+  }`;
 
 walletjson = JSON.parse(walletjson);
-const signerFn = hdkey.keyStore.getSigner(walletjson,'123456')
+const signerFn = hdkey.keyStore.getSigner(walletjson,'12345678')
 
 // msgSendgas()
 // msgCreateMarket()
@@ -54,6 +60,12 @@ const signerFn = hdkey.keyStore.getSigner(walletjson,'123456')
 
 // msgWithDrawMarketgas()
 // msgWithDrawMarket()
+
+// msgCancelSellOrdergas()
+// msgCancelSellOrder()
+
+// msgMinerWithDrawgas()
+msgMinerWithDraw()
 
 
 
@@ -312,8 +324,39 @@ async function msgWithDrawMarket(){
     .send();
 }
 
+async function msgCancelSellOrdergas(){
+    
+    var result = await lambdaAPI
+    .msgCancelSellOrder('9012FE946D7DE4B9BB1DBEE8F41D6834BC89FF61')
+    .simulate();
+    console.log(arguments.callee.name,result)
+}
 
-//9012FE946D7DE4B9BB1DBEE8F41D6834BC89FF61
+async function msgCancelSellOrder(){
+    
+    var result = await lambdaAPI
+    .msgCancelSellOrder('9012FE946D7DE4B9BB1DBEE8F41D6834BC89FF61')
+    .setsigner(signerFn)
+    .setfee(759550,0)
+    .send();
+}
+
+
+async function msgMinerWithDrawgas(){
+    var result = await lambdaAPI
+    .msgMinerWithDraw('02562541615FB58EF0513BFF85F15C925B296F90')
+    .simulate();
+    console.log(arguments.callee.name,result)
+}
+
+async function msgMinerWithDraw(){
+    
+    var result = await lambdaAPI
+    .msgMinerWithDraw('02562541615FB58EF0513BFF85F15C925B296F90')
+    .setsigner(signerFn)
+    .setfee(759550,0)
+    .send();
+}
 
 
 

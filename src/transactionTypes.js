@@ -17,7 +17,9 @@ const transactionTypes = {
   WithdrawMinerRewards: `MsgWithdrawMinerRewards`,
   CreateMarket:`MsgCreateMarket`,
   EditMarket:`MsgEditMarket`,
-  WithDrawMarket:'MsgWithDrawMarket'
+  WithDrawMarket:'MsgWithDrawMarket',
+  CancelSellOrder:'MsgCancelSellOrder',
+  MinerWithDraw:'MsgMinerWithDraw'
 };
 
 export default transactionTypes;

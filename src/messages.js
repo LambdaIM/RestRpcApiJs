@@ -364,6 +364,38 @@ export function MsgWithDrawMarket (
   }
 }
 
+export function MsgCancelSellOrder (
+  senderAddress,
+  {
+    address,
+    orderId
+  }
+) {
+  return {
+    type: `lambda/MsgCancelSellOrder`,
+    value: {
+      address: senderAddress,
+      orderId:orderId
+    }
+  }
+}
+
+export function MsgMinerWithDraw (
+  senderAddress,
+  {
+    address,
+    matchOrderId
+  }
+) {
+  return {
+    type: `lambda/MsgMinerWithDraw`,
+    value: {
+      address: senderAddress,
+      matchOrderId:matchOrderId
+    }
+  }
+}
+
 
 
 function Coin ({ amount, denom }) {
@@ -393,5 +425,7 @@ export default {
   'MsgWithdrawMinerRewards': MsgWithdrawMinerRewards,
   'MsgCreateMarket':MsgCreateMarket,
   'MsgEditMarket':MsgEditMarket,
-  'MsgWithDrawMarket':MsgWithDrawMarket
+  'MsgWithDrawMarket':MsgWithDrawMarket,
+  'MsgCancelSellOrder':MsgCancelSellOrder,
+  'MsgMinerWithDraw':MsgMinerWithDraw
 }

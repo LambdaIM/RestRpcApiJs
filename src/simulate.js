@@ -33,7 +33,9 @@ export default async function simulate (
     'lambda/MsgWithdrawMinerRewards': () => `/distribution/miners/${msg.value.miner_address}/rewards`,
     'lambda/MsgCreateMarket': () => `/market/create`,
     'lambda/MsgEditMarket': () => `/market/edit`,
-    'lambda/MsgWithDrawMarket': () => `/market/withdraw`
+    'lambda/MsgWithDrawMarket': () => `/market/withdraw`,
+    'lambda/MsgCancelSellOrder': () => `/market/sellorder/cancel`,
+    'lambda/MsgMinerWithDraw': () => `/market/miner/withdraw`
   }[type]()
   const url = `${cosmosRESTURL}${path}`
 

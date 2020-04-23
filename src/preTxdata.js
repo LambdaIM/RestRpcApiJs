@@ -16,7 +16,9 @@ export default {
   msgMinerwithdrawal,
   msgCreateMarket,
   msgEditMarket,
-  msgWithDrawMarket
+  msgWithDrawMarket,
+  msgCancelSellOrder,
+  msgMinerWithDraw
 }
 
 const defaultdenom = 'ulamb';
@@ -290,6 +292,26 @@ function msgWithDrawMarket() {
   var result;
   result =  {
     type: transaction.WithDrawMarket
+  }
+  this.transactiondata=result;
+  return this;
+}
+
+function msgCancelSellOrder(orderId) {
+  var result;
+  result =  {
+    type: transaction.CancelSellOrder,
+    orderId:orderId
+  }
+  this.transactiondata=result;
+  return this;
+}
+
+function msgMinerWithDraw(matchOrderId) {
+  var result;
+  result =  {
+    type: transaction.MinerWithDraw,
+    matchOrderId:matchOrderId
   }
   this.transactiondata=result;
   return this;
