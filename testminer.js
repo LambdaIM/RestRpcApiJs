@@ -72,10 +72,10 @@ const signerFn = hdkey.keyStore.getSigner(walletjson,'12345678')
 // msgMaintain();
 // msgUnMaintaingas();
 
-// msgUnMaintain();
+msgUnMaintain();
 
 //msgUnjailMineras();
-msgUnjailMiner()
+// msgUnjailMiner()
 
 
 

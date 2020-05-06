@@ -334,6 +334,9 @@ export default function Getters (cosmosRESTURL) {
     marketmachineinfo: function (address, machineName) {
       return get(`/market/machine/${address}/${machineName}`)
     },
+    marketsellorderinfo:function(Orderid){
+      return get(`/market/sellorder/${Orderid}`)
+    },
     marketTxs: async function (address) {
       return Promise.all([
         get(`/txs?action=createMiner&address=${address}&page=1000000`),
