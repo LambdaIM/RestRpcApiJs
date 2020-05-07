@@ -343,6 +343,43 @@ export function MsgMinerWithDrawCount (
 }
 
 
+export function MsgDelegateMarket (
+  senderAddress,
+  {
+    marketName,
+    amount,
+    denom
+  }
+) {
+  return {
+    type: `lambda/MsgDelegateMarket`,
+    value: {
+      address: senderAddress,
+      amount: Coin({ amount, denom }),
+      marketName
+      
+    }
+  }
+}
+
+export function MsgWithDrawMarket (
+  senderAddress,
+  {
+    marketName
+  }
+) {
+  return {
+    type: `lambda/MsgWithDrawMarket`,
+    value: {
+      address: senderAddress,
+      marketName
+      
+    }
+  }
+}
+
+
+
 
 function Coin ({ amount, denom }) {
   return ({
@@ -370,5 +407,7 @@ export default {
   'MsgCreateMachine': MsgCreateMachine,
   'MsgWithdrawMinerRewards': MsgWithdrawMinerRewards,
   'MsgOrderRenewal':MsgOrderRenewal,
-  'MsgMinerWithDrawCount':MsgMinerWithDrawCount
+  'MsgMinerWithDrawCount':MsgMinerWithDrawCount,
+  'MsgDelegateMarket':MsgDelegateMarket,
+  'MsgWithDrawMarket':MsgWithDrawMarket
 }
