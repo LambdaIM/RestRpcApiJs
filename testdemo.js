@@ -3,7 +3,7 @@ const hdkey = require('@jswebfans/hdkeytest')
 
 var cosmosRESTURL, chainId, userAddress;
 
-cosmosRESTURL = 'http://47.94.197.75:13659';
+cosmosRESTURL = 'http://182.92.242.59:13659';
 chainId = undefined;
 userAddress = 'lambda163q4m634nq8les4nuvdvz49tk6aeh926t0ccsc';
 
@@ -53,7 +53,12 @@ const signerFn = hdkey.keyStore.getSigner(walletjson,'123456')
 // msgDelegation()
 
 // msgWithDrawMarketgas()
+msgWithDrawMarket()
+
+// msgWithDrawMarketgas()
 // msgWithDrawMarket()
+
+// msgDelegateMarket()
 
 
 
@@ -298,7 +303,7 @@ async function msgEditMarket(){
 async function msgWithDrawMarketgas(){
     
     var result = await lambdaAPI
-    .msgWithDrawMarket()
+    .msgWithDrawMarket('lambdamarket')
     .simulate();
     console.log(arguments.callee.name,result)
 }
@@ -306,7 +311,24 @@ async function msgWithDrawMarketgas(){
 async function msgWithDrawMarket(){
     
     var result = await lambdaAPI
-    .msgWithDrawMarket()
+    .msgWithDrawMarket('secondmarket')
+    .setsigner(signerFn)
+    .setfee(759550,0)
+    .send();
+}
+
+async function msgDelegateMarketgas(){
+    
+    var result = await lambdaAPI
+    .msgDelegateMarket('secondmarket',100000000,'ulamb')
+    .simulate();
+    console.log(arguments.callee.name,result)
+}
+
+async function msgDelegateMarket(){
+    
+    var result = await lambdaAPI
+    .msgDelegateMarket('secondmarket',1000000000,'ulamb')
     .setsigner(signerFn)
     .setfee(759550,0)
     .send();

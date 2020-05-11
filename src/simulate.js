@@ -29,18 +29,18 @@ export default async function simulate (
     'lambda/MsgCreateSellOrder': () => `/market/sellorder/create`,
     'lambda/MsgCreateBuyOrder': () => `/market/buyorder/create`,
     'lambda/MsgCreateMiner': () => `/market/miner/create`,
-    'lambda/MsgOrderRenewal': () => `/market/buyorder/renewal`,
     'lambda/MsgWithdrawMinerRewards': () => `/distribution/miners/${msg.value.miner_address}/rewards`,
     'lambda/MsgCreateMarket': () => `/market/create`,
     'lambda/MsgEditMarket': () => `/market/edit`,
-    'lambda/MsgWithDrawMarket': () => `/market/withdraw`,
     'lambda/MsgCancelSellOrder': () => `/market/sellorder/cancel`,
     'lambda/MsgMinerWithDraw': () => `/market/miner/withdraw`,
     'lambda/MsgMaintain': () => `/market/miner/maintain`,
     'lambda/MsgUnMaintain': () => `/market/miner/unmaintain`,
     'lambda/MsgUnjailMiner': () => `/market/miner/unjail`,
     'lambda/MsgOrderRenewal': () => `/market/buyorder/renewal`,
-    'lambda/MsgMinerWithDrawCount': () => `/market/miner/withdrawCount`
+    'lambda/MsgMinerWithDrawCount': () => `/market/miner/withdrawCount`,
+    'lambda/MsgDelegateMarket':()=> `/market/delegate`,
+    'lambda/MsgWithDrawMarket':()=> `/market/withdraw`
   }[type]()
   const url = `${cosmosRESTURL}${path}`
 

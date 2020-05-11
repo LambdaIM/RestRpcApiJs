@@ -347,22 +347,7 @@ export function MsgEditMarket (
   }
 }
 
-export function MsgWithDrawMarket (
-  senderAddress,
-  {
-    address,
-    profit,
-    feeRate,
-    commissionRate
-  }
-) {
-  return {
-    type: `lambda/MsgWithDrawMarket`,
-    value: {
-      address: senderAddress
-    }
-  }
-}
+
 
 export function MsgCancelSellOrder (
   senderAddress,
@@ -486,6 +471,42 @@ export function MsgMinerWithDrawCount (
   }
 }
 
+export function MsgDelegateMarket (
+  senderAddress,
+  {
+    marketName,
+    amount,
+    denom
+  }
+) {
+  return {
+    type: `lambda/MsgDelegateMarket`,
+    value: {
+      address: senderAddress,
+      amount: Coin({ amount, denom }),
+      marketName
+      
+    }
+  }
+}
+
+export function MsgWithDrawMarket (
+  senderAddress,
+  {
+    marketName
+  }
+) {
+  return {
+    type: `lambda/MsgWithDrawMarket`,
+    value: {
+      address: senderAddress,
+      marketName
+      
+    }
+  }
+}
+
+
 
 
 function Coin ({ amount, denom }) {
@@ -515,13 +536,15 @@ export default {
   'MsgWithdrawMinerRewards': MsgWithdrawMinerRewards,
   'MsgCreateMarket':MsgCreateMarket,
   'MsgEditMarket':MsgEditMarket,
-  'MsgWithDrawMarket':MsgWithDrawMarket,
+  
   'MsgCancelSellOrder':MsgCancelSellOrder,
   'MsgMinerWithDraw':MsgMinerWithDraw,
   'MsgMaintain':MsgMaintain,
   'MsgUnMaintain':MsgUnMaintain,
   'MsgUnjailMiner':MsgUnjailMiner,
   'MsgOrderRenewal':MsgOrderRenewal,
-  'MsgMinerWithDrawCount':MsgMinerWithDrawCount
+  'MsgMinerWithDrawCount':MsgMinerWithDrawCount,
+  'MsgDelegateMarket':MsgDelegateMarket,
+  'MsgWithDrawMarket':MsgWithDrawMarket
   
 }

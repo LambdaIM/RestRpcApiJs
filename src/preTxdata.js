@@ -23,7 +23,8 @@ export default {
   msgUnMaintain,
   msgUnjailMiner,
   msgOrderRenewal,
-  msgMinerWithDrawCount
+  msgMinerWithDrawCount,
+  msgDelegateMarket
 }
 
 const defaultdenom = 'ulamb';
@@ -293,10 +294,11 @@ function msgEditMarket(
 }
 
 
-function msgWithDrawMarket() {
+function msgWithDrawMarket(marketName) {
   var result;
   result =  {
-    type: transaction.WithDrawMarket
+    type: transaction.WithDrawMarket,
+    marketName:marketName
   }
   this.transactiondata=result;
   return this;
@@ -374,5 +376,20 @@ function msgMinerWithDrawCount(orderId,duration) {
     limit:limit
   }
   this.transactiondata=result;
+  return this;
+}
+
+
+
+function msgDelegateMarket(marketName,amount,denom) {
+  var result;
+  result =  {
+    type: transaction.DelegateMarket,
+    marketName:marketName,
+    amount:amount,
+    denom:denom||'ulamb'
+  }
+  this.transactiondata = result;
+  console.log(this.transactiondata)
   return this;
 }
