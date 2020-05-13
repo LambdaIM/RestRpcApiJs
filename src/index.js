@@ -4,6 +4,13 @@ import _Getters from './getters'
 import preTxdata from './preTxdata'
 
 export default class ActionManager {
+  /**
+ * Represents a book.
+ * @constructor
+ * @param {string} cosmosRESTURL - Restapi address of blockchain. for example http://39.107.247.86:13659/
+ * @param {string} chainId - Chainid of blockchain ，If it is not filled in, the chainid will be automatically obtained
+ * @param {string} userAddress - User's lambda address
+ */
   constructor(cosmosRESTURL,chainId,userAddress) {
     this.context = null;
     this.cosmos = null;
@@ -34,7 +41,11 @@ export default class ActionManager {
 
     };
   }
-
+/**
+ * Modify the address and blockchain chainid of the linked node
+ * @param {string} context.url  Modify the address of the linked node
+ * @param {string} context.chainId  Modify the  blockchain chainid of the linked node
+ */
   setContext(context = null) {
     if (!context) {
       throw Error("Context cannot be empty");
@@ -92,7 +103,9 @@ export default class ActionManager {
       transactionProperties
     );
   }
-
+  /**
+   * Simulate the gas needed to send data to obtain transactions
+   */
   async simulate() {
     this.readyCheck()
     const {type, memo, ...properties } = this.transactiondata;
@@ -103,10 +116,19 @@ export default class ActionManager {
     });
     return gasEstimate
   }
+  /**
+   * Set the method for signature authorization
+   * @param {function} signerFn  Signature method
+   */
   setsigner(signerFn){
     this._signerFn=signerFn;
     return this
   }
+  /**
+   * Set gas and gas prices
+   * @param {number} gasEstimate  The value of gas
+   * @param {number} gasPrice   Price of gas
+   */
   setfee(gasEstimate,gasPrice){
     this.feeProperties = {
       gasEstimate: gasEstimate,
@@ -115,7 +137,10 @@ export default class ActionManager {
   return this;
 
   }
-
+  /**
+   * Send transaction
+   * @param {bool} issync  Send transaction asynchronously or not
+   */
   async send(issync) {
     this.readyCheck()
     const {type, memo, ...properties } = this.transactiondata;

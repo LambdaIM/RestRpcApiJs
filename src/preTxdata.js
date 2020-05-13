@@ -28,7 +28,13 @@ export default {
 }
 
 const defaultdenom = 'ulamb';
-
+/**
+ * Transfer transaction
+ * @param {string} Lambda address of transfer target
+ * @param {number} amount Amount transferred
+ * @param {string} denom  Name of token
+ * @param {string} memo remarks
+ */
 function msgSend(to, amount, denom, memo) {
   var result = {
     type: transaction.SEND,
@@ -44,7 +50,13 @@ function msgSend(to, amount, denom, memo) {
   this.transactiondata=result;
   return this;
 }
-
+/**
+ * Pledge or cancellation of pledge
+ * @param {string} to  Address pledged to verification node 
+ * @param {number} amount Amount pledged
+ * @param {boolean} isdege Pledge or cancel pledge， true isPledge  false is cancel pledge
+ * @param {number} validatorType the category of the node ，The default is 1
+ */
 function msgDelegation(to, amount, isdege, validatorType) {
   
   var result;
@@ -71,7 +83,13 @@ function msgDelegation(to, amount, isdege, validatorType) {
   return this;
 }
 
-
+/**
+ * Transfer pledge
+ * @param {string} validatorSourceAddress  Node address of current pledge
+ * @param {string} validatorDestinationAddress  Node address of the target
+ * @param {string} amount Amount transferred to pledge
+ * @param {string} validatortype the category of the node ，The default is 1
+ */
 function msgRedelegate(validatorSourceAddress, validatorDestinationAddress, amount, validatortype) {
   var result;
   result= {
@@ -86,7 +104,11 @@ function msgRedelegate(validatorSourceAddress, validatorDestinationAddress, amou
   this.transactiondata=result;
   return this;
 }
-
+/**
+ * Deposit to proposal
+ * @param {string} ProposalID Proposal ID
+ * @param {number} amount  Amount deposited
+ */
 function msgDeposit(ProposalID, amount) {
 var result;
 result = {
@@ -98,7 +120,11 @@ this.transactiondata=result;
 return this;
 
 }
-
+/**
+ * Vote on proposal
+ * @param {number} ProposalID Proposal ID
+ * @param {string} option  Voting options option value Yes No NoWithVeto Abstain
+ */
 function msgVote(ProposalID, option) {
   //option value Yes No NoWithVeto Abstain
   //
@@ -117,6 +143,19 @@ function msgVote(ProposalID, option) {
   return this;
 }
 
+
+/**
+ * Create sales order
+ * @param {string} marketName  Market name of sales order
+ * @param {string} price Price of sales order
+ * @param {number} rate  Odds on sales
+ * @param {number} sellSize  Size of space for sale
+ * @param {string} description Description and introduction of the sales order
+ * @param {number} cancelTimeDuration  Time to cancel sales order
+ * @param {number} minBuySize Minimum purchase space size
+ * @param {number} minBuyDuration Minimum purchase time
+ * @param {number} maxBuyDuration Maximum purchase time
+ */
 function msgCreateSellOrder(marketName,
   price,
   rate,
@@ -126,13 +165,11 @@ function msgCreateSellOrder(marketName,
   minBuySize,
   minBuyDuration,
   maxBuyDuration) {
-    
      if (rate == 0.5) {
       rate = rate + '00000000000000000';
       } else if(rate==1) {
         rate = rate + '.000000000000000000';
       }
-    
   var result;
     result = {
     type: transaction.CreateSellOrder,
@@ -150,6 +187,13 @@ function msgCreateSellOrder(marketName,
   return this;
 };
 
+/**
+ * Create a purchase order
+ * @param {number} duration  How long did you buy
+ * @param {number} size Size of purchase space
+ * @param {string} sellOrderId  Sales order ID of purchase space
+ * @param {string} marketName Market name
+ */
 function msgCreateBuyOrder(duration,
   size,
   sellOrderId,
@@ -169,6 +213,11 @@ function msgCreateBuyOrder(duration,
   return this;
 }
 
+/**
+ * Initialize miner
+ * @param {*} miningAddress  Miner's address Address of miner's sub account
+ * @param {*} dhtId  dhtId
+ */
 function msgCreateMiner(miningAddress, dhtId) {
   var result;
   result = {
@@ -179,7 +228,10 @@ function msgCreateMiner(miningAddress, dhtId) {
   this.transactiondata=result;
   return this;
 }
-
+/**
+ * Withdraw node income
+ * @param {string} address Operation address of node
+ */
 function msgWithdrawValidatorCommission(address) {
   console.log('TransferwithdrawalDistribution')
   var lambdaDevelopAdresss = hdkey.address.validatorAddress(address);
@@ -192,6 +244,12 @@ function msgWithdrawValidatorCommission(address) {
   this.transactiondata=result;
   return this;
 }
+
+/**
+ * Lamb exchange TBB
+ * @param {number} amount  Amount of lamb
+ * @param {number} asset  TBB amount
+ */
 function msgAssetPledge(amount, asset) {
   var result;
     result = {
@@ -211,7 +269,11 @@ function msgAssetPledge(amount, asset) {
   this.transactiondata=result;
   return this;
 }
-
+/**
+ * TBB exchange lamb
+ * @param {number} asset   TBB amount
+ * @param {number} amount  Amount of lamb
+ */
 function msgAssetDrop(asset,amount) {
   var result;
 
@@ -232,6 +294,9 @@ function msgAssetDrop(asset,amount) {
   return this;
 }
 
+/**
+ * Withdrawal of pledge income
+ */
 function msgWithdrawal() {
   var result;
   result = {
@@ -241,6 +306,10 @@ function msgWithdrawal() {
   return this;
 }
 
+/**
+ * Reward for miner's extraction and mining
+ * @param {string} address Miner's lamb address
+ */
 function msgMinerwithdrawal(address) {
   var result;
   result =  {
@@ -250,6 +319,8 @@ function msgMinerwithdrawal(address) {
   this.transactiondata=result;
   return this;
 }
+
+
 
 function msgCreateMarket(name,
   address,
@@ -293,7 +364,10 @@ function msgEditMarket(
   return this;
 }
 
-
+/**
+ *Withdrawal of market pledge income
+ * @param {string} marketName Market name
+ */
 function msgWithDrawMarket(marketName) {
   var result;
   result =  {
@@ -314,6 +388,10 @@ function msgCancelSellOrder(orderId) {
   return this;
 }
 
+/**
+ * Miner's order income
+ * @param {string} matchOrderId  Match order ID
+ */
 function msgMinerWithDraw(matchOrderId) {
   var result;
   result =  {
@@ -324,6 +402,9 @@ function msgMinerWithDraw(matchOrderId) {
   return this;
 }
 
+/**
+ * Miner initiated maintenance
+ */
 function msgMaintain() {
   var result;
   result =  {
@@ -334,6 +415,9 @@ function msgMaintain() {
   return this;
 }
 
+/**
+ * Miner lifting maintenance
+ */
 function msgUnMaintain() {
   var result;
   result =  {
@@ -344,6 +428,9 @@ function msgUnMaintain() {
   return this;
 }
 
+/**
+ * Miners lift restrictions
+ */
 function msgUnjailMiner() {
   var result;
   result =  {
@@ -355,7 +442,11 @@ function msgUnjailMiner() {
 }
 
 
-
+/**
+ * Order renewal, increase order usage time
+ * @param {string} orderId  ID of the order
+ * @param {*} duration Increase order usage time
+ */
 function msgOrderRenewal(orderId,duration) {
   var result;
   result =  {
@@ -368,7 +459,12 @@ function msgOrderRenewal(orderId,duration) {
   return this;
 }
 
-function msgMinerWithDrawCount(orderId,duration) {
+/**
+ * Miners withdraw order revenue in batches
+ * @param {number} page  Page
+ * @param {number} limit One page contains the number of orders, up to 100 orders
+ */
+function msgMinerWithDrawCount(page,limit) {
   var result;
   result =  {
     type: transaction.OrderRenewal,
@@ -379,8 +475,12 @@ function msgMinerWithDrawCount(orderId,duration) {
   return this;
 }
 
-
-
+/**
+ * Market pledge
+ * @param {string} marketName   Market name
+ * @param {*} amount amount
+ * @param {*} denom Token name defaults to lamb
+ */
 function msgDelegateMarket(marketName,amount,denom) {
   var result;
   result =  {

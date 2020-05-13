@@ -7,9 +7,9 @@
     "test": "jest",
     "lint": "eslint src/* --fix",
     "build": "webpack --sourcemap=false --progress ",
-    
     "log": "simsala log",
-    "release": "git checkout develop & git pull & git push origin develop:release"
+    "release": "git checkout develop & git pull & git push origin develop:release",
+    "doc":"./node_modules/.bin/jsdoc ./src -d ./doc"
   },
   "keywords": [
     "cosmos",
@@ -44,7 +44,8 @@
   "dependencies": {
     "@babel/runtime": "^7.5.4",
     "cross-fetch": "^3.0.4",
-    "jest-fetch-mock": "^3.0.3"
+    "jest-fetch-mock": "^3.0.3",
+    "jsdoc": "^3.6.4"
   },
   "jest": {
     "transform": {
