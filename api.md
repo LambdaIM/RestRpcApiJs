@@ -104,81 +104,81 @@ More about blockchain interface information http://docs.lambda.im/api-reference/
 
 
 * [get](#module_get)
-    * [~connected()](#module_get..connected)
-    * [~nodeVersion()](#module_get..nodeVersion)
-    * [~nodeSyncing()](#module_get..nodeSyncing)
-    * [~nodeBlocklatest()](#module_get..nodeBlocklatest)
-    * [~account(address)](#module_get..account)
-    * [~txs(addr, height)](#module_get..txs)
-    * [~txsByHeight(height)](#module_get..txsByHeight)
-    * [~tx(hash)](#module_get..tx)
-    * [~assetAll()](#module_get..assetAll)
-    * [~delegations(addr)](#module_get..delegations)
-    * [~undelegations(addr)](#module_get..undelegations)
-    * [~redelegations(addr)](#module_get..redelegations)
-    * [~delegatorValidators(delegatorAddr)](#module_get..delegatorValidators)
-    * [~validators()](#module_get..validators)
-    * [~validator(addr)](#module_get..validator)
-    * [~validatorSet()](#module_get..validatorSet)
-    * [~delegation(delegatorAddr, validatorAddr)](#module_get..delegation)
-    * [~unbondingDelegation(delegatorAddr, validatorAddr)](#module_get..unbondingDelegation)
-    * [~pool()](#module_get..pool)
-    * [~stakingParameters()](#module_get..stakingParameters)
-    * [~validatorSigningInfo(pubKey)](#module_get..validatorSigningInfo)
-    * [~proposals()](#module_get..proposals)
-    * [~proposal(proposalId)](#module_get..proposal)
-    * [~proposalVotes(proposalId)](#module_get..proposalVotes)
-    * [~proposalVote(proposalId, address)](#module_get..proposalVote)
-    * [~proposalDeposits(proposalId)](#module_get..proposalDeposits)
-    * [~proposalDeposit(proposalId, address)](#module_get..proposalDeposit)
-    * [~proposalTally(proposalId)](#module_get..proposalTally)
-    * [~govDepositParameters()](#module_get..govDepositParameters)
-    * [~govTallyingParameters()](#module_get..govTallyingParameters)
-    * [~govVotingParameters()](#module_get..govVotingParameters)
-    * [~block(blockHeight)](#module_get..block)
-    * [~delegatorRewards(delegatorAddr)](#module_get..delegatorRewards)
-    * [~delegatorRewardsFromValidator(delegatorAddr, validatorAddr)](#module_get..delegatorRewardsFromValidator)
-    * [~validatorDistributionInformation(validatorAddr)](#module_get..validatorDistributionInformation)
-    * [~validatorRewards(validatorAddr)](#module_get..validatorRewards)
-    * [~MinerRewards(Addr)](#module_get..MinerRewards)
-    * [~distributionParameters()](#module_get..distributionParameters)
-    * [~distributionOutstandingRewards(validatorAddr)](#module_get..distributionOutstandingRewards)
-    * [~marketlist()](#module_get..marketlist)
-    * [~marketinfo(name)](#module_get..marketinfo)
-    * [~marketOrderslist(marketName, orderType, statusType, page, limit)](#module_get..marketOrderslist)
-    * [~marketSellOrderslist(address, page, limit)](#module_get..marketSellOrderslist)
-    * [~marketUserOrderslist(address, page, limit)](#module_get..marketUserOrderslist)
-    * [~marketOrderinfo(Orderid)](#module_get..marketOrderinfo)
-    * [~marketsellorderinfo(Orderid)](#module_get..marketsellorderinfo)
-    * [~mintingAnnualprovisions()](#module_get..mintingAnnualprovisions)
+    * [.connected()](#module_get..connected)
+    * [.nodeVersion()](#module_get..nodeVersion)
+    * [.nodeSyncing()](#module_get..nodeSyncing)
+    * [.nodeBlocklatest()](#module_get..nodeBlocklatest)
+    * [.account(address)](#module_get..account)
+    * [.txs(addr, height)](#module_get..txs)
+    * [.txsByHeight(height)](#module_get..txsByHeight)
+    * [.tx(hash)](#module_get..tx)
+    * [.assetAll()](#module_get..assetAll)
+    * [.delegations(addr)](#module_get..delegations)
+    * [.undelegations(addr)](#module_get..undelegations)
+    * [.redelegations(addr)](#module_get..redelegations)
+    * [.delegatorValidators(delegatorAddr)](#module_get..delegatorValidators)
+    * [.validators()](#module_get..validators)
+    * [.validator(addr)](#module_get..validator)
+    * [.validatorSet()](#module_get..validatorSet)
+    * [.delegation(delegatorAddr, validatorAddr)](#module_get..delegation)
+    * [.unbondingDelegation(delegatorAddr, validatorAddr)](#module_get..unbondingDelegation)
+    * [.pool()](#module_get..pool)
+    * [.stakingParameters()](#module_get..stakingParameters)
+    * [.validatorSigningInfo(pubKey)](#module_get..validatorSigningInfo)
+    * [.proposals()](#module_get..proposals)
+    * [.proposal(proposalId)](#module_get..proposal)
+    * [.proposalVotes(proposalId)](#module_get..proposalVotes)
+    * [.proposalVote(proposalId, address)](#module_get..proposalVote)
+    * [.proposalDeposits(proposalId)](#module_get..proposalDeposits)
+    * [.proposalDeposit(proposalId, address)](#module_get..proposalDeposit)
+    * [.proposalTally(proposalId)](#module_get..proposalTally)
+    * [.govDepositParameters()](#module_get..govDepositParameters)
+    * [.govTallyingParameters()](#module_get..govTallyingParameters)
+    * [.govVotingParameters()](#module_get..govVotingParameters)
+    * [.block(blockHeight)](#module_get..block)
+    * [.delegatorRewards(delegatorAddr)](#module_get..delegatorRewards)
+    * [.delegatorRewardsFromValidator(delegatorAddr, validatorAddr)](#module_get..delegatorRewardsFromValidator)
+    * [.validatorDistributionInformation(validatorAddr)](#module_get..validatorDistributionInformation)
+    * [.validatorRewards(validatorAddr)](#module_get..validatorRewards)
+    * [.MinerRewards(Addr)](#module_get..MinerRewards)
+    * [.distributionParameters()](#module_get..distributionParameters)
+    * [.distributionOutstandingRewards(validatorAddr)](#module_get..distributionOutstandingRewards)
+    * [.marketlist()](#module_get..marketlist)
+    * [.marketinfo(name)](#module_get..marketinfo)
+    * [.marketOrderslist(marketName, orderType, statusType, page, limit)](#module_get..marketOrderslist)
+    * [.marketSellOrderslist(address, page, limit)](#module_get..marketSellOrderslist)
+    * [.marketUserOrderslist(address, page, limit)](#module_get..marketUserOrderslist)
+    * [.marketOrderinfo(Orderid)](#module_get..marketOrderinfo)
+    * [.marketsellorderinfo(Orderid)](#module_get..marketsellorderinfo)
+    * [.mintingAnnualprovisions()](#module_get..mintingAnnualprovisions)
 
 <a name="module_get..connected"></a>
 
-### get~connected()
+### get.connected()
 Link to node or not
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
 <a name="module_get..nodeVersion"></a>
 
-### get~nodeVersion()
+### get.nodeVersion()
 Node information
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
 <a name="module_get..nodeSyncing"></a>
 
-### get~nodeSyncing()
+### get.nodeSyncing()
 Node synchronization information
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
 <a name="module_get..nodeBlocklatest"></a>
 
-### get~nodeBlocklatest()
+### get.nodeBlocklatest()
 Latest block information
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
 <a name="module_get..account"></a>
 
-### get~account(address)
+### get.account(address)
 Read account balance and other information
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -189,7 +189,7 @@ Read account balance and other information
 
 <a name="module_get..txs"></a>
 
-### get~txs(addr, height)
+### get.txs(addr, height)
 Get list of recent transactions
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -201,7 +201,7 @@ Get list of recent transactions
 
 <a name="module_get..txsByHeight"></a>
 
-### get~txsByHeight(height)
+### get.txsByHeight(height)
 Get transactions within a block
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -212,7 +212,7 @@ Get transactions within a block
 
 <a name="module_get..tx"></a>
 
-### get~tx(hash)
+### get.tx(hash)
 Get transaction details based on transaction hash
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -223,13 +223,13 @@ Get transaction details based on transaction hash
 
 <a name="module_get..assetAll"></a>
 
-### get~assetAll()
+### get.assetAll()
 Get the list of assets on the chain
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
 <a name="module_get..delegations"></a>
 
-### get~delegations(addr)
+### get.delegations(addr)
 Get all delegations information from a delegator
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -240,7 +240,7 @@ Get all delegations information from a delegator
 
 <a name="module_get..undelegations"></a>
 
-### get~undelegations(addr)
+### get.undelegations(addr)
 Obtain records of cancelling pledge
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -251,7 +251,7 @@ Obtain records of cancelling pledge
 
 <a name="module_get..redelegations"></a>
 
-### get~redelegations(addr)
+### get.redelegations(addr)
 Obtain the list of sub pledge
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -262,7 +262,7 @@ Obtain the list of sub pledge
 
 <a name="module_get..delegatorValidators"></a>
 
-### get~delegatorValidators(delegatorAddr)
+### get.delegatorValidators(delegatorAddr)
 Query all validators that a delegator is bonded to
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -273,13 +273,13 @@ Query all validators that a delegator is bonded to
 
 <a name="module_get..validators"></a>
 
-### get~validators()
+### get.validators()
 Get a list containing all the validator candidates
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
 <a name="module_get..validator"></a>
 
-### get~validator(addr)
+### get.validator(addr)
 Query the information from a single validator
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -290,13 +290,13 @@ Query the information from a single validator
 
 <a name="module_get..validatorSet"></a>
 
-### get~validatorSet()
+### get.validatorSet()
 Latest nodes participating in consensus
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
 <a name="module_get..delegation"></a>
 
-### get~delegation(delegatorAddr, validatorAddr)
+### get.delegation(delegatorAddr, validatorAddr)
 Query a delegation between a delegator and a validator
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -308,7 +308,7 @@ Query a delegation between a delegator and a validator
 
 <a name="module_get..unbondingDelegation"></a>
 
-### get~unbondingDelegation(delegatorAddr, validatorAddr)
+### get.unbondingDelegation(delegatorAddr, validatorAddr)
 Query the records of users cancelling pledge in the verification node
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -320,19 +320,19 @@ Query the records of users cancelling pledge in the verification node
 
 <a name="module_get..pool"></a>
 
-### get~pool()
+### get.pool()
 Pledge information in pledge pool
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
 <a name="module_get..stakingParameters"></a>
 
-### get~stakingParameters()
+### get.stakingParameters()
 Pledge parameter information
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
 <a name="module_get..validatorSigningInfo"></a>
 
-### get~validatorSigningInfo(pubKey)
+### get.validatorSigningInfo(pubKey)
 For the latest signature status of the specified node
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -343,13 +343,13 @@ For the latest signature status of the specified node
 
 <a name="module_get..proposals"></a>
 
-### get~proposals()
+### get.proposals()
 Proposal list
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
 <a name="module_get..proposal"></a>
 
-### get~proposal(proposalId)
+### get.proposal(proposalId)
 Proposal details
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -360,7 +360,7 @@ Proposal details
 
 <a name="module_get..proposalVotes"></a>
 
-### get~proposalVotes(proposalId)
+### get.proposalVotes(proposalId)
 Get voting information for a proposal
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -371,7 +371,7 @@ Get voting information for a proposal
 
 <a name="module_get..proposalVote"></a>
 
-### get~proposalVote(proposalId, address)
+### get.proposalVote(proposalId, address)
 Get a user's voting information on a proposal
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -383,7 +383,7 @@ Get a user's voting information on a proposal
 
 <a name="module_get..proposalDeposits"></a>
 
-### get~proposalDeposits(proposalId)
+### get.proposalDeposits(proposalId)
 How much money is saved to get the proposal
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -394,7 +394,7 @@ How much money is saved to get the proposal
 
 <a name="module_get..proposalDeposit"></a>
 
-### get~proposalDeposit(proposalId, address)
+### get.proposalDeposit(proposalId, address)
 Get a user's saving information on a proposal
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -406,7 +406,7 @@ Get a user's saving information on a proposal
 
 <a name="module_get..proposalTally"></a>
 
-### get~proposalTally(proposalId)
+### get.proposalTally(proposalId)
 Get parameters of proposal
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -417,25 +417,25 @@ Get parameters of proposal
 
 <a name="module_get..govDepositParameters"></a>
 
-### get~govDepositParameters()
+### get.govDepositParameters()
 Parameter expression of proposal deposit
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
 <a name="module_get..govTallyingParameters"></a>
 
-### get~govTallyingParameters()
+### get.govTallyingParameters()
 Parameter description of proposal
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
 <a name="module_get..govVotingParameters"></a>
 
-### get~govVotingParameters()
+### get.govVotingParameters()
 Parameter description related to proposal voting
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
 <a name="module_get..block"></a>
 
-### get~block(blockHeight)
+### get.block(blockHeight)
 Get the information of the specified block height
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -446,7 +446,7 @@ Get the information of the specified block height
 
 <a name="module_get..delegatorRewards"></a>
 
-### get~delegatorRewards(delegatorAddr)
+### get.delegatorRewards(delegatorAddr)
 Get the total rewards balance from all delegations
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -457,7 +457,7 @@ Get the total rewards balance from all delegations
 
 <a name="module_get..delegatorRewardsFromValidator"></a>
 
-### get~delegatorRewardsFromValidator(delegatorAddr, validatorAddr)
+### get.delegatorRewardsFromValidator(delegatorAddr, validatorAddr)
 Query a single delegation reward by a delegator
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -469,7 +469,7 @@ Query a single delegation reward by a delegator
 
 <a name="module_get..validatorDistributionInformation"></a>
 
-### get~validatorDistributionInformation(validatorAddr)
+### get.validatorDistributionInformation(validatorAddr)
 Query the distribution information of a single validator
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -480,7 +480,7 @@ Query the distribution information of a single validator
 
 <a name="module_get..validatorRewards"></a>
 
-### get~validatorRewards(validatorAddr)
+### get.validatorRewards(validatorAddr)
 Query pledge income information
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -491,7 +491,7 @@ Query pledge income information
 
 <a name="module_get..MinerRewards"></a>
 
-### get~MinerRewards(Addr)
+### get.MinerRewards(Addr)
 Query mining rewards of miners
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -502,13 +502,13 @@ Query mining rewards of miners
 
 <a name="module_get..distributionParameters"></a>
 
-### get~distributionParameters()
+### get.distributionParameters()
 Parameter description related to income distribution
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
 <a name="module_get..distributionOutstandingRewards"></a>
 
-### get~distributionOutstandingRewards(validatorAddr)
+### get.distributionOutstandingRewards(validatorAddr)
 Fee distribution outstanding rewards of a single validator
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -519,13 +519,13 @@ Fee distribution outstanding rewards of a single validator
 
 <a name="module_get..marketlist"></a>
 
-### get~marketlist()
+### get.marketlist()
 Market list
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
 <a name="module_get..marketinfo"></a>
 
-### get~marketinfo(name)
+### get.marketinfo(name)
 Market parameter information
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -536,7 +536,7 @@ Market parameter information
 
 <a name="module_get..marketOrderslist"></a>
 
-### get~marketOrderslist(marketName, orderType, statusType, page, limit)
+### get.marketOrderslist(marketName, orderType, statusType, page, limit)
 List of sales orders
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -551,7 +551,7 @@ List of sales orders
 
 <a name="module_get..marketSellOrderslist"></a>
 
-### get~marketSellOrderslist(address, page, limit)
+### get.marketSellOrderslist(address, page, limit)
 Look up a miner's sales list
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -564,7 +564,7 @@ Look up a miner's sales list
 
 <a name="module_get..marketUserOrderslist"></a>
 
-### get~marketUserOrderslist(address, page, limit)
+### get.marketUserOrderslist(address, page, limit)
 Query matching orders of users
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -577,7 +577,7 @@ Query matching orders of users
 
 <a name="module_get..marketOrderinfo"></a>
 
-### get~marketOrderinfo(Orderid)
+### get.marketOrderinfo(Orderid)
 Matching order details
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -588,7 +588,7 @@ Matching order details
 
 <a name="module_get..marketsellorderinfo"></a>
 
-### get~marketsellorderinfo(Orderid)
+### get.marketsellorderinfo(Orderid)
 Sales order details
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
@@ -599,7 +599,7 @@ Sales order details
 
 <a name="module_get..mintingAnnualprovisions"></a>
 
-### get~mintingAnnualprovisions()
+### get.mintingAnnualprovisions()
 Annual additional issuance
 
 **Kind**: inner method of [<code>get</code>](#module_get)  
