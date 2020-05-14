@@ -9,7 +9,8 @@
     "build": "webpack --sourcemap=false --progress ",
     "log": "simsala log",
     "release": "git checkout develop & git pull & git push origin develop:release",
-    "doc": "./node_modules/.bin/jsdoc ./src -d ./doc&&./node_modules/.bin/jsdoc  src ./README.md  -d ./doc"
+    "doc": "./node_modules/.bin/jsdoc ./src -d ./doc&&./node_modules/.bin/jsdoc  src ./README.md  -d ./doc",
+    "docmd":"./node_modules/jsdoc-to-markdown/bin/cli.js  src/* > api.md"
   },
   "keywords": [
     "cosmos",
@@ -46,7 +47,8 @@
     "cross-fetch": "^3.0.4",
     "docdash": "^1.2.0",
     "jest-fetch-mock": "^3.0.3",
-    "jsdoc": "^3.6.4"
+    "jsdoc": "^3.6.4",
+    "jsdoc-to-markdown": "^5.0.3"
   },
   "jest": {
     "transform": {

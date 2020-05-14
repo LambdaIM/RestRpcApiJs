@@ -147,5 +147,7 @@ lambdaAPI.get.****
 
 例如  lambdaAPI.get.nodeVersion()
 
+[api文档](./api.md "api")
+
 
 

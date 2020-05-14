@@ -16,6 +16,11 @@ export default class ActionManager {
     this.cosmos = null;
     this.message = null;
     this.transactiondata=null;
+    /**
+     * @member {Object} get
+     * @description  Methods under all get modules are accessed through secondary properties
+     * 
+     */
     this.get = {};
  
     const getters = _Getters(cosmosRESTURL);
