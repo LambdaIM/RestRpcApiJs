@@ -88,7 +88,7 @@ function msgDelegation(to, amount, isdege, validatorType) {
  * @param {string} validatorSourceAddress  Node address of current pledge
  * @param {string} validatorDestinationAddress  Node address of the target
  * @param {string} amount Amount transferred to pledge
- * @param {string} validatortype the category of the node ，The default is 1
+ * @param {Number} validatortype the category of the node ，The default is 1
  */
 function msgRedelegate(validatorSourceAddress, validatorDestinationAddress, amount, validatortype) {
   var result;
@@ -122,7 +122,7 @@ return this;
 }
 /**
  * Vote on proposal
- * @param {number} ProposalID Proposal ID
+ * @param {string} ProposalID Proposal ID
  * @param {string} option  Voting options option value Yes No NoWithVeto Abstain
  */
 function msgVote(ProposalID, option) {
@@ -147,7 +147,7 @@ function msgVote(ProposalID, option) {
 /**
  * Create sales order
  * @param {string} marketName  Market name of sales order
- * @param {string} price Price of sales order
+ * @param {number} price Price of sales order
  * @param {number} rate  Odds on sales
  * @param {number} sellSize  Size of space for sale
  * @param {string} description Description and introduction of the sales order
@@ -215,8 +215,8 @@ function msgCreateBuyOrder(duration,
 
 /**
  * Initialize miner
- * @param {*} miningAddress  Miner's address Address of miner's sub account
- * @param {*} dhtId  dhtId
+ * @param {string} miningAddress  Miner's address Address of miner's sub account
+ * @param {string} dhtId  dhtId
  */
 function msgCreateMiner(miningAddress, dhtId) {
   var result;
@@ -230,7 +230,7 @@ function msgCreateMiner(miningAddress, dhtId) {
 }
 /**
  * Withdraw node income
- * @param {string} address Operation address of node
+ * @param {string} address lambda address
  */
 function msgWithdrawValidatorCommission(address) {
   console.log('TransferwithdrawalDistribution')
@@ -321,7 +321,14 @@ function msgMinerwithdrawal(address) {
 }
 
 
-
+/**
+ * Create a market
+ * @param {string} name     Market name
+ * @param {string} address Lambda address of the Creator
+ * @param {string} profit  Beneficiary's lambda address
+ * @param {string} feeRate  like '0.5'+'00000000000000000'
+ * @param {string} commissionRate  like '0.5'+'00000000000000000'
+ */
 function msgCreateMarket(name,
   address,
   profit,
@@ -343,7 +350,13 @@ function msgCreateMarket(name,
   return this;
 }
 
-
+/**
+ * Modify market information
+ * @param {string} address Lambda address of the Creator
+ * @param {string} profit Beneficiary's lambda address
+ * @param {string} feeRate like '0.5'+'00000000000000000'
+ * @param {string} commissionRate like '0.5'+'00000000000000000'
+ */
 function msgEditMarket(
   address,
   profit,
@@ -445,7 +458,7 @@ function msgUnjailMiner() {
 /**
  * Order renewal, increase order usage time
  * @param {string} orderId  ID of the order
- * @param {*} duration Increase order usage time
+ * @param {number} duration Increase order usage time
  */
 function msgOrderRenewal(orderId,duration) {
   var result;
@@ -478,8 +491,8 @@ function msgMinerWithDrawCount(page,limit) {
 /**
  * Market pledge
  * @param {string} marketName   Market name
- * @param {*} amount amount
- * @param {*} denom Token name defaults to lamb
+ * @param {number} amount amount
+ * @param {string} denom Token name defaults to lamb
  */
 function msgDelegateMarket(marketName,amount,denom) {
   var result;
