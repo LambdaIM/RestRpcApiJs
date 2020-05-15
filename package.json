@@ -9,7 +9,7 @@
     "build": "webpack --sourcemap=false --progress ",
     "log": "simsala log",
     "release": "git checkout develop & git pull & git push origin develop:release",
-    "doc": "./node_modules/.bin/jsdoc ./src -d ./doc&&./node_modules/.bin/jsdoc  src ./README.md  -d ./doc",
+    "doc": "./node_modules/.bin/jsdoc  src ./README.md  -d ./doc",
     "docmd":"./node_modules/jsdoc-to-markdown/bin/cli.js  src/* > api.md"
   },
   "keywords": [

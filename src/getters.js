@@ -46,29 +46,31 @@ export default function Getters (cosmosRESTURL) {
 
     /**
      * Link to node or not
+     * @static
      */
     connected: function () {
       return this.nodeVersion().then(() => true, () => false)
     },
     /**
      *  Node information
-     *
+     *@static
      */
     nodeVersion: () => fetch(cosmosRESTURL + `/node_info`).then(res => res.json()),
     /**
      * Node synchronization information
-     * 
+     * @static
      */
     nodeSyncing: () => fetch(cosmosRESTURL + `/syncing`).then(res => res.json()),
     /**
      * Latest block information
-     * 
+     * @static
      */
     nodeBlocklatest: () => fetch(cosmosRESTURL + `/blocks/latest`).then(res => res.json()),
 
     /**
      * Read account balance and other information
      * @param {string} address   Lambda address
+     * @static
      */
     account: function (address) {
       const emptyAccount = {
@@ -115,6 +117,7 @@ export default function Getters (cosmosRESTURL) {
      * Get list of recent transactions
      * @param {string} addr  address
      * @param {Number} height  Block height
+     * @static
      */
     txs: function (addr,height) {
       return Promise.all([
@@ -127,6 +130,7 @@ export default function Getters (cosmosRESTURL) {
     /**
      * Get transactions within a block
      * @param {Number} height Block height
+     * @static
      */
     txsByHeight: function (height) {
       return get(`/txs?tx.height=${height}`)
@@ -134,6 +138,7 @@ export default function Getters (cosmosRESTURL) {
     /**
      * Get transaction details based on transaction hash
      * @param {string} hash   Transaction hash
+     * @static
      */
     tx: hash => get(`/txs/${hash}`),
     assets: function (addr) {
@@ -150,6 +155,7 @@ export default function Getters (cosmosRESTURL) {
     },
     /**
      * Get the list of assets on the chain
+     * @static
      */
     assetAll: () => get(`/asset/all`),
 
@@ -185,6 +191,7 @@ export default function Getters (cosmosRESTURL) {
     /**
      * Get all delegations information from a delegator
      * @param {string} addr  Lambda address
+     * @static
      */
     delegations: function (addr) {
       console.log(`/staking/delegators/${addr}/delegations`)
@@ -197,6 +204,7 @@ export default function Getters (cosmosRESTURL) {
     /**
      * Obtain records of cancelling pledge
      * @param {string} addr  Lambda address
+     * @static
      */
     undelegations: function (addr) {
       return get(
@@ -211,6 +219,7 @@ export default function Getters (cosmosRESTURL) {
     /**
      * Obtain the list of sub pledge
      * @param {string} addr   Lambda address
+     * @static
      */
     redelegations: function (addr) {
       return get(`/staking/redelegations?delegator=${addr}`)
@@ -219,12 +228,14 @@ export default function Getters (cosmosRESTURL) {
     /**
      * Query all validators that a delegator is bonded to
      * @param {string} delegatorAddr  Lambda address
+     * @static
      */
     delegatorValidators: function (delegatorAddr) {
       return get(`/staking/delegators/${delegatorAddr}/validators`)
     },
     /**
      * Get a list containing all the validator candidates
+     * @static
      */
     validators: () => Promise.all([
       get(`/staking/validators?status=unbonding`),
@@ -236,6 +247,7 @@ export default function Getters (cosmosRESTURL) {
     /**
      * Query the information from a single validator
      * @param {string} addr  Node operation address
+     * @static
      */
     validator: function (addr) {
       return get(`/staking/validators/${addr}`)
@@ -254,6 +266,7 @@ export default function Getters (cosmosRESTURL) {
 
     /**
      * Latest nodes participating in consensus
+     * @static
      */
     validatorSet: () => get(`/validatorsets/latest`),
 
@@ -262,6 +275,7 @@ export default function Getters (cosmosRESTURL) {
      * Query a delegation between a delegator and a validator
      * @param {string} delegatorAddr  User's lambda address
      * @param {string} validatorAddr  Operation address of validator node
+     * @static
      */
     delegation: function (delegatorAddr, validatorAddr) {
       return get(
@@ -274,6 +288,7 @@ export default function Getters (cosmosRESTURL) {
      * Query the records of users cancelling pledge in the verification node
      * @param {string} delegatorAddr  User lambda address
      * @param {string} validatorAddr  validator node operation address
+     * @static
      */
     unbondingDelegation: function (delegatorAddr, validatorAddr) {
       return get(
@@ -284,10 +299,12 @@ export default function Getters (cosmosRESTURL) {
     },
     /**
      * Pledge information in pledge pool
+     * @static
      */
     pool: () => get(`/staking/pool`),
     /**
      * Pledge parameter information
+     * @static
      */
     stakingParameters: () => get(`/staking/parameters`),
 
@@ -296,6 +313,7 @@ export default function Getters (cosmosRESTURL) {
     /**
      * For the latest signature status of the specified node
      * @param {string} pubKey  Public key
+     * @static
      */
     validatorSigningInfo: function (pubKey) {
       return get(`/slashing/validators/${pubKey}/signing_info`)
@@ -304,11 +322,13 @@ export default function Getters (cosmosRESTURL) {
     /* ============ Governance ============ */
     /**
      * Proposal list
+     * @static
      */
     proposals: () => get(`/gov/proposals`),
     /**
      * Proposal details
      * @param {Number} proposalId  Proposal ID
+     * @static
      */
     proposal: function (proposalId) {
       return get(`/gov/proposals/${proposalId}`)
@@ -316,6 +336,7 @@ export default function Getters (cosmosRESTURL) {
     /**
      * Get voting information for a proposal
      * @param {Number} proposalId proposal Id
+     * @static
      */
     proposalVotes: function (proposalId) {
       return get(`/gov/proposals/${proposalId}/votes`)
@@ -324,6 +345,7 @@ export default function Getters (cosmosRESTURL) {
      * Get a user's voting information on a proposal
      * @param {Number} proposalId  Proposal ID
      * @param {string} address User's lambda address
+     * @static
      */
     proposalVote: function (proposalId, address) {
       return get(`/gov/proposals/${proposalId}/votes/${address}`)
@@ -331,6 +353,7 @@ export default function Getters (cosmosRESTURL) {
     /**
      * How much money is saved to get the proposal
      * @param {Number} proposalId Proposal ID
+     * @static
      */
     proposalDeposits: function (proposalId) {
       return get(`/gov/proposals/${proposalId}/deposits`)
@@ -339,6 +362,7 @@ export default function Getters (cosmosRESTURL) {
      * Get a user's saving information on a proposal
      * @param {Number} proposalId Proposal ID
      * @param {string} address  User's lambda address
+     * @static
      */
     proposalDeposit: function (proposalId, address) {
       return get(
@@ -350,20 +374,24 @@ export default function Getters (cosmosRESTURL) {
     /**
      * Get parameters of proposal
      * @param {Number} proposalId 
+     * @static
      */
     proposalTally: function (proposalId) {
       return get(`/gov/proposals/${proposalId}/tally`)
     },
     /**
      * Parameter expression of proposal deposit
+     * @static
      */
     govDepositParameters: () => get(`/gov/parameters/deposit`),
     /**
      * Parameter description of proposal
+     * @static
      */
     govTallyingParameters: () => get(`/gov/parameters/tallying`),
     /**
      * Parameter description related to proposal voting
+     * @static
      */
     govVotingParameters: () => get(`/gov/parameters/voting`),
     governanceTxs: async function (address) {
@@ -379,6 +407,7 @@ export default function Getters (cosmosRESTURL) {
     /**
      * Get the information of the specified block height
      * @param {Number} blockHeight  Block height
+     * @static
      */
     block: function (blockHeight) {
       return get(`/blocks/${blockHeight}`)
@@ -407,6 +436,7 @@ export default function Getters (cosmosRESTURL) {
     /**
      *  Get the total rewards balance from all delegations
      * @param {string} delegatorAddr   User's lambda address
+     * @static
      */
     delegatorRewards: function (delegatorAddr) {
       return get(`/distribution/delegators/${delegatorAddr}/rewards`)
@@ -415,6 +445,7 @@ export default function Getters (cosmosRESTURL) {
      *  Query a single delegation reward by a delegator
      * @param {string} delegatorAddr  User's lambda address
      * @param {string} validatorAddr  OperatorAddress of validator	
+     * @static
      */
     delegatorRewardsFromValidator: function (delegatorAddr, validatorAddr) {
       return get(
@@ -425,6 +456,7 @@ export default function Getters (cosmosRESTURL) {
     /**
      * Query the distribution information of a single validator
      * @param {string} validatorAddr  OperatorAddress of validator	
+     * @static
      */
     validatorDistributionInformation: function (validatorAddr) {
       return get(`/distribution/validators/${validatorAddr}`)
@@ -432,6 +464,7 @@ export default function Getters (cosmosRESTURL) {
     /**
      * Query pledge income information
      * @param {string} validatorAddr  OperatorAddress of validator
+     * @static
      */
     validatorRewards: function (validatorAddr) {
       return get(`/distribution/validators/${validatorAddr}/rewards`)
@@ -439,6 +472,7 @@ export default function Getters (cosmosRESTURL) {
     /**
      * Query mining rewards of miners
      * @param {string} Addr  Miner's Lamba address
+     * @static
      */
     MinerRewards: function (Addr) {
       var MinerAddress = hdkeyjs.address.MinerAddress(Addr)
@@ -446,6 +480,7 @@ export default function Getters (cosmosRESTURL) {
     },
     /**
      * Parameter description related to income distribution
+     * @static
      */
     distributionParameters: function () {
       return get(`/distribution/parameters`)
@@ -453,6 +488,7 @@ export default function Getters (cosmosRESTURL) {
     /**
      *  Fee distribution outstanding rewards of a single validator
      * @param {string} validatorAddr  OperatorAddress of validator
+     * @static
      */
     distributionOutstandingRewards: function (validatorAddr) {
       return get(`/distribution/validators/${validatorAddr}/outstanding_rewards`)
@@ -460,6 +496,7 @@ export default function Getters (cosmosRESTURL) {
     /* ------市场相关--------- */
     /**
      * Market list
+     * @static
      */
     marketlist: function () {
       return get(`/market/markets`)
@@ -467,6 +504,7 @@ export default function Getters (cosmosRESTURL) {
     /**
      * Market parameter information
      * @param {string} name 
+     * @static
      */
     marketinfo: function (name) {
       return get(`/market/params`)
@@ -478,6 +516,7 @@ export default function Getters (cosmosRESTURL) {
      * @param {string} statusType  The status of the sales order is active and sold out active inactive
      * @param {number } page  Page
      * @param {number} limit  How many pieces of data are displayed per page
+     * @static
      */
     marketOrderslist: function (marketName, orderType, statusType, page, limit) {
       return get(`/market/sellorders/${marketName}/${orderType}/${statusType}/${page}/${limit}`)
@@ -488,6 +527,7 @@ export default function Getters (cosmosRESTURL) {
      * @param {string} address Lambda address
      * @param {string} page Page
      * @param {string} limit  Number of sales orders per page
+     * @static
      */
     marketSellOrderslist: function (address, page, limit) {
       return get(`/market/miner/sellorders/${address}/${page}/${limit}`)
@@ -497,6 +537,7 @@ export default function Getters (cosmosRESTURL) {
      * @param {string} address  Lambda address
      * @param {Number} page  Page
      * @param {Number} limit  Amount of data per page
+     * @static
      */
     marketUserOrderslist: function (address, page, limit) {
       return get(`/market/matchorders/${address}/${page}/${limit}`)
@@ -504,6 +545,7 @@ export default function Getters (cosmosRESTURL) {
     /**
      * Matching order details
      * @param {string} Orderid Order ID
+     * @static
      */
     marketOrderinfo: function (Orderid) {
       return get(`/market/matchorder/${Orderid}`)
@@ -511,6 +553,7 @@ export default function Getters (cosmosRESTURL) {
     /**
      * Sales order details
      * @param {string} Orderid Order id 
+     * @static
      */
     marketsellorderinfo:function(Orderid){
       return get(`/market/sellorder/${Orderid}`)
@@ -536,6 +579,7 @@ export default function Getters (cosmosRESTURL) {
     /***minting***/
     /**
      * Annual additional issuance
+     * @static
      */
     mintingAnnualprovisions: function () {
       return gettxt(`/minting/annual-provisions`)

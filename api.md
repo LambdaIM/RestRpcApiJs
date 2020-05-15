@@ -104,442 +104,442 @@ More about blockchain interface information http://docs.lambda.im/api-reference/
 
 
 * [get](#module_get)
-    * [.connected()](#module_get..connected)
-    * [.nodeVersion()](#module_get..nodeVersion)
-    * [.nodeSyncing()](#module_get..nodeSyncing)
-    * [.nodeBlocklatest()](#module_get..nodeBlocklatest)
-    * [.account(address)](#module_get..account)
-    * [.txs(addr, height)](#module_get..txs)
-    * [.txsByHeight(height)](#module_get..txsByHeight)
-    * [.tx(hash)](#module_get..tx)
-    * [.assetAll()](#module_get..assetAll)
-    * [.delegations(addr)](#module_get..delegations)
-    * [.undelegations(addr)](#module_get..undelegations)
-    * [.redelegations(addr)](#module_get..redelegations)
-    * [.delegatorValidators(delegatorAddr)](#module_get..delegatorValidators)
-    * [.validators()](#module_get..validators)
-    * [.validator(addr)](#module_get..validator)
-    * [.validatorSet()](#module_get..validatorSet)
-    * [.delegation(delegatorAddr, validatorAddr)](#module_get..delegation)
-    * [.unbondingDelegation(delegatorAddr, validatorAddr)](#module_get..unbondingDelegation)
-    * [.pool()](#module_get..pool)
-    * [.stakingParameters()](#module_get..stakingParameters)
-    * [.validatorSigningInfo(pubKey)](#module_get..validatorSigningInfo)
-    * [.proposals()](#module_get..proposals)
-    * [.proposal(proposalId)](#module_get..proposal)
-    * [.proposalVotes(proposalId)](#module_get..proposalVotes)
-    * [.proposalVote(proposalId, address)](#module_get..proposalVote)
-    * [.proposalDeposits(proposalId)](#module_get..proposalDeposits)
-    * [.proposalDeposit(proposalId, address)](#module_get..proposalDeposit)
-    * [.proposalTally(proposalId)](#module_get..proposalTally)
-    * [.govDepositParameters()](#module_get..govDepositParameters)
-    * [.govTallyingParameters()](#module_get..govTallyingParameters)
-    * [.govVotingParameters()](#module_get..govVotingParameters)
-    * [.block(blockHeight)](#module_get..block)
-    * [.delegatorRewards(delegatorAddr)](#module_get..delegatorRewards)
-    * [.delegatorRewardsFromValidator(delegatorAddr, validatorAddr)](#module_get..delegatorRewardsFromValidator)
-    * [.validatorDistributionInformation(validatorAddr)](#module_get..validatorDistributionInformation)
-    * [.validatorRewards(validatorAddr)](#module_get..validatorRewards)
-    * [.MinerRewards(Addr)](#module_get..MinerRewards)
-    * [.distributionParameters()](#module_get..distributionParameters)
-    * [.distributionOutstandingRewards(validatorAddr)](#module_get..distributionOutstandingRewards)
-    * [.marketlist()](#module_get..marketlist)
-    * [.marketinfo(name)](#module_get..marketinfo)
-    * [.marketOrderslist(marketName, orderType, statusType, page, limit)](#module_get..marketOrderslist)
-    * [.marketSellOrderslist(address, page, limit)](#module_get..marketSellOrderslist)
-    * [.marketUserOrderslist(address, page, limit)](#module_get..marketUserOrderslist)
-    * [.marketOrderinfo(Orderid)](#module_get..marketOrderinfo)
-    * [.marketsellorderinfo(Orderid)](#module_get..marketsellorderinfo)
-    * [.mintingAnnualprovisions()](#module_get..mintingAnnualprovisions)
+    * [.connected()](#module_get.connected)
+    * [.nodeVersion()](#module_get.nodeVersion)
+    * [.nodeSyncing()](#module_get.nodeSyncing)
+    * [.nodeBlocklatest()](#module_get.nodeBlocklatest)
+    * [.account(address)](#module_get.account)
+    * [.txs(addr, height)](#module_get.txs)
+    * [.txsByHeight(height)](#module_get.txsByHeight)
+    * [.tx(hash)](#module_get.tx)
+    * [.assetAll()](#module_get.assetAll)
+    * [.delegations(addr)](#module_get.delegations)
+    * [.undelegations(addr)](#module_get.undelegations)
+    * [.redelegations(addr)](#module_get.redelegations)
+    * [.delegatorValidators(delegatorAddr)](#module_get.delegatorValidators)
+    * [.validators()](#module_get.validators)
+    * [.validator(addr)](#module_get.validator)
+    * [.validatorSet()](#module_get.validatorSet)
+    * [.delegation(delegatorAddr, validatorAddr)](#module_get.delegation)
+    * [.unbondingDelegation(delegatorAddr, validatorAddr)](#module_get.unbondingDelegation)
+    * [.pool()](#module_get.pool)
+    * [.stakingParameters()](#module_get.stakingParameters)
+    * [.validatorSigningInfo(pubKey)](#module_get.validatorSigningInfo)
+    * [.proposals()](#module_get.proposals)
+    * [.proposal(proposalId)](#module_get.proposal)
+    * [.proposalVotes(proposalId)](#module_get.proposalVotes)
+    * [.proposalVote(proposalId, address)](#module_get.proposalVote)
+    * [.proposalDeposits(proposalId)](#module_get.proposalDeposits)
+    * [.proposalDeposit(proposalId, address)](#module_get.proposalDeposit)
+    * [.proposalTally(proposalId)](#module_get.proposalTally)
+    * [.govDepositParameters()](#module_get.govDepositParameters)
+    * [.govTallyingParameters()](#module_get.govTallyingParameters)
+    * [.govVotingParameters()](#module_get.govVotingParameters)
+    * [.block(blockHeight)](#module_get.block)
+    * [.delegatorRewards(delegatorAddr)](#module_get.delegatorRewards)
+    * [.delegatorRewardsFromValidator(delegatorAddr, validatorAddr)](#module_get.delegatorRewardsFromValidator)
+    * [.validatorDistributionInformation(validatorAddr)](#module_get.validatorDistributionInformation)
+    * [.validatorRewards(validatorAddr)](#module_get.validatorRewards)
+    * [.MinerRewards(Addr)](#module_get.MinerRewards)
+    * [.distributionParameters()](#module_get.distributionParameters)
+    * [.distributionOutstandingRewards(validatorAddr)](#module_get.distributionOutstandingRewards)
+    * [.marketlist()](#module_get.marketlist)
+    * [.marketinfo(name)](#module_get.marketinfo)
+    * [.marketOrderslist(marketName, orderType, statusType, page, limit)](#module_get.marketOrderslist)
+    * [.marketSellOrderslist(address, page, limit)](#module_get.marketSellOrderslist)
+    * [.marketUserOrderslist(address, page, limit)](#module_get.marketUserOrderslist)
+    * [.marketOrderinfo(Orderid)](#module_get.marketOrderinfo)
+    * [.marketsellorderinfo(Orderid)](#module_get.marketsellorderinfo)
+    * [.mintingAnnualprovisions()](#module_get.mintingAnnualprovisions)
 
-<a name="module_get..connected"></a>
+<a name="module_get.connected"></a>
 
 ### get.connected()
 Link to node or not
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
-<a name="module_get..nodeVersion"></a>
+**Kind**: static method of [<code>get</code>](#module_get)  
+<a name="module_get.nodeVersion"></a>
 
 ### get.nodeVersion()
 Node information
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
-<a name="module_get..nodeSyncing"></a>
+**Kind**: static method of [<code>get</code>](#module_get)  
+<a name="module_get.nodeSyncing"></a>
 
 ### get.nodeSyncing()
 Node synchronization information
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
-<a name="module_get..nodeBlocklatest"></a>
+**Kind**: static method of [<code>get</code>](#module_get)  
+<a name="module_get.nodeBlocklatest"></a>
 
 ### get.nodeBlocklatest()
 Latest block information
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
-<a name="module_get..account"></a>
+**Kind**: static method of [<code>get</code>](#module_get)  
+<a name="module_get.account"></a>
 
 ### get.account(address)
 Read account balance and other information
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | address | <code>string</code> | Lambda address |
 
-<a name="module_get..txs"></a>
+<a name="module_get.txs"></a>
 
 ### get.txs(addr, height)
 Get list of recent transactions
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | addr | <code>string</code> | address |
 | height | <code>Number</code> | Block height |
 
-<a name="module_get..txsByHeight"></a>
+<a name="module_get.txsByHeight"></a>
 
 ### get.txsByHeight(height)
 Get transactions within a block
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | height | <code>Number</code> | Block height |
 
-<a name="module_get..tx"></a>
+<a name="module_get.tx"></a>
 
 ### get.tx(hash)
 Get transaction details based on transaction hash
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | hash | <code>string</code> | Transaction hash |
 
-<a name="module_get..assetAll"></a>
+<a name="module_get.assetAll"></a>
 
 ### get.assetAll()
 Get the list of assets on the chain
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
-<a name="module_get..delegations"></a>
+**Kind**: static method of [<code>get</code>](#module_get)  
+<a name="module_get.delegations"></a>
 
 ### get.delegations(addr)
 Get all delegations information from a delegator
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | addr | <code>string</code> | Lambda address |
 
-<a name="module_get..undelegations"></a>
+<a name="module_get.undelegations"></a>
 
 ### get.undelegations(addr)
 Obtain records of cancelling pledge
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | addr | <code>string</code> | Lambda address |
 
-<a name="module_get..redelegations"></a>
+<a name="module_get.redelegations"></a>
 
 ### get.redelegations(addr)
 Obtain the list of sub pledge
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | addr | <code>string</code> | Lambda address |
 
-<a name="module_get..delegatorValidators"></a>
+<a name="module_get.delegatorValidators"></a>
 
 ### get.delegatorValidators(delegatorAddr)
 Query all validators that a delegator is bonded to
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | delegatorAddr | <code>string</code> | Lambda address |
 
-<a name="module_get..validators"></a>
+<a name="module_get.validators"></a>
 
 ### get.validators()
 Get a list containing all the validator candidates
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
-<a name="module_get..validator"></a>
+**Kind**: static method of [<code>get</code>](#module_get)  
+<a name="module_get.validator"></a>
 
 ### get.validator(addr)
 Query the information from a single validator
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | addr | <code>string</code> | Node operation address |
 
-<a name="module_get..validatorSet"></a>
+<a name="module_get.validatorSet"></a>
 
 ### get.validatorSet()
 Latest nodes participating in consensus
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
-<a name="module_get..delegation"></a>
+**Kind**: static method of [<code>get</code>](#module_get)  
+<a name="module_get.delegation"></a>
 
 ### get.delegation(delegatorAddr, validatorAddr)
 Query a delegation between a delegator and a validator
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | delegatorAddr | <code>string</code> | User's lambda address |
 | validatorAddr | <code>string</code> | Operation address of validator node |
 
-<a name="module_get..unbondingDelegation"></a>
+<a name="module_get.unbondingDelegation"></a>
 
 ### get.unbondingDelegation(delegatorAddr, validatorAddr)
 Query the records of users cancelling pledge in the verification node
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | delegatorAddr | <code>string</code> | User lambda address |
 | validatorAddr | <code>string</code> | validator node operation address |
 
-<a name="module_get..pool"></a>
+<a name="module_get.pool"></a>
 
 ### get.pool()
 Pledge information in pledge pool
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
-<a name="module_get..stakingParameters"></a>
+**Kind**: static method of [<code>get</code>](#module_get)  
+<a name="module_get.stakingParameters"></a>
 
 ### get.stakingParameters()
 Pledge parameter information
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
-<a name="module_get..validatorSigningInfo"></a>
+**Kind**: static method of [<code>get</code>](#module_get)  
+<a name="module_get.validatorSigningInfo"></a>
 
 ### get.validatorSigningInfo(pubKey)
 For the latest signature status of the specified node
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | pubKey | <code>string</code> | Public key |
 
-<a name="module_get..proposals"></a>
+<a name="module_get.proposals"></a>
 
 ### get.proposals()
 Proposal list
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
-<a name="module_get..proposal"></a>
+**Kind**: static method of [<code>get</code>](#module_get)  
+<a name="module_get.proposal"></a>
 
 ### get.proposal(proposalId)
 Proposal details
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | proposalId | <code>Number</code> | Proposal ID |
 
-<a name="module_get..proposalVotes"></a>
+<a name="module_get.proposalVotes"></a>
 
 ### get.proposalVotes(proposalId)
 Get voting information for a proposal
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | proposalId | <code>Number</code> | proposal Id |
 
-<a name="module_get..proposalVote"></a>
+<a name="module_get.proposalVote"></a>
 
 ### get.proposalVote(proposalId, address)
 Get a user's voting information on a proposal
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | proposalId | <code>Number</code> | Proposal ID |
 | address | <code>string</code> | User's lambda address |
 
-<a name="module_get..proposalDeposits"></a>
+<a name="module_get.proposalDeposits"></a>
 
 ### get.proposalDeposits(proposalId)
 How much money is saved to get the proposal
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | proposalId | <code>Number</code> | Proposal ID |
 
-<a name="module_get..proposalDeposit"></a>
+<a name="module_get.proposalDeposit"></a>
 
 ### get.proposalDeposit(proposalId, address)
 Get a user's saving information on a proposal
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | proposalId | <code>Number</code> | Proposal ID |
 | address | <code>string</code> | User's lambda address |
 
-<a name="module_get..proposalTally"></a>
+<a name="module_get.proposalTally"></a>
 
 ### get.proposalTally(proposalId)
 Get parameters of proposal
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type |
 | --- | --- |
 | proposalId | <code>Number</code> | 
 
-<a name="module_get..govDepositParameters"></a>
+<a name="module_get.govDepositParameters"></a>
 
 ### get.govDepositParameters()
 Parameter expression of proposal deposit
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
-<a name="module_get..govTallyingParameters"></a>
+**Kind**: static method of [<code>get</code>](#module_get)  
+<a name="module_get.govTallyingParameters"></a>
 
 ### get.govTallyingParameters()
 Parameter description of proposal
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
-<a name="module_get..govVotingParameters"></a>
+**Kind**: static method of [<code>get</code>](#module_get)  
+<a name="module_get.govVotingParameters"></a>
 
 ### get.govVotingParameters()
 Parameter description related to proposal voting
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
-<a name="module_get..block"></a>
+**Kind**: static method of [<code>get</code>](#module_get)  
+<a name="module_get.block"></a>
 
 ### get.block(blockHeight)
 Get the information of the specified block height
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | blockHeight | <code>Number</code> | Block height |
 
-<a name="module_get..delegatorRewards"></a>
+<a name="module_get.delegatorRewards"></a>
 
 ### get.delegatorRewards(delegatorAddr)
 Get the total rewards balance from all delegations
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | delegatorAddr | <code>string</code> | User's lambda address |
 
-<a name="module_get..delegatorRewardsFromValidator"></a>
+<a name="module_get.delegatorRewardsFromValidator"></a>
 
 ### get.delegatorRewardsFromValidator(delegatorAddr, validatorAddr)
 Query a single delegation reward by a delegator
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | delegatorAddr | <code>string</code> | User's lambda address |
 | validatorAddr | <code>string</code> | OperatorAddress of validator |
 
-<a name="module_get..validatorDistributionInformation"></a>
+<a name="module_get.validatorDistributionInformation"></a>
 
 ### get.validatorDistributionInformation(validatorAddr)
 Query the distribution information of a single validator
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | validatorAddr | <code>string</code> | OperatorAddress of validator |
 
-<a name="module_get..validatorRewards"></a>
+<a name="module_get.validatorRewards"></a>
 
 ### get.validatorRewards(validatorAddr)
 Query pledge income information
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | validatorAddr | <code>string</code> | OperatorAddress of validator |
 
-<a name="module_get..MinerRewards"></a>
+<a name="module_get.MinerRewards"></a>
 
 ### get.MinerRewards(Addr)
 Query mining rewards of miners
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | Addr | <code>string</code> | Miner's Lamba address |
 
-<a name="module_get..distributionParameters"></a>
+<a name="module_get.distributionParameters"></a>
 
 ### get.distributionParameters()
 Parameter description related to income distribution
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
-<a name="module_get..distributionOutstandingRewards"></a>
+**Kind**: static method of [<code>get</code>](#module_get)  
+<a name="module_get.distributionOutstandingRewards"></a>
 
 ### get.distributionOutstandingRewards(validatorAddr)
 Fee distribution outstanding rewards of a single validator
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | validatorAddr | <code>string</code> | OperatorAddress of validator |
 
-<a name="module_get..marketlist"></a>
+<a name="module_get.marketlist"></a>
 
 ### get.marketlist()
 Market list
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
-<a name="module_get..marketinfo"></a>
+**Kind**: static method of [<code>get</code>](#module_get)  
+<a name="module_get.marketinfo"></a>
 
 ### get.marketinfo(name)
 Market parameter information
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type |
 | --- | --- |
 | name | <code>string</code> | 
 
-<a name="module_get..marketOrderslist"></a>
+<a name="module_get.marketOrderslist"></a>
 
 ### get.marketOrderslist(marketName, orderType, statusType, page, limit)
 List of sales orders
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -549,12 +549,12 @@ List of sales orders
 | page | <code>number</code> | Page |
 | limit | <code>number</code> | How many pieces of data are displayed per page |
 
-<a name="module_get..marketSellOrderslist"></a>
+<a name="module_get.marketSellOrderslist"></a>
 
 ### get.marketSellOrderslist(address, page, limit)
 Look up a miner's sales list
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -562,12 +562,12 @@ Look up a miner's sales list
 | page | <code>string</code> | Page |
 | limit | <code>string</code> | Number of sales orders per page |
 
-<a name="module_get..marketUserOrderslist"></a>
+<a name="module_get.marketUserOrderslist"></a>
 
 ### get.marketUserOrderslist(address, page, limit)
 Query matching orders of users
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -575,34 +575,34 @@ Query matching orders of users
 | page | <code>Number</code> | Page |
 | limit | <code>Number</code> | Amount of data per page |
 
-<a name="module_get..marketOrderinfo"></a>
+<a name="module_get.marketOrderinfo"></a>
 
 ### get.marketOrderinfo(Orderid)
 Matching order details
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | Orderid | <code>string</code> | Order ID |
 
-<a name="module_get..marketsellorderinfo"></a>
+<a name="module_get.marketsellorderinfo"></a>
 
 ### get.marketsellorderinfo(Orderid)
 Sales order details
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | Orderid | <code>string</code> | Order id |
 
-<a name="module_get..mintingAnnualprovisions"></a>
+<a name="module_get.mintingAnnualprovisions"></a>
 
 ### get.mintingAnnualprovisions()
 Annual additional issuance
 
-**Kind**: inner method of [<code>get</code>](#module_get)  
+**Kind**: static method of [<code>get</code>](#module_get)  
 <a name="get"></a>
 
 ## get : <code>Object</code>
