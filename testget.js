@@ -103,6 +103,22 @@ async function test(){
     result = await lambdaAPI.get.marketinfo()  
     console.log(result)
     //to do 剩下市场模块
+    console.log('-----------------5')
+    result = await lambdaAPI.get.marketOrderslist('lambdamarket','premium','active',1,10)  
+    console.log(result)
+    result = await lambdaAPI.get.marketSellOrderslist(userAddress,1,10)  
+    console.log(result)
+    result = await lambdaAPI.get.marketUserOrderslist(userAddress,1,10)  
+    console.log(result)
+    result = await lambdaAPI.get.marketOrderinfo('695996F63BDA79F23F31BE2C254ECC32E930BB19')  
+    console.log(result)
+    result = await lambdaAPI.get.marketsellorderinfo('695996F63BDA79F23F31BE2C254ECC32E930BB19')  
+    console.log(result)
+    console.log('-----------------5')
+    result = await lambdaAPI.get.mintingAnnualprovisions()
+    console.log(result)
+
+    
 
     
     
