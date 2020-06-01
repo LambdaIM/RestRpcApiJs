@@ -378,6 +378,22 @@ export function MsgWithDrawMarket (
   }
 }
 
+export function MsgCancelSellOrder (
+  senderAddress,
+  {
+    orderId
+  }
+) {
+  return {
+    type: `lambda/MsgCancelSellOrder`,
+    value: {
+      address: senderAddress,
+      orderId: orderId
+      
+    }
+  }
+}
+
 
 
 
@@ -409,5 +425,6 @@ export default {
   'MsgOrderRenewal':MsgOrderRenewal,
   'MsgMinerWithDrawCount':MsgMinerWithDrawCount,
   'MsgDelegateMarket':MsgDelegateMarket,
-  'MsgWithDrawMarket':MsgWithDrawMarket
+  'MsgWithDrawMarket':MsgWithDrawMarket,
+  'MsgCancelSellOrder':MsgCancelSellOrder
 }
