@@ -396,6 +396,80 @@ export function MsgCancelSellOrder (
 
 
 
+export function MsgCreateDigitalAssetMarket (
+  senderAddress,
+  {
+    orderId,
+    AssetName,
+    Ratio
+  }
+) {
+  return {
+    type: `lambda/MsgCreateDigitalAssetMarket`,
+    value: {
+      address: senderAddress,
+      AssetName: AssetName,
+      Ratio: Ratio
+    }
+  }
+}
+
+
+export function MsgDigitalAssetPledge (
+  senderAddress,
+  {
+    orderId,
+    AssetName,
+    Amount
+  }
+) {
+  return {
+    type: `lambda/MsgDigitalAssetPledge`,
+    value: {
+      address: senderAddress,
+      AssetName: AssetName,
+      Amount: Amount
+    }
+  }
+}
+
+export function MsgDigitalAssetRefund  (
+  senderAddress,
+  {
+    orderId,
+    AssetName
+  
+  }
+) {
+  return {
+    type: `lambda/MsgDigitalAssetRefund`,
+    value: {
+      address: senderAddress,
+      AssetName: AssetName
+      
+    }
+  }
+}
+
+export function MsgAuthorizeMiningPubKey  (
+  senderAddress,
+  {
+    PubKey
+    
+  }
+) {
+  return {
+    type: `lambda/MsgAuthorizeMiningPubKey`,
+    value: {
+      address: senderAddress,
+      PubKey: PubKey
+      
+    }
+  }
+}
+
+
+
 
 function Coin ({ amount, denom }) {
   return ({
@@ -426,5 +500,9 @@ export default {
   'MsgMinerWithDrawCount':MsgMinerWithDrawCount,
   'MsgDelegateMarket':MsgDelegateMarket,
   'MsgWithDrawMarket':MsgWithDrawMarket,
-  'MsgCancelSellOrder':MsgCancelSellOrder
+  'MsgCancelSellOrder':MsgCancelSellOrder,
+  'MsgCreateDigitalAssetMarket':MsgCreateDigitalAssetMarket,
+  'MsgDigitalAssetPledge':MsgDigitalAssetPledge,
+  'MsgDigitalAssetRefund': MsgDigitalAssetRefund,
+  'MsgAuthorizeMiningPubKey' : MsgAuthorizeMiningPubKey
 }
