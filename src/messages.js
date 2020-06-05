@@ -469,6 +469,35 @@ export function MsgAuthorizeMiningPubKey  (
 }
 
 
+export function MsgCreateAsset  (
+  senderAddress,
+  {
+    asset_amount,
+    asset_denom,
+    token_amount,
+    token_denom,
+    name,
+    mint_type,
+    inflation,
+    inflation_period
+  }
+) {
+  return {
+    type: `lambda/MsgCreateAsset`,
+    value: {
+      address: senderAddress,
+      asset: Coin({ asset_amount, asset_denom }),
+      token: Coin({ token_amount, token_denom }),
+      name:name,
+      mint_type:mint_type,
+      inflation:inflation,
+      inflation_period:inflation_period
+      
+    }
+  }
+}
+
+
 
 
 function Coin ({ amount, denom }) {
@@ -504,5 +533,6 @@ export default {
   'MsgCreateDigitalAssetMarket':MsgCreateDigitalAssetMarket,
   'MsgDigitalAssetPledge':MsgDigitalAssetPledge,
   'MsgDigitalAssetRefund': MsgDigitalAssetRefund,
-  'MsgAuthorizeMiningPubKey' : MsgAuthorizeMiningPubKey
+  'MsgAuthorizeMiningPubKey' : MsgAuthorizeMiningPubKey,
+  'MsgCreateAsset':MsgCreateAsset
 }
