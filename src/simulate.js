@@ -34,7 +34,12 @@ export default async function simulate (
     'lambda/MsgMinerWithDrawCount':()=> `/market/miner/withdrawCount`,
     'lambda/MsgDelegateMarket':()=> `/market/delegate`,
     'lambda/MsgWithDrawMarket':()=> `/market/withdraw`,
-    'lambda/MsgCancelSellOrder':()=> `/market/sellorder/cancel`
+    'lambda/MsgCancelSellOrder':()=> `/market/sellorder/cancel`,
+    'lambda/MsgCreateAsset': () => `/bank/accounts/${senderAddress}/transfers`,
+    'lambda/MsgCreateDigitalAssetMarket': () => `/bank/accounts/${senderAddress}/transfers`,
+    'lambda/MsgDigitalAssetPledge': () => `/bank/accounts/${senderAddress}/transfers`,
+    'lambda/MsgDigitalAssetRefund': () => `/bank/accounts/${senderAddress}/transfers`,
+    'lambda/MsgAuthorizeMiningPubKey': () => `/bank/accounts/${senderAddress}/transfers`
   }[type]()
   const url = `${cosmosRESTURL}${path}`
 
