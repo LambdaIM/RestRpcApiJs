@@ -360,6 +360,17 @@ export default function Getters (cosmosRESTURL) {
     /***minting***/
     mintingAnnualprovisions: function () {
       return gettxt(`/minting/annual-provisions`)
+    },
+    /**dam***********/
+    dammarketlist: function () {
+      return get(`/dam/markets`)
+    },
+    damminerinfo: function (address) {
+      return get(`/dam/miner/${address}`)
+    },
+    damparams: function () {
+      return get(`/dam/params`)
     }
+
   }
 }

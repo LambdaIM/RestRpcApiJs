@@ -478,7 +478,11 @@ export function MsgCreateAsset  (
     name,
     mint_type,
     inflation,
-    inflation_period
+    total_supply,
+    adjust_rate,
+    adjust_period,
+    max_adjust_count,
+    genesis_height
   }
 ) {
   return {
@@ -490,7 +494,11 @@ export function MsgCreateAsset  (
       name:name,
       mint_type:mint_type,
       inflation:inflation,
-      inflation_period:inflation_period
+      total_supply,
+      adjust_rate,
+      adjust_period,
+      max_adjust_count,
+      genesis_height
       
     }
   }
