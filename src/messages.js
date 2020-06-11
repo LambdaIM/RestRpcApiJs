@@ -401,15 +401,17 @@ export function MsgCreateDigitalAssetMarket (
   {
     orderId,
     AssetName,
-    Ratio
+    Ratio,
+    marketName
   }
 ) {
   return {
     type: `lambda/MsgCreateDigitalAssetMarket`,
     value: {
       address: senderAddress,
-      AssetName: AssetName,
-      Ratio: Ratio
+      assetName: AssetName,
+      exchangeRatio: Ratio,
+      marketName:marketName
     }
   }
 }
@@ -418,17 +420,16 @@ export function MsgCreateDigitalAssetMarket (
 export function MsgDigitalAssetPledge (
   senderAddress,
   {
-    orderId,
     AssetName,
-    Amount
+    Size
   }
 ) {
   return {
     type: `lambda/MsgDigitalAssetPledge`,
     value: {
       address: senderAddress,
-      AssetName: AssetName,
-      Amount: Amount
+      assetName: AssetName,
+      size: Size
     }
   }
 }
@@ -444,7 +445,7 @@ export function MsgDigitalAssetRefund  (
     type: `lambda/MsgDigitalAssetRefund`,
     value: {
       address: senderAddress,
-      AssetName: AssetName
+      assetName: AssetName
       
     }
   }
@@ -453,15 +454,16 @@ export function MsgDigitalAssetRefund  (
 export function MsgAuthorizeMiningPubKey  (
   senderAddress,
   {
-    PubKey
-    
+    PubKey,
+    AssetName
   }
 ) {
   return {
     type: `lambda/MsgAuthorizeMiningPubKey`,
     value: {
       address: senderAddress,
-      PubKey: PubKey
+      assetName:AssetName,
+      pubKey: PubKey
       
     }
   }

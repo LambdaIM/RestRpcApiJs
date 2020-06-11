@@ -35,11 +35,11 @@ export default async function simulate (
     'lambda/MsgDelegateMarket':()=> `/market/delegate`,
     'lambda/MsgWithDrawMarket':()=> `/market/withdraw`,
     'lambda/MsgCancelSellOrder':()=> `/market/sellorder/cancel`,
-    'lambda/MsgCreateAsset': () => `/bank/accounts/${senderAddress}/transfers`,
-    'lambda/MsgCreateDigitalAssetMarket': () => `/bank/accounts/${senderAddress}/transfers`,
-    'lambda/MsgDigitalAssetPledge': () => `/bank/accounts/${senderAddress}/transfers`,
-    'lambda/MsgDigitalAssetRefund': () => `/bank/accounts/${senderAddress}/transfers`,
-    'lambda/MsgAuthorizeMiningPubKey': () => `/bank/accounts/${senderAddress}/transfers`
+    'lambda/MsgCreateAsset': () => `/dam/market/create`,
+    'lambda/MsgCreateDigitalAssetMarket': () => `/dam/market/create`,
+    'lambda/MsgDigitalAssetPledge': () => `/dam/asset/pledge`,
+    'lambda/MsgDigitalAssetRefund': () => `/dam/asset/refund`,
+    'lambda/MsgAuthorizeMiningPubKey': () => `/dam/market/authorize`
   }[type]()
   const url = `${cosmosRESTURL}${path}`
 
