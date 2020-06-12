@@ -370,6 +370,9 @@ export default function Getters (cosmosRESTURL) {
     },
     damparams: function () {
       return get(`/dam/params`)
+    },
+    damrefunding_records: function (address) {
+      return get(`/dam/refunding_records/${address}`)
     }
 
   }
