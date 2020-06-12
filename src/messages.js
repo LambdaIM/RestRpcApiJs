@@ -470,6 +470,24 @@ export function MsgAuthorizeMiningPubKey  (
 }
 
 
+
+export function MsgDismissDigitalAssetMarket  (
+  senderAddress,
+  {
+    AssetName
+  }
+) {
+  return {
+    type: `lambda/MsgDismissDigitalAssetMarket`,
+    value: {
+      address: senderAddress,
+      assetName:AssetName
+    }
+  }
+}
+
+
+
 export function MsgCreateAsset  (
   senderAddress,
   {

@@ -39,7 +39,8 @@ export default async function simulate (
     'lambda/MsgCreateDigitalAssetMarket': () => `/dam/market/create`,
     'lambda/MsgDigitalAssetPledge': () => `/dam/asset/pledge`,
     'lambda/MsgDigitalAssetRefund': () => `/dam/asset/refund`,
-    'lambda/MsgAuthorizeMiningPubKey': () => `/dam/market/authorize`
+    'lambda/MsgAuthorizeMiningPubKey': () => `/dam/market/authorize`,
+    'lambda/MsgDismissDigitalAssetMarket': () => `/dam/market/dismiss`
   }[type]()
   const url = `${cosmosRESTURL}${path}`
 
