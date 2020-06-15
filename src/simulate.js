@@ -35,7 +35,7 @@ export default async function simulate (
     'lambda/MsgDelegateMarket':()=> `/market/delegate`,
     'lambda/MsgWithDrawMarket':()=> `/market/withdraw`,
     'lambda/MsgCancelSellOrder':()=> `/market/sellorder/cancel`,
-    'lambda/MsgCreateAsset': () => `/dam/market/create`,
+    'lambda/MsgCreateAsset': () => `/asset/create`,
     'lambda/MsgCreateDigitalAssetMarket': () => `/dam/market/create`,
     'lambda/MsgDigitalAssetPledge': () => `/dam/asset/pledge`,
     'lambda/MsgDigitalAssetRefund': () => `/dam/asset/refund`,
@@ -45,13 +45,13 @@ export default async function simulate (
   const url = `${cosmosRESTURL}${path}`
 
   const tx = createRESTPOSTObject(senderAddress, chainId, { sequence, accountNumber, memo }, msg)
-
+  log('gas_estimategas_estimate start')
+  log(url)
+  log(JSON.stringify(tx))
   const result = await fetch(url, { method: `POST`, body: JSON.stringify(tx) }).then(res => res.json())
   var { gas_estimate: gasEstimate } = result
   console.log('gas_estimategas_estimate', gasEstimate, result)
-  log('gas_estimategas_estimate start')
-  log(url)
-  log(tx)
+  
   log(result)
   log(gasEstimate)
   if(result.error!=undefined){

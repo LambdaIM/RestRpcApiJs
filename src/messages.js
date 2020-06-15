@@ -509,16 +509,16 @@ export function MsgCreateAsset  (
     type: `lambda/MsgCreateAsset`,
     value: {
       address: senderAddress,
-      asset: Coin({ asset_amount, asset_denom }),
-      token: Coin({ token_amount, token_denom }),
-      name:name,
-      mint_type:mint_type,
-      inflation:inflation,
-      total_supply,
-      adjust_rate,
       adjust_period,
+      adjust_rate,
+      asset: Coin({ amount:asset_amount, denom:asset_denom }),
+      genesis_height,
+      inflation:inflation,
+      token: Coin({ amount:token_amount, denom:token_denom }),
+      total_supply:Coin({ amount:total_supply, denom:asset_denom }),
       max_adjust_count,
-      genesis_height
+      mint_type:mint_type,
+      name:name
       
     }
   }
