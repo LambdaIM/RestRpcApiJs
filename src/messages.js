@@ -514,11 +514,12 @@ export function MsgCreateAsset  (
       asset: Coin({ amount:asset_amount, denom:asset_denom }),
       genesis_height,
       inflation:inflation,
-      token: Coin({ amount:token_amount, denom:token_denom }),
-      total_supply:Coin({ amount:total_supply, denom:asset_denom }),
       max_adjust_count,
       mint_type:mint_type,
-      name:name
+      name:name,
+      token: Coin({ amount:token_amount, denom:token_denom }),
+      total_supply:Coin({ amount:total_supply, denom:asset_denom })
+      
       
     }
   }
