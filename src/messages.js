@@ -378,6 +378,153 @@ export function MsgWithDrawMarket (
   }
 }
 
+export function MsgCancelSellOrder (
+  senderAddress,
+  {
+    orderId
+  }
+) {
+  return {
+    type: `lambda/MsgCancelSellOrder`,
+    value: {
+      address: senderAddress,
+      orderId: orderId
+      
+    }
+  }
+}
+
+
+
+export function MsgCreateDigitalAssetMarket (
+  senderAddress,
+  {
+    orderId,
+    AssetName,
+    Ratio,
+    marketName
+  }
+) {
+  return {
+    type: `lambda/MsgCreateDigitalAssetMarket`,
+    value: {
+      address: senderAddress,
+      assetName: AssetName,
+      exchangeRatio: Ratio,
+      marketName:marketName
+    }
+  }
+}
+
+
+export function MsgDigitalAssetPledge (
+  senderAddress,
+  {
+    AssetName,
+    Size
+  }
+) {
+  return {
+    type: `lambda/MsgDigitalAssetPledge`,
+    value: {
+      address: senderAddress,
+      assetName: AssetName,
+      size: Size
+    }
+  }
+}
+
+export function MsgDigitalAssetRefund  (
+  senderAddress,
+  {
+    AssetName
+  
+  }
+) {
+  return {
+    type: `lambda/MsgDigitalAssetRefund`,
+    value: {
+      address: senderAddress,
+      assetName: AssetName
+      
+    }
+  }
+}
+
+export function MsgAuthorizeMiningPubKey  (
+  senderAddress,
+  {
+    PubKey,
+    AssetName
+  }
+) {
+  return {
+    type: `lambda/MsgAuthorizeMiningPubKey`,
+    value: {
+      address: senderAddress,
+      assetName:AssetName,
+      pubKey: PubKey
+      
+    }
+  }
+}
+
+
+
+export function MsgDismissDigitalAssetMarket  (
+  senderAddress,
+  {
+    AssetName
+  }
+) {
+  return {
+    type: `lambda/MsgDismissDigitalAssetMarket`,
+    value: {
+      address: senderAddress,
+      assetName:AssetName
+    }
+  }
+}
+
+
+
+export function MsgCreateAsset  (
+  senderAddress,
+  {
+    asset_amount,
+    asset_denom,
+    token_amount,
+    token_denom,
+    name,
+    mint_type,
+    inflation,
+    total_supply,
+    adjust_rate,
+    adjust_period,
+    max_adjust_count,
+    genesis_height
+  }
+) {
+  return {
+    type: `lambda/MsgCreateAsset`,
+    value: {
+      address: senderAddress,
+      adjust_period,
+      adjust_rate,
+      asset: Coin({ amount:asset_amount, denom:asset_denom }),
+      genesis_height,
+      inflation:inflation,
+      max_adjust_count,
+      mint_type:mint_type,
+      name:name,
+      token: Coin({ amount:token_amount, denom:token_denom }),
+      total_supply:Coin({ amount:total_supply, denom:asset_denom })
+      
+      
+    }
+  }
+}
+
 
 
 
@@ -409,5 +556,11 @@ export default {
   'MsgOrderRenewal':MsgOrderRenewal,
   'MsgMinerWithDrawCount':MsgMinerWithDrawCount,
   'MsgDelegateMarket':MsgDelegateMarket,
-  'MsgWithDrawMarket':MsgWithDrawMarket
+  'MsgWithDrawMarket':MsgWithDrawMarket,
+  'MsgCancelSellOrder':MsgCancelSellOrder,
+  'MsgCreateDigitalAssetMarket':MsgCreateDigitalAssetMarket,
+  'MsgDigitalAssetPledge':MsgDigitalAssetPledge,
+  'MsgDigitalAssetRefund': MsgDigitalAssetRefund,
+  'MsgAuthorizeMiningPubKey' : MsgAuthorizeMiningPubKey,
+  'MsgCreateAsset':MsgCreateAsset
 }

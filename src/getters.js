@@ -114,6 +114,7 @@ export default function Getters (cosmosRESTURL) {
       ]).then(([pledgeTxs, dropTxs, create, mint, destroy, ruin, lock, unLock]) => [].concat(pledgeTxs, dropTxs, create, mint, destroy, ruin, lock, unLock))
     },
     assetAll: hash => get(`/asset/all`),
+    assetParameters: hash => get(`/asset/parameters`),
 
     /* ============ STAKE ============ */
     stakingTxs: async function (address, valAddress) {
@@ -360,6 +361,20 @@ export default function Getters (cosmosRESTURL) {
     /***minting***/
     mintingAnnualprovisions: function () {
       return gettxt(`/minting/annual-provisions`)
+    },
+    /**dam***********/
+    dammarketlist: function () {
+      return get(`/dam/markets`)
+    },
+    damminerinfo: function (address) {
+      return get(`/dam/miner/${address}`)
+    },
+    damparams: function () {
+      return get(`/dam/params`)
+    },
+    damrefunding_records: function (address) {
+      return get(`/dam/refunding_records/${address}`)
     }
+
   }
 }
