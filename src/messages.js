@@ -526,6 +526,41 @@ export function MsgCreateAsset  (
 }
 
 
+export function MsgDeactivateMiner  (
+  senderAddress,
+  {
+    AssetName,
+    Miner
+  }
+) {
+  return {
+    type: `lambda/MsgDeactivateMiner`,
+    value: {
+      address: senderAddress,
+      assetName:AssetName,
+      miner:Miner
+    }
+  }
+}
+
+
+
+export function MsgActivateMiner  (
+  senderAddress,
+  {
+    AssetName,
+  }
+) {
+  return {
+    type: `lambda/MsgActivateMiner`,
+    value: {
+      address: senderAddress,
+      assetName:AssetName,
+      
+    }
+  }
+}
+
 
 
 function Coin ({ amount, denom }) {
@@ -562,5 +597,7 @@ export default {
   'MsgDigitalAssetPledge':MsgDigitalAssetPledge,
   'MsgDigitalAssetRefund': MsgDigitalAssetRefund,
   'MsgAuthorizeMiningPubKey' : MsgAuthorizeMiningPubKey,
-  'MsgCreateAsset':MsgCreateAsset
+  'MsgCreateAsset':MsgCreateAsset,
+  'MsgDeactivateMiner':MsgDeactivateMiner,
+  'MsgActivateMiner':MsgActivateMiner
 }
