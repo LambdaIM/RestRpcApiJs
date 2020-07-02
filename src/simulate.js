@@ -42,7 +42,10 @@ export default async function simulate (
     'lambda/MsgAuthorizeMiningPubKey': () => `/dam/market/authorize`,
     'lambda/MsgDismissDigitalAssetMarket': () => `/dam/market/dismiss`,
     'lambda/MsgDeactivateMiner':()=>`/dam/miner/deactivate`,
-    'lambda/MsgActivateMiner':()=>`/dam/miner/activate`
+    'lambda/MsgActivateMiner':()=>`/dam/miner/activate`,
+    'lambda/MsgDamCreateBuyOrder':()=>`/dam/user/buy`,
+    'lambda/MsgDamOrderRenewal':()=>`/dam/user/renew`,
+    'lambda/MsgDamMinerWithDrawCount':()=>`/dam/miner/withdraw_count`
   }[type]()
   const url = `${cosmosRESTURL}${path}`
 

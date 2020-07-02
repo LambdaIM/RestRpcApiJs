@@ -374,6 +374,15 @@ export default function Getters (cosmosRESTURL) {
     },
     damrefunding_records: function (address) {
       return get(`/dam/refunding_records/${address}`)
+    },
+    dammatchorders: function (address,page,limit) {
+      return get(`/dam/matchorders/${address}/${page}/${limit}`)
+    },
+    damassetmatchorders: function (asset,address,page,limit) {
+      return get(`/dam/matchorders/${asset}/${address}/${page}/${limit}`)
+    },
+    damorderinfo: function (orderID) {
+      return get(`/dam/matchorder/${orderID}`)
     }
 
   }

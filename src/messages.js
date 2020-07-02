@@ -544,6 +544,28 @@ export function MsgDeactivateMiner  (
 }
 
 
+export function MsgDamCreateBuyOrder  (
+  senderAddress,
+  {
+    Asset,
+    Duration,
+    minerAddress,
+    Size
+  }
+) {
+  return {
+    type: `lambda/MsgDamCreateBuyOrder`,
+    value: {
+      address: senderAddress,
+      asset:Asset,
+      duration:Duration,
+      minerAddress:minerAddress,
+      size:Size
+    }
+  }
+}
+
+
 
 export function MsgActivateMiner  (
   senderAddress,
@@ -556,6 +578,44 @@ export function MsgActivateMiner  (
     value: {
       address: senderAddress,
       assetName:AssetName,
+      
+    }
+  }
+}
+
+export function MsgDamOrderRenewal  (
+  senderAddress,
+  {
+    orderID,
+    duration
+  }
+) {
+  return {
+    type: `lambda/MsgDamOrderRenewal`,
+    value: {
+      address: senderAddress,
+      duration,
+      orderID,
+      
+    }
+  }
+}
+
+export function MsgDamMinerWithDrawCount  (
+  senderAddress,
+  {
+    asset,
+    page,
+    limit
+  }
+) {
+  return {
+    type: `lambda/MsgDamMinerWithDrawCount`,
+    value: {
+      address: senderAddress,
+      asset,
+      limit,
+      page,
       
     }
   }
@@ -599,5 +659,8 @@ export default {
   'MsgAuthorizeMiningPubKey' : MsgAuthorizeMiningPubKey,
   'MsgCreateAsset':MsgCreateAsset,
   'MsgDeactivateMiner':MsgDeactivateMiner,
-  'MsgActivateMiner':MsgActivateMiner
+  'MsgActivateMiner':MsgActivateMiner,
+  'MsgDamCreateBuyOrder':MsgDamCreateBuyOrder,
+  'MsgDamOrderRenewal':MsgDamOrderRenewal,
+  'MsgDamMinerWithDrawCount':MsgDamMinerWithDrawCount
 }
