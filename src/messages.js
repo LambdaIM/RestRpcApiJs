@@ -421,7 +421,8 @@ export function MsgDigitalAssetPledge (
   senderAddress,
   {
     AssetName,
-    Size
+    Size,
+    Price
   }
 ) {
   return {
@@ -429,6 +430,7 @@ export function MsgDigitalAssetPledge (
     value: {
       address: senderAddress,
       assetName: AssetName,
+      price:Price,
       size: Size
     }
   }
