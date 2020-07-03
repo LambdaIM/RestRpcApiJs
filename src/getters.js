@@ -383,6 +383,23 @@ export default function Getters (cosmosRESTURL) {
     },
     damorderinfo: function (orderID) {
       return get(`/dam/matchorder/${orderID}`)
+    },
+    damassetmintsimulate: function ({assetName,
+      assetiniti,total_supply,inflation,
+      adjust_rate,adjust_period,max_adjust_count,
+      genesis_height}
+      ) {
+      var  list=['/asset/mint/simulate?',
+      `asset=${assetiniti}${assetName}`,
+      `total_supply=${total_supply}`,
+      `inflation=${inflation}`,
+      `adjust_rate=${adjust_rate}`,
+      `adjust_period=${adjust_period}`,
+      `max_adjust_count=${max_adjust_count}`,
+      `genesis_height=${genesis_height}`
+      ]
+
+      return get(list.join('&'))
     }
 
   }
