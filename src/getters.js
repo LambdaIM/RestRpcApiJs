@@ -376,13 +376,13 @@ export default function Getters (cosmosRESTURL) {
       return get(`/dam/refunding_records/${address}`)
     },
     dammatchorders: function (address,page,limit) {
-      return get(`/dam/matchorders/${address}/${page}/${limit}`)
+      return get(`/dam/match_orders/${address}/${page}/${limit}`)
     },
     damassetmatchorders: function (asset,address,page,limit) {
-      return get(`/dam/matchorders/${asset}/${address}/${page}/${limit}`)
+      return get(`/dam/match_orders/${asset}/${address}/${page}/${limit}`)
     },
     damorderinfo: function (orderID) {
-      return get(`/dam/matchorder/${orderID}`)
+      return get(`/dam/match_order/${orderID}`)
     },
     damassetmintsimulate: function ({assetName,
       assetiniti,total_supply,inflation,
@@ -400,7 +400,13 @@ export default function Getters (cosmosRESTURL) {
       ]
 
       return get(list.join('&'))
-    }
+    },
+    damfileSend: function (address,page=1,limit=10) {
+      return get(`/txs?action=transferOwnership&sender=${address}&page=${page}&limit=${limit}`)
+    },
+    damfileReceiver: function (address,page=1,limit=10) {
+      return get(`/txs?action=transferOwnership&receiver=${address}&page=${page}&limit=${limit}`)
+    },
 
   }
 }
