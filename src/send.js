@@ -12,7 +12,7 @@ export default async function send ({ gas, gasPrices = DEFAULT_GAS_PRICE, memo =
   const signedTx = await createSignedTransaction({ gas, gasPrices, memo }, messages, signer, chainId, accountNumber, sequence)
 
   // broadcast transaction with signatures included
-  var body = createBroadcastBody(signedTx, `async`)
+  var body = createBroadcastBody(signedTx, `block`)
 
   console.log('body')
   console.log(body)
@@ -150,6 +150,7 @@ function createSignedTransactionObject (tx, signature) {
 function assertOk (res) {
   console.log('assertOk')
   console.log(res)
+  console.log(JSON.stringify(res) )
   console.log('assertOk')
   if (Array.isArray(res)) {
     if (res.length === 0) throwErrorCode(errorList.Error_sending_transaction)
@@ -163,13 +164,23 @@ function assertOk (res) {
 
   // Sometimes we get back failed transactions, which shows only by them having a `code` property
   if (res.code) {
-    const message = res.logs.map((item) => {
-      return item.log
-    }).join(',')
-    console.log(message)
+    var message ;
+    if(res.logs){
+       message = res.logs.map((item) => {
+        return item.log
+      }).join(',')
+      console.log(message)
+    }else{
+
+       var raw_log = JSON.parse(res.raw_log);
+       message = raw_log.message;
+
+    }
+    
     
     throw new Error( JSON.stringify({code:res.code,message}) )
   }
+
 
   if (!res.txhash) {
     const message = res.message

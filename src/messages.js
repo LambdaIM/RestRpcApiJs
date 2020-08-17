@@ -453,19 +453,21 @@ export function MsgDigitalAssetRefund  (
   }
 }
 
-export function MsgAuthorizeMiningPubKey  (
+export function MsgAuthorizeUser  (
   senderAddress,
   {
-    PubKey,
-    AssetName
+    user,
+    AssetName,
+    isAllowed
   }
 ) {
   return {
-    type: `lambda/MsgAuthorizeMiningPubKey`,
+    type: `lambda/MsgAuthorizeUser`,
     value: {
       address: senderAddress,
       assetName:AssetName,
-      pubKey: PubKey
+      isAllowed,
+      user: user
       
     }
   }
@@ -623,6 +625,48 @@ export function MsgDamMinerWithDrawCount  (
   }
 }
 
+export function MsgDigitalAssetDelegate  (
+  senderAddress,
+  {
+    miner,
+    assetName,
+    amount
+  }
+) {
+  return {
+    type: `lambda/MsgDigitalAssetDelegate`,
+    value: {
+      amount,
+      assetName,
+      delegator: senderAddress,
+      miner,
+      
+    }
+  }
+}
+
+
+export function MsgDigitalAssetUndelegate  (
+  senderAddress,
+  {
+    miner,
+    assetName,
+    amount
+  }
+) {
+  return {
+    type: `lambda/MsgDigitalAssetUndelegate`,
+    value: {
+      amount,
+      assetName,
+      delegator: senderAddress,
+      miner,
+      
+    }
+  }
+}
+
+
 
 
 function Coin ({ amount, denom }) {
@@ -658,11 +702,13 @@ export default {
   'MsgCreateDigitalAssetMarket':MsgCreateDigitalAssetMarket,
   'MsgDigitalAssetPledge':MsgDigitalAssetPledge,
   'MsgDigitalAssetRefund': MsgDigitalAssetRefund,
-  'MsgAuthorizeMiningPubKey' : MsgAuthorizeMiningPubKey,
+  'MsgAuthorizeUser' : MsgAuthorizeUser,
   'MsgCreateAsset':MsgCreateAsset,
   'MsgDeactivateMiner':MsgDeactivateMiner,
   'MsgActivateMiner':MsgActivateMiner,
   'MsgDamCreateBuyOrder':MsgDamCreateBuyOrder,
   'MsgDamOrderRenewal':MsgDamOrderRenewal,
-  'MsgDamMinerWithDrawCount':MsgDamMinerWithDrawCount
+  'MsgDamMinerWithDrawCount':MsgDamMinerWithDrawCount,
+  'MsgDigitalAssetDelegate':MsgDigitalAssetDelegate,
+  'MsgDigitalAssetUndelegate':MsgDigitalAssetUndelegate
 }
