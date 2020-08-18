@@ -372,8 +372,14 @@ export default function Getters (cosmosRESTURL) {
     damparams: function () {
       return get(`/dam/params`)
     },
+    dam_delegations: function (address) {
+      return get(`/dam/delegator/${address}/delegations`)
+    },
     damrefunding_records: function (address) {
-      return get(`/dam/refunding_records/${address}`)
+      return get(`/dam/delegator/${address}/refunding_delegations`)
+    },
+    dam_pledgerecords: function (minerAddr) {
+      return get(`/dam/miner/${minerAddr}/pledge_records`)
     },
     dammatchorders: function (address,page,limit) {
       return get(`/dam/match_orders/${address}/${page}/${limit}`)

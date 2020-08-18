@@ -159,6 +159,11 @@ function assertOk (res) {
   }
 
   if (res.error) {
+    //需要检查  error 是不是josn
+    /*
+    {"error":"[{\"msg_index\":\"0\",\"success\":false,\"log\":\"{\\\"codespace\\\":\\\"dam\\\",\\\"code\\\":105,\\\"message\\\":\\\"lambda1md6hr4qtf62al2ls6ypp63kn0nxl35w6f7csde is not a miner\\\"}\"}]"}
+    */
+
     throw new Error(res.error)
   }
 
