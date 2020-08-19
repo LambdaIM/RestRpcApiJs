@@ -506,7 +506,8 @@ export function MsgCreateAsset  (
     adjust_rate,
     adjust_period,
     max_adjust_count,
-    genesis_height
+    genesis_height,
+    mining_ratio
   }
 ) {
   return {
@@ -519,6 +520,7 @@ export function MsgCreateAsset  (
       genesis_height,
       inflation:inflation,
       max_adjust_count,
+      mining_ratio:mining_ratio,
       mint_type:mint_type,
       name:name,
       token: Coin({ amount:token_amount, denom:token_denom }),

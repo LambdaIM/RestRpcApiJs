@@ -163,7 +163,18 @@ function assertOk (res) {
     /*
     {"error":"[{\"msg_index\":\"0\",\"success\":false,\"log\":\"{\\\"codespace\\\":\\\"dam\\\",\\\"code\\\":105,\\\"message\\\":\\\"lambda1md6hr4qtf62al2ls6ypp63kn0nxl35w6f7csde is not a miner\\\"}\"}]"}
     */
+   if( res.error.indexOf("[{")==0 ){
+    var msglist= JSON.parse(res.error)
+    console.log('*1')
+     var log = msglist[0].log;
+     console.log('*2')
+     var msg = JSON.parse(log)
+     console.log('*3')
+     throw new Error(msg.message) 
 
+
+   }
+   
     throw new Error(res.error)
   }
 
