@@ -387,6 +387,9 @@ export default function Getters (cosmosRESTURL) {
     damassetmatchorders: function (asset,address,page,limit) {
       return get(`/dam/match_orders/${asset}/${address}/${page}/${limit}`)
     },
+    damauthorized_users: function (asset,page,limit) {
+      return get(`/dam/market/authorized_users/${asset}/${page}/${limit}`)
+    },
     damorderinfo: function (orderID) {
       return get(`/dam/match_order/${orderID}`)
     },
