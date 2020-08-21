@@ -158,18 +158,44 @@ function assertOk (res) {
   }
 
   if (res.error) {
+    //需要检查  error 是不是josn
+    /*
+    {"error":"[{\"msg_index\":\"0\",\"success\":false,\"log\":\"{\\\"codespace\\\":\\\"dam\\\",\\\"code\\\":105,\\\"message\\\":\\\"lambda1md6hr4qtf62al2ls6ypp63kn0nxl35w6f7csde is not a miner\\\"}\"}]"}
+    */
+   if( res.error.indexOf("[{")==0 ){
+    var msglist= JSON.parse(res.error)
+    
+     var log = msglist[0].log;
+     
+     var msg = JSON.parse(log)
+     
+     throw new Error(msg.message) 
+
+
+   }
+   
     throw new Error(res.error)
   }
 
   // Sometimes we get back failed transactions, which shows only by them having a `code` property
   if (res.code) {
-    const message = res.logs.map((item) => {
-      return item.log
-    }).join(',')
-    console.log(message)
+    var message ;
+    if(res.logs){
+       message = res.logs.map((item) => {
+        return item.log
+      }).join(',')
+      console.log(message)
+    }else{
+
+       var raw_log = JSON.parse(res.raw_log);
+       message = raw_log.message;
+
+    }
+    
     
     throw new Error( JSON.stringify({code:res.code,message}) )
   }
+
 
   if (!res.txhash) {
     const message = res.message

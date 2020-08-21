@@ -372,14 +372,23 @@ export default function Getters (cosmosRESTURL) {
     damparams: function () {
       return get(`/dam/params`)
     },
+    dam_delegations: function (address) {
+      return get(`/dam/delegator/${address}/delegations`)
+    },
     damrefunding_records: function (address) {
-      return get(`/dam/refunding_records/${address}`)
+      return get(`/dam/delegator/${address}/refunding_delegations`)
+    },
+    dam_pledgerecords: function (minerAddr) {
+      return get(`/dam/miner/${minerAddr}/pledge_records`)
     },
     dammatchorders: function (address,page,limit) {
       return get(`/dam/match_orders/${address}/${page}/${limit}`)
     },
     damassetmatchorders: function (asset,address,page,limit) {
       return get(`/dam/match_orders/${asset}/${address}/${page}/${limit}`)
+    },
+    damauthorized_users: function (asset,page,limit) {
+      return get(`/dam/market/authorized_users/${asset}/${page}/${limit}`)
     },
     damorderinfo: function (orderID) {
       return get(`/dam/match_order/${orderID}`)
