@@ -12,7 +12,7 @@ export default async function send ({ gas, gasPrices = DEFAULT_GAS_PRICE, memo =
   const signedTx = await createSignedTransaction({ gas, gasPrices, memo }, messages, signer, chainId, accountNumber, sequence)
 
   // broadcast transaction with signatures included
-  var body = createBroadcastBody(signedTx, `block`)
+  var body = createBroadcastBody(signedTx, `async`)
 
   console.log('body')
   console.log(body)
@@ -150,7 +150,6 @@ function createSignedTransactionObject (tx, signature) {
 function assertOk (res) {
   console.log('assertOk')
   console.log(res)
-  console.log(JSON.stringify(res) )
   console.log('assertOk')
   if (Array.isArray(res)) {
     if (res.length === 0) throwErrorCode(errorList.Error_sending_transaction)
@@ -165,11 +164,11 @@ function assertOk (res) {
     */
    if( res.error.indexOf("[{")==0 ){
     var msglist= JSON.parse(res.error)
-    console.log('*1')
+    
      var log = msglist[0].log;
-     console.log('*2')
+     
      var msg = JSON.parse(log)
-     console.log('*3')
+     
      throw new Error(msg.message) 
 
 
