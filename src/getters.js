@@ -396,6 +396,9 @@ export default function Getters (cosmosRESTURL) {
     damMinerInfo: function (address) {
       return get(`/market/miner/minerinfo/${address}`)
     },
+    damUserDelegatorRewards:function(address){
+      return get(`/distribution/asset/${address}/rewards`)
+    },
     damassetmintsimulate: function ({assetName,
       assetiniti,total_supply,inflation,
       adjust_rate,adjust_period,max_adjust_count,
