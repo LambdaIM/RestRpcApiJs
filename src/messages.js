@@ -16,6 +16,8 @@ export function MsgSend (
   }
 }
 
+
+
 // Staking
 export function MsgDelegate (
   senderAddress,
@@ -507,7 +509,11 @@ export function MsgCreateAsset  (
     adjust_period,
     max_adjust_count,
     genesis_height,
-    mining_ratio
+    mining_ratio,
+    fund_asset,
+    fund_amount,
+    fund_period,
+    fund_stake
   }
 ) {
   return {
@@ -517,6 +523,10 @@ export function MsgCreateAsset  (
       adjust_period,
       adjust_rate,
       asset: Coin({ amount:asset_amount, denom:asset_denom }),
+      fund_amount:Coin({ amount:fund_amount, denom:fund_asset }),
+      fund_asset,
+      fund_period,
+      fund_stake:Coin({ amount:fund_stake, denom:asset_denom }),
       genesis_height,
       inflation:inflation,
       max_adjust_count,
@@ -670,6 +680,28 @@ export function MsgDigitalAssetUndelegate  (
 
 
 
+export function MsgAssetInvest  (
+  senderAddress,
+  {
+    asset,
+    token,
+    tokendenom
+
+  }
+) {
+  console.log('lambda/MsgAssetInvest',asset)
+  return {
+    type: `lambda/MsgAssetInvest`,
+    value: {
+      address: senderAddress,
+      asset:asset,
+      token:Coin({ amount:token, denom:tokendenom })
+    }
+  }
+}
+
+
+
 
 function Coin ({ amount, denom }) {
   return ({
@@ -712,5 +744,6 @@ export default {
   'MsgDamOrderRenewal':MsgDamOrderRenewal,
   'MsgDamMinerWithDrawCount':MsgDamMinerWithDrawCount,
   'MsgDigitalAssetDelegate':MsgDigitalAssetDelegate,
-  'MsgDigitalAssetUndelegate':MsgDigitalAssetUndelegate
+  'MsgDigitalAssetUndelegate':MsgDigitalAssetUndelegate,
+  'MsgAssetInvest':MsgAssetInvest
 }
