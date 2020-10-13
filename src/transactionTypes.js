@@ -25,7 +25,22 @@ const transactionTypes = {
   UnjailMiner:'MsgUnjailMiner',
   OrderRenewal:'MsgOrderRenewal',
   MinerWithDrawCount:'MsgMinerWithDrawCount',
-  DelegateMarket:"MsgDelegateMarket"
+  DelegateMarket:"MsgDelegateMarket",
+
+  CreateDigitalAssetMarket: 'MsgCreateDigitalAssetMarket',
+  DigitalAssetPledge: 'MsgDigitalAssetPledge',
+  DigitalAssetRefund: 'MsgDigitalAssetRefund',
+  AuthorizeUser: 'MsgAuthorizeUser',
+  CreateAsset: 'MsgCreateAsset',
+  DismissDigitalAssetMarket: 'MsgDismissDigitalAssetMarket',
+  DeactivateMiner: 'MsgDeactivateMiner',
+  ActivateMiner: 'MsgActivateMiner',
+  DamCreateBuyOrder: 'MsgDamCreateBuyOrder',
+  DamOrderRenewal: 'MsgDamOrderRenewal',
+  DamMinerWithDrawCount: 'MsgDamMinerWithDrawCount',
+  DigitalAssetDelegate: 'MsgDigitalAssetDelegate',
+  DigitalAssetUndelegate: 'MsgDigitalAssetUndelegate',
+  AssetInvest: 'MsgAssetInvest',
 };
 
 export default transactionTypes;

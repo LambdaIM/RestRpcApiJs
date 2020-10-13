@@ -506,6 +506,327 @@ export function MsgWithDrawMarket (
   }
 }
 
+export function MsgCancelSellOrder (
+  senderAddress,
+  {
+    orderId
+  }
+) {
+  return {
+    type: `lambda/MsgCancelSellOrder`,
+    value: {
+      address: senderAddress,
+      orderId: orderId
+      
+    }
+  }
+}
+
+
+
+export function MsgCreateDigitalAssetMarket (
+  senderAddress,
+  {
+    orderId,
+    AssetName,
+    Ratio,
+    marketName
+  }
+) {
+  return {
+    type: `lambda/MsgCreateDigitalAssetMarket`,
+    value: {
+      address: senderAddress,
+      assetName: AssetName,
+      exchangeRatio: Ratio,
+      marketName:marketName
+    }
+  }
+}
+
+
+export function MsgDigitalAssetPledge (
+  senderAddress,
+  {
+    AssetName,
+    Size,
+    Price
+  }
+) {
+  return {
+    type: `lambda/MsgDigitalAssetPledge`,
+    value: {
+      address: senderAddress,
+      assetName: AssetName,
+      price:Price,
+      size: Size
+    }
+  }
+}
+
+export function MsgDigitalAssetRefund  (
+  senderAddress,
+  {
+    AssetName
+  
+  }
+) {
+  return {
+    type: `lambda/MsgDigitalAssetRefund`,
+    value: {
+      address: senderAddress,
+      assetName: AssetName
+      
+    }
+  }
+}
+
+export function MsgAuthorizeUser  (
+  senderAddress,
+  {
+    user,
+    AssetName,
+    isAllowed
+  }
+) {
+  return {
+    type: `lambda/MsgAuthorizeUser`,
+    value: {
+      address: senderAddress,
+      assetName:AssetName,
+      isAllowed,
+      user: user
+      
+    }
+  }
+}
+
+
+
+export function MsgDismissDigitalAssetMarket  (
+  senderAddress,
+  {
+    AssetName
+  }
+) {
+  return {
+    type: `lambda/MsgDismissDigitalAssetMarket`,
+    value: {
+      address: senderAddress,
+      assetName:AssetName
+    }
+  }
+}
+
+
+
+export function MsgCreateAsset  (
+  senderAddress,
+  {
+    asset_amount,
+    asset_denom,
+    token_amount,
+    token_denom,
+    name,
+    mint_type,
+    inflation,
+    total_supply,
+    adjust_rate,
+    adjust_period,
+    max_adjust_count,
+    genesis_height,
+    mining_ratio,
+    fund_asset,
+    fund_amount,
+    fund_period,
+    fund_stake
+  }
+) {
+  return {
+    type: `lambda/MsgCreateAsset`,
+    value: {
+      address: senderAddress,
+      adjust_period,
+      adjust_rate,
+      asset: Coin({ amount:asset_amount, denom:asset_denom }),
+      fund_amount:Coin({ amount:fund_amount, denom:fund_asset }),
+      fund_asset,
+      fund_period,
+      fund_stake:Coin({ amount:fund_stake, denom:asset_denom }),
+      genesis_height,
+      inflation:inflation,
+      max_adjust_count,
+      mining_ratio:mining_ratio,
+      mint_type:mint_type,
+      name:name,
+      token: Coin({ amount:token_amount, denom:token_denom }),
+      total_supply:Coin({ amount:total_supply, denom:asset_denom })
+      
+      
+    }
+  }
+}
+
+
+export function MsgDeactivateMiner  (
+  senderAddress,
+  {
+    AssetName,
+    Miner
+  }
+) {
+  return {
+    type: `lambda/MsgDeactivateMiner`,
+    value: {
+      address: senderAddress,
+      assetName:AssetName,
+      miner:Miner
+    }
+  }
+}
+
+
+export function MsgDamCreateBuyOrder  (
+  senderAddress,
+  {
+    Asset,
+    Duration,
+    minerAddress,
+    Size
+  }
+) {
+  return {
+    type: `lambda/MsgDamCreateBuyOrder`,
+    value: {
+      address: senderAddress,
+      asset:Asset,
+      duration:Duration,
+      minerAddress:minerAddress,
+      size:Size
+    }
+  }
+}
+
+
+
+export function MsgActivateMiner  (
+  senderAddress,
+  {
+    AssetName,
+  }
+) {
+  return {
+    type: `lambda/MsgActivateMiner`,
+    value: {
+      address: senderAddress,
+      assetName:AssetName,
+      
+    }
+  }
+}
+
+export function MsgDamOrderRenewal  (
+  senderAddress,
+  {
+    orderID,
+    duration
+  }
+) {
+  return {
+    type: `lambda/MsgDamOrderRenewal`,
+    value: {
+      address: senderAddress,
+      duration,
+      orderID,
+      
+    }
+  }
+}
+
+export function MsgDamMinerWithDrawCount  (
+  senderAddress,
+  {
+    asset,
+    page,
+    limit
+  }
+) {
+  return {
+    type: `lambda/MsgDamMinerWithDrawCount`,
+    value: {
+      address: senderAddress,
+      asset,
+      limit,
+      page,
+      
+    }
+  }
+}
+
+export function MsgDigitalAssetDelegate  (
+  senderAddress,
+  {
+    miner,
+    assetName,
+    amount
+  }
+) {
+  return {
+    type: `lambda/MsgDigitalAssetDelegate`,
+    value: {
+      amount,
+      assetName,
+      delegator: senderAddress,
+      miner,
+      
+    }
+  }
+}
+
+
+export function MsgDigitalAssetUndelegate  (
+  senderAddress,
+  {
+    miner,
+    assetName,
+    amount
+  }
+) {
+  return {
+    type: `lambda/MsgDigitalAssetUndelegate`,
+    value: {
+      amount,
+      assetName,
+      delegator: senderAddress,
+      miner,
+      
+    }
+  }
+}
+
+
+
+export function MsgAssetInvest  (
+  senderAddress,
+  {
+    asset,
+    token,
+    tokendenom
+
+  }
+) {
+  console.log('lambda/MsgAssetInvest',asset)
+  return {
+    type: `lambda/MsgAssetInvest`,
+    value: {
+      address: senderAddress,
+      asset:asset,
+      token:Coin({ amount:token, denom:tokendenom })
+    }
+  }
+}
+
+
 
 
 
@@ -538,6 +859,7 @@ export default {
   'MsgEditMarket':MsgEditMarket,
   
   'MsgCancelSellOrder':MsgCancelSellOrder,
+
   'MsgMinerWithDraw':MsgMinerWithDraw,
   'MsgMaintain':MsgMaintain,
   'MsgUnMaintain':MsgUnMaintain,
@@ -545,6 +867,20 @@ export default {
   'MsgOrderRenewal':MsgOrderRenewal,
   'MsgMinerWithDrawCount':MsgMinerWithDrawCount,
   'MsgDelegateMarket':MsgDelegateMarket,
-  'MsgWithDrawMarket':MsgWithDrawMarket
+  'MsgWithDrawMarket':MsgWithDrawMarket,
+  
+  'MsgCreateDigitalAssetMarket':MsgCreateDigitalAssetMarket,
+  'MsgDigitalAssetPledge':MsgDigitalAssetPledge,
+  'MsgDigitalAssetRefund': MsgDigitalAssetRefund,
+  'MsgAuthorizeUser' : MsgAuthorizeUser,
+  'MsgCreateAsset':MsgCreateAsset,
+  'MsgDeactivateMiner':MsgDeactivateMiner,
+  'MsgActivateMiner':MsgActivateMiner,
+  'MsgDamCreateBuyOrder':MsgDamCreateBuyOrder,
+  'MsgDamOrderRenewal':MsgDamOrderRenewal,
+  'MsgDamMinerWithDrawCount':MsgDamMinerWithDrawCount,
+  'MsgDigitalAssetDelegate':MsgDigitalAssetDelegate,
+  'MsgDigitalAssetUndelegate':MsgDigitalAssetUndelegate,
+  'MsgAssetInvest':MsgAssetInvest
   
 }

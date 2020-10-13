@@ -506,3 +506,137 @@ function msgDelegateMarket(marketName,amount,denom) {
   console.log(this.transactiondata)
   return this;
 }
+
+/**
+* @param {string} AssetName   Asset Name
+* @param {Float} Ratio   Ratio
+* @param {string} marketName   market Name
+* @param {memo} memo   memo
+*/
+function CreateDigitalAssetMarket (AssetName,Ratio,marketName,memo) {
+  var result = {
+    type: transaction.CreateDigitalAssetMarket,
+    AssetName: AssetName,
+    Ratio:String(Ratio) ,
+    marketName:marketName,
+    memo: memo || ''
+  };
+  this.transactiondata = result;
+  console.log(this.transactiondata)
+  return this;
+}
+
+/**
+ * @param {string} AssetName   Asset Name
+ * @param {int} Size   Space size
+ * @param {string} price   price 
+ * @param {memo} memo   memo
+*/
+function  DigitalAssetPledge (AssetName,Size,Price,memo) {
+  var result = {
+    type: transaction.DigitalAssetPledge,
+    AssetName: AssetName,
+    Size:String(Size),
+    Price:Price,
+    memo: memo || ''
+  };
+  this.transactiondata = result;
+  console.log(this.transactiondata)
+  return this;
+};
+
+/**
+ *  @param {string} AssetName   Asset Name
+ *  @param {memo} memo   memo
+*/
+ function DigitalAssetRefund(AssetName,memo) {
+  var result = {
+    type: transaction.DigitalAssetRefund,
+    AssetName: AssetName,
+    memo: memo || ''
+  };
+  this.transactiondata = result;
+  console.log(this.transactiondata)
+  return this;
+};
+/**
+ * @param {string} user   user lambda address
+ * @param {string} AssetName   AssetName
+ * @param {Boolean} isAllowed    Add or remove authorization
+ * @param {memo} memo   memo
+*/
+function AuthorizeUser( userlambdaaddress, AssetName, isAllowed,memo) {
+  var result,publicKey; 
+  result = {
+    type: transaction.AuthorizeUser,
+    AssetName:AssetName,
+    memo: memo || '',
+    user:userlambdaaddress,
+    isAllowed:isAllowed
+  };
+
+  this.transactiondata = result;
+  console.log(this.transactiondata)
+  return this;
+};
+
+/**
+ * @param AssetInfo Information about the Asset. 
+ * @param {number} AssetInfo.asset_amount   Initial issue of assets
+ * @param AssetInfo.asset_denom  The name of the asset
+ * @param AssetInfo.token_amount  The amount to be consumed to create the asset
+ * @param AssetInfo.token_denom  The name of the asset to be consumed to create the asset
+ * @param AssetInfo.name    name  of assets
+ * @param AssetInfo.mint_type Types of additional issuance of assets
+ * @param AssetInfo.fund_asset  Name of assets used in pre mining
+ * @param AssetInfo.fund_amount The amount involved in the pre-mining
+ * @param AssetInfo.fund_period Duration of pre-mining
+ * @param AssetInfo.fund_stake The amount of assets mined by pre-mining
+ * @param AssetInfo.remarks Full name notes of assets
+ * The type of additional issuance is the attribute that needs to be filled in for mining additional issuance
+ * @param AssetInfo.total_supply Total issuance
+ * @param AssetInfo.inflation Additional issuance of each block height
+ * @param AssetInfo.MiningRatio Percentage of miner rewards
+ * @param AssetInfo.adjust_rate adjust rate 
+ * @param AssetInfo.adjust_period adjust period
+ * @param AssetInfo.max_adjust_count max adjust count
+ * @param AssetInfo.genesis_height Block height of the initial issuance
+ * @param AssetInfo.memo  memo
+ 
+*/
+function CreateAsset ( {
+  asset_amount,asset_denom,
+  token_amount,token_denom,name,
+  mint_type,inflation,
+  total_supply,
+  adjust_rate,adjust_period,max_adjust_count,
+  genesis_height,remarks,
+  memo,MiningRatio,
+  fund_asset,fund_amount,fund_period,fund_stake
+}) {
+  var result = {
+    type: transaction.CreateAsset,
+    asset_amount:asset_amount,
+    asset_denom:asset_denom,
+    token_amount:token_amount,
+    token_denom:token_denom,
+    name:remarks,
+    mint_type:mint_type,
+    inflation:inflation,
+    total_supply:total_supply,
+    adjust_rate:adjust_rate,
+    max_adjust_count:max_adjust_count,
+    genesis_height:genesis_height,
+    adjust_period:adjust_period,
+    memo: memo || '',
+    mining_ratio:MiningRatio,
+    fund_asset,
+    fund_amount,
+    fund_period,
+    fund_stake
+  };
+
+  this.transactiondata = result;
+  console.log(this.transactiondata)
+  return this;
+};
