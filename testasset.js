@@ -22,11 +22,8 @@ walletjson = JSON.parse(walletjson);
 const signerFn = hdkey.keyStore.getSigner(walletjson,'12345678')
 
 
-// msgCreateAssetgas()
+msgAuthorizeUser();
 
-// CreateAsset();
-
-CreateAssetType3()
 
 async function msgSend(){
     
@@ -39,6 +36,56 @@ async function msgSend(){
     console.log('=======***************===========')
     console.log(result)
 }
+
+// AuthorizeUser
+async function msgAuthorizeUsergas(){
+    var result = await lambdaAPI
+    .AuthorizeUser(userAddress,'uzsdktest2',true)
+    .simulate();
+    
+    console.log(arguments.callee.name,result)
+}
+
+async function msgAuthorizeUser(){
+    var result = await lambdaAPI
+    .AuthorizeUser(userAddress,'uzsdktest2',true)
+    .setsigner(signerFn)
+    .setfee(35955,2)
+    .send();
+    console.log(arguments.callee.name,result)
+    
+
+}
+
+async function msgCreateDigitalAssetMarketgas(){
+    var result = await lambdaAPI
+    .CreateDigitalAssetMarket('uzsdktest2',1 ,'testmarket')
+    .simulate();
+    
+    
+    console.log(arguments.callee.name,result)
+}
+
+async function msgCreateDigitalAssetMarketgas(){
+    var result = await lambdaAPI
+    .CreateDigitalAssetMarket('uzsdktest2',1 ,'testmarket')
+    .simulate();
+    
+    
+    console.log(arguments.callee.name,result)
+}
+
+async function msgCreateDigitalAssetMarket(){
+    var result = await lambdaAPI
+    .CreateDigitalAssetMarket('uzsdktest2',1 ,'testmarket')
+    .setsigner(signerFn)
+    .setfee(35955,2)
+    .send();
+    console.log(arguments.callee.name,result)
+}
+
+
+
 
 async function msgCreateAssetgas(){
     var result = await lambdaAPI
