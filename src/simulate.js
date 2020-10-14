@@ -40,7 +40,22 @@ export default async function simulate (
     'lambda/MsgOrderRenewal': () => `/market/buyorder/renewal`,
     'lambda/MsgMinerWithDrawCount': () => `/market/miner/withdrawCount`,
     'lambda/MsgDelegateMarket':()=> `/market/delegate`,
-    'lambda/MsgWithDrawMarket':()=> `/market/withdraw`
+    'lambda/MsgWithDrawMarket':()=> `/market/withdraw`,
+
+    'lambda/MsgCreateAsset': () => `/asset/create`,
+    'lambda/MsgCreateDigitalAssetMarket': () => `/dam/market/create`,
+    'lambda/MsgDigitalAssetPledge': () => `/dam/asset/pledge`,
+    'lambda/MsgDigitalAssetRefund': () => `/dam/asset/refund`,
+    'lambda/MsgAuthorizeUser': () => `/dam/market/authorize_user`,
+    'lambda/MsgDismissDigitalAssetMarket': () => `/dam/market/dismiss`,
+    'lambda/MsgDeactivateMiner':()=>`/dam/miner/deactivate`,
+    'lambda/MsgActivateMiner':()=>`/dam/miner/activate`,
+    'lambda/MsgDamCreateBuyOrder':()=>`/dam/user/buy`,
+    'lambda/MsgDamOrderRenewal':()=>`/dam/user/renew`,
+    'lambda/MsgDamMinerWithDrawCount':()=>`/dam/miner/withdraw_count`,
+    'lambda/MsgDigitalAssetDelegate':()=>`/dam/user/delegate`,
+    'lambda/MsgDigitalAssetUndelegate':()=>`/dam/user/undelegate`,
+    'lambda/MsgAssetInvest':()=>`/asset/invest`
   }[type]()
   const url = `${cosmosRESTURL}${path}`
 

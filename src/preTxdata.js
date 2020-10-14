@@ -24,7 +24,12 @@ export default {
   msgUnjailMiner,
   msgOrderRenewal,
   msgMinerWithDrawCount,
-  msgDelegateMarket
+  msgDelegateMarket,
+  CreateDigitalAssetMarket,
+  DigitalAssetPledge,
+  DigitalAssetRefund,
+  AuthorizeUser,
+  CreateAsset
 }
 
 const defaultdenom = 'ulamb';
@@ -508,6 +513,7 @@ function msgDelegateMarket(marketName,amount,denom) {
 }
 
 /**
+ * Create asset market
 * @param {string} AssetName   Asset Name
 * @param {Float} Ratio   Ratio
 * @param {string} marketName   market Name
@@ -527,6 +533,7 @@ function CreateDigitalAssetMarket (AssetName,Ratio,marketName,memo) {
 }
 
 /**
+ * Miners pledge to asset market
  * @param {string} AssetName   Asset Name
  * @param {int} Size   Space size
  * @param {string} price   price 
@@ -546,6 +553,7 @@ function  DigitalAssetPledge (AssetName,Size,Price,memo) {
 };
 
 /**
+ * Miners redeem from asset markets
  *  @param {string} AssetName   Asset Name
  *  @param {memo} memo   memo
 */
@@ -559,7 +567,10 @@ function  DigitalAssetPledge (AssetName,Size,Price,memo) {
   console.log(this.transactiondata)
   return this;
 };
+
+
 /**
+ * Add or cancel miner authorization in asset market
  * @param {string} user   user lambda address
  * @param {string} AssetName   AssetName
  * @param {Boolean} isAllowed    Add or remove authorization
@@ -581,6 +592,7 @@ function AuthorizeUser( userlambdaaddress, AssetName, isAllowed,memo) {
 };
 
 /**
+ * Creating assets in the asset market
  * @param AssetInfo Information about the Asset. 
  * @param AssetInfo.asset_amount   Initial issue of assets
  * @param AssetInfo.asset_denom  The name of the asset
@@ -642,6 +654,7 @@ function CreateAsset ( {
 };
 
 /**
+ * Closing the asset market
  * @param {string} AssetName   AssetName
  * @param {memo} memo   memo
 */
@@ -657,6 +670,7 @@ function DismissDigitalAssetMarket(AssetName,memo) {
 };
 
 /**
+ * Buying miners' space in asset markets
  * @param {string} Asset   Asset Name
  * @param {string} Duration   Order duration
  * @param {string} Size   Size of purchase space
@@ -677,6 +691,7 @@ function DamCreateBuyOrder(Asset,Duration,Size,minerAddress,memo) {
 };
 
 /**
+* Increase usage time for orders in asset markets
 * @param {string} orderId   The ID of the order
 * @param {string} duration   Duration of renewal
 * @param {string} memo   memo
