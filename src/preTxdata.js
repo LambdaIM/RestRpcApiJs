@@ -582,7 +582,7 @@ function AuthorizeUser( userlambdaaddress, AssetName, isAllowed,memo) {
 
 /**
  * @param AssetInfo Information about the Asset. 
- * @param {number} AssetInfo.asset_amount   Initial issue of assets
+ * @param AssetInfo.asset_amount   Initial issue of assets
  * @param AssetInfo.asset_denom  The name of the asset
  * @param AssetInfo.token_amount  The amount to be consumed to create the asset
  * @param AssetInfo.token_denom  The name of the asset to be consumed to create the asset
@@ -634,6 +634,133 @@ function CreateAsset ( {
     fund_amount,
     fund_period,
     fund_stake
+  };
+
+  this.transactiondata = result;
+  console.log(this.transactiondata)
+  return this;
+};
+
+/**
+ * @param {string} AssetName   AssetName
+ * @param {memo} memo   memo
+*/
+function DismissDigitalAssetMarket(AssetName,memo) {
+  var result = {
+    type: transaction.DismissDigitalAssetMarket,
+    AssetName: AssetName,
+    memo: memo || ''
+  };
+  this.transactiondata = result;
+  console.log(this.transactiondata)
+  return this;
+};
+
+/**
+ * @param {string} Asset   Asset Name
+ * @param {string} Duration   Order duration
+ * @param {string} Size   Size of purchase space
+ * @param {string} minerAddress   Miner's operating address
+*/
+function DamCreateBuyOrder(Asset,Duration,Size,minerAddress,memo) {
+  var result = {
+    type: transaction.DamCreateBuyOrder,
+    Asset: Asset,
+    Size:Size,
+    Duration:Duration,
+    minerAddress:minerAddress,
+    memo: memo || ''
+  };
+  this.transactiondata = result;
+  console.log(this.transactiondata)
+  return this;
+};
+
+/**
+* @param {string} orderId   The ID of the order
+* @param {string} duration   Duration of renewal
+* @param {string} memo   memo
+*/
+function DamOrderRenewal (orderId,duration,memo) {
+  console.log('DamOrderRenewal',orderId,duration)
+
+  var result = {
+    type: transaction.DamOrderRenewal,
+    orderID: orderId,
+    duration:duration,
+    memo: memo || ''
+  };
+  this.transactiondata = result;
+  console.log(this.transactiondata)
+  return this;
+}
+
+/**
+ * Mining reward for extracting asset duration
+ * @param {string} asset  Asset Name
+ * @param {string} page  Page number
+ * @param {string} limit  Page size
+ * @param {string} memo   memo
+*/
+function DamMinerWithDrawCount(asset,page,limit,memo) {
+  var result = {
+    type: transaction.DamMinerWithDrawCount,
+    page: page,
+    limit: limit,
+    asset:asset,
+    memo: memo || ''
+  };
+
+  this.transactiondata = result;
+  console.log(this.transactiondata)
+  return this;
+};
+
+/**
+ * Pledge to the miners in the asset market or cancel the pledge
+ * @param {string} AssetName  Asset Name
+ * @param {string} minerAddress  Miner's operating address
+ * @param {string} amount  amount of asset
+ * @param {string} delegateType   Type of transaction pledge or cancellation pledge
+ * @param {string} memo   memo
+*/
+function DamUserDelegatebyType (AssetName, minerAddress, amount, delegateType,memo) {
+  var typeName = ''
+
+  if(delegateType == 'delegate'){
+    typeName = transaction.DigitalAssetDelegate;
+  }else{
+    typeName = transaction.DigitalAssetUndelegate;
+  }
+
+  var result = {
+    type: typeName,  //DigitalAssetUndelegate
+    assetName: AssetName,
+    amount:amount,
+    miner:minerAddress,
+    memo: memo || ''
+  };
+  this.transactiondata = result;
+  console.log(this.transactiondata)
+  return this;
+};
+
+/**
+ * Pre mining with assets
+ * @param {string} asset  Asset name of the pre mined mine
+ * @param {string} token  Amount of assets
+ * @param {string} tokendenom   The name of the asset
+ * @param {string} memo   memo
+*/
+function damAssetInvest( asset, token,tokendenom,memo) {
+
+  var result; 
+  result = {
+    type: transaction.AssetInvest,
+    asset:asset,
+    memo: memo || '',
+    token:token,
+    tokendenom:tokendenom
   };
 
   this.transactiondata = result;
