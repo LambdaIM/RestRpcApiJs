@@ -608,8 +608,8 @@ function AuthorizeUser( userlambdaaddress, AssetName, isAllowed,memo) {
  * The type of additional issuance is the attribute that needs to be filled in for mining additional issuance
  * @param AssetInfo.total_supply Total issuance
  * @param AssetInfo.inflation Additional issuance of each block height
- * @param AssetInfo.MiningRatio Percentage of miner rewards
- * @param AssetInfo.adjust_rate adjust rate 
+ * @param AssetInfo.miningratio Percentage of miner rewards Keep 18 decimal values
+ * @param AssetInfo.adjust_rate adjust rate  Keep 18 decimal values
  * @param AssetInfo.adjust_period adjust period
  * @param AssetInfo.max_adjust_count max adjust count
  * @param AssetInfo.genesis_height Block height of the initial issuance
@@ -623,7 +623,7 @@ function CreateAsset ( {
   total_supply,
   adjust_rate,adjust_period,max_adjust_count,
   genesis_height,remarks,
-  memo,MiningRatio,
+  memo,mining_ratio,
   fund_asset,fund_amount,fund_period,fund_stake
 }) {
   var result = {
@@ -633,19 +633,19 @@ function CreateAsset ( {
     token_amount:token_amount,
     token_denom:token_denom,
     name:remarks,
-    mint_type:mint_type,
-    inflation:inflation,
-    total_supply:total_supply,
-    adjust_rate:adjust_rate,
-    max_adjust_count:max_adjust_count,
-    genesis_height:genesis_height,
-    adjust_period:adjust_period,
-    memo: memo || '',
-    mining_ratio:MiningRatio,
+    mint_type:parseInt(mint_type) ,
     fund_asset,
     fund_amount,
     fund_period,
-    fund_stake
+    fund_stake,
+    inflation:inflation||'0',
+    total_supply:total_supply||'0',
+    adjust_rate:adjust_rate||'0.000000000000000000',
+    max_adjust_count:max_adjust_count||'0',
+    genesis_height:genesis_height||'0',
+    adjust_period:adjust_period||'0',
+    mining_ratio:mining_ratio||'0.000000000000000000',
+    memo: memo || '',
   };
 
   this.transactiondata = result;

@@ -22,9 +22,25 @@ walletjson = JSON.parse(walletjson);
 const signerFn = hdkey.keyStore.getSigner(walletjson,'12345678')
 
 
-msgCreateAsset()
+// msgCreateAssetgas()
 
-async function msgCreateAsset(){
+// CreateAsset();
+
+CreateAssetType3()
+
+async function msgSend(){
+    
+    var result = await lambdaAPI
+    .msgSend('lambda16h3lwqvak8t8zrr9thetajf3yqzxj0kcsjlsck', 1, 'ulamb', '')
+    .setsigner(signerFn)
+    .setfee(35955,2)
+    .send();
+    
+    console.log('=======***************===========')
+    console.log(result)
+}
+
+async function msgCreateAssetgas(){
     var result = await lambdaAPI
     .CreateAsset({
         asset_amount:'100000000',
@@ -32,11 +48,12 @@ async function msgCreateAsset(){
         token_amount:'1000000000000',
         token_denom:'ulamb',
         name:'uzsdktest',
-        mint_type:'0',
+        mint_type:"1",
         fund_asset:'ulamb',
         fund_amount:'1000',
         fund_period:'3',
-        remarks:'uzsdktest coin'
+        remarks:'uzsdktest coin',
+        fund_stake:'100000000'
     })
     .simulate();
     
@@ -45,12 +62,84 @@ async function msgCreateAsset(){
 }
 
 
-async function msgSend(){
+async function CreateAsset(){
     
     var result = await lambdaAPI
-    .msgSend('lambda16h3lwqvak8t8zrr9thetajf3yqzxj0kcsjlsck', 1, 'ulamb', '')
+    .CreateAsset({
+        asset_amount:'100000000',
+        asset_denom:'uzsdktest',
+        token_amount:'1000000000000',
+        token_denom:'ulamb',
+        name:'uzsdktest',
+        mint_type:"1",
+        fund_asset:'ulamb',
+        fund_amount:'1000',
+        fund_period:'3',
+        remarks:'uzsdktest coin',
+        fund_stake:'100000000'
+    })
     .setsigner(signerFn)
-    .setfee(35955,2)
+    .setfee(55955,2)
+    .send();
+    
+    console.log('=======***************===========')
+    console.log(result)
+}
+
+
+async function msgCreateAssetgasType3(){
+    var result = await lambdaAPI
+    .CreateAsset({
+        asset_amount:'100000000',
+        asset_denom:'uzsdktest',
+        token_amount:'1000000000000',
+        token_denom:'ulamb',
+        name:'uzsdktest',
+        mint_type:"3",
+        fund_asset:'ulamb',
+        fund_amount:'1000',
+        fund_period:'3',
+        remarks:'uzsdktest coin',
+        fund_stake:'100000000',
+        inflation:'300000',
+        total_supply:'3000000000',
+        adjust_rate:'0.100000000000000000',
+        max_adjust_count:'11',
+        genesis_height:'11111111',
+        adjust_period:'10',
+        mining_ratio:'0.100000000000000000',
+    })
+    .simulate();
+    
+    
+    console.log(arguments.callee.name,result)
+}
+
+async function CreateAssetType3(){
+    
+    var result = await lambdaAPI
+    .CreateAsset({
+        asset_amount:'100000000',
+        asset_denom:'uzsdktest2',
+        token_amount:'1000000000000',
+        token_denom:'ulamb',
+        name:'uzsdktest2',
+        mint_type:"3",
+        fund_asset:'ulamb',
+        fund_amount:'1000',
+        fund_period:'3',
+        remarks:'uzsdktest2 coin',
+        fund_stake:'100000000',
+        inflation:'300000',
+        total_supply:'3000000000',
+        adjust_rate:'0.100000000000000000',
+        max_adjust_count:'11',
+        genesis_height:'11111111',
+        adjust_period:'10',
+        mining_ratio:'0.100000000000000000',
+    })
+    .setsigner(signerFn)
+    .setfee(55955,2)
     .send();
     
     console.log('=======***************===========')
