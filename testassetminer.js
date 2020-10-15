@@ -27,7 +27,7 @@ const signerFn = hdkey.keyStore.getSigner(walletjson,'12345678')
 
 
 
-msgAuthorizeUser();
+msgDigitalAssetPledge();
 
 
 async function msgSend(){
@@ -42,20 +42,41 @@ async function msgSend(){
     console.log(result)
 }
 
-// AuthorizeUser
-async function msgAuthorizeUsergas(){
+//DigitalAssetRefund
+
+async function msgDigitalAssetRefundgas(){
     var result = await lambdaAPI
-    .AuthorizeUser(userAddress,'uzsdktest2',true)
+    .DigitalAssetRefund('uzsdktest2')
     .simulate();
     
     console.log(arguments.callee.name,result)
 }
 
-async function msgAuthorizeUser(){
+
+async function msgDigitalAssetRefund(){
     var result = await lambdaAPI
-    .AuthorizeUser(userAddress,'uzsdktest2',true)
+    .DigitalAssetRefund('uzsdktest2')
     .setsigner(signerFn)
-    .setfee(35955,2)
+    .setfee(45955,2)
+    .send();
+    
+    console.log(arguments.callee.name,result)
+}
+
+
+async function msgDigitalAssetPledgegas(){
+    var result = await lambdaAPI
+    .DigitalAssetPledge('uzsdktest2',1,'1000000')
+    .simulate();
+    
+    console.log(arguments.callee.name,result)
+}
+
+async function msgDigitalAssetPledge(){
+    var result = await lambdaAPI
+    .DigitalAssetPledge('uzsdktest2',100001,'1000000')
+    .setsigner(signerFn)
+    .setfee(45955,2)
     .send();
     console.log(arguments.callee.name,result)
     

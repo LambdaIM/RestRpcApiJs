@@ -22,13 +22,13 @@ walletjson = JSON.parse(walletjson);
 const signerFn = hdkey.keyStore.getSigner(walletjson,'12345678')
 
 
-msgAuthorizeUser();
-
+// msgAuthorizeUser();
+msgSend()
 
 async function msgSend(){
     
     var result = await lambdaAPI
-    .msgSend('lambda16h3lwqvak8t8zrr9thetajf3yqzxj0kcsjlsck', 1, 'ulamb', '')
+    .msgSend('lambda1g2z30x06vz453ekkan0a55hd0nefuuzqnw3sye', 100000000, 'uzsdktest2', '')
     .setsigner(signerFn)
     .setfee(35955,2)
     .send();
