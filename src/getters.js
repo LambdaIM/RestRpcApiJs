@@ -431,6 +431,28 @@ export default function Getters (cosmosRESTURL) {
     damfileReceiver: function (address,page=1,limit=10) {
       return get(`/txs?action=transferOwnership&receiver=${address}&page=${page}&limit=${limit}`)
     },
+    /*
+    loan
+    */
+   loanParams(){
+      return get(`/loan/params`)
+   },
+   loanmarkets(){
+      return get(`/loan/markets`)
+   },
+   loansupplierreward(address,latest_reward){
+      return get(`/loan/supplier/${address}/${latest_reward}`)
+   },
+   loanloanee(address){
+    return get(`/loan/loanee/${address}`)
+   },
+   loanmatch_order_info(order_id){
+    return get(`/loan/match_order/${order_id}`)
+   },
+   loanmatch_match_orders(address,page,limit){
+    return get(`/loan/match_orders/${address}/${page}/${limit}`)
+   }
+
 
   }
 }
