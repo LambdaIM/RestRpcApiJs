@@ -440,8 +440,9 @@ export default function Getters (cosmosRESTURL) {
    loanmarkets(){
       return get(`/loan/markets`)
    },
-   loansupplierreward(address,latest_reward){
-      return get(`/loan/supplier/${address}/${latest_reward}`)
+   loansupplierreward(address,islatest_reward){
+     //latest_reward is bool
+      return get(`/loan/supplier/${address}/${islatest_reward}`)
    },
    loanloanee(address){
     return get(`/loan/loanee/${address}`)
