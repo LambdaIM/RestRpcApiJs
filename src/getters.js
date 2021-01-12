@@ -393,10 +393,15 @@ export default function Getters (cosmosRESTURL) {
     damorderinfo: function (orderID) {
       return get(`/dam/match_order/${orderID}`)
     },
-   //damminerinfo
+   
     marketMinerInfo: function (address) {
       return get(`/market/miner/minerinfo/${address}`)
     },
+    pdpStoragepower: function (address) {
+      return get(`/pdp/storagepower/${address}`)
+    },
+
+
     damUserDelegatorRewards:function(address){
       return get(`/distribution/asset/${address}/rewards`)
     },
