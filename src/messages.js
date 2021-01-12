@@ -778,6 +778,26 @@ export function MsgLoaneeWithDraw  (
 }
 
 
+export function MsgLoanOrderRenewal(
+  senderAddress,
+  {
+    marketName,
+    orderID
+  }
+) {
+  
+  return {
+    type: `lambda/MsgLoanOrderRenewal`,
+    value: {
+      address: senderAddress,
+      orderID:orderID,
+      
+    }
+  }
+}
+
+
+
 
 
 function Coin ({ amount, denom }) {
@@ -826,5 +846,6 @@ export default {
   'MsgSupply':MsgSupply,
   'MsgSupplierAbort':MsgSupplierAbort,
   'MsgSupplierWithdraw':MsgSupplierWithdraw,
-  'MsgLoaneeWithDraw':MsgLoaneeWithDraw
+  'MsgLoaneeWithDraw':MsgLoaneeWithDraw,
+  'MsgLoanOrderRenewal':MsgLoanOrderRenewal
 }

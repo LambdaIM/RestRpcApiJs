@@ -398,7 +398,8 @@ export default function Getters (cosmosRESTURL) {
       return get(`/market/miner/minerinfo/${address}`)
     },
     pdpStoragepower: function (address) {
-      return get(`/pdp/storagepower/${address}`)
+      var MinerAddress = hdkeyjs.address.MinerAddress(address)
+      return get(`/pdp/storagepower/${MinerAddress}`)
     },
 
 

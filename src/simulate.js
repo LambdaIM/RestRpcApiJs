@@ -52,7 +52,9 @@ export default async function simulate (
     'lambda/MsgSupply':()=>`/loan/supplier/supply`,
     'lambda/MsgSupplierAbort':()=>`/loan/supplier/abort`,
     'lambda/MsgSupplierWithdraw':()=>`/loan/supplier/withdraw`,
-    'lambda/MsgLoaneeWithDraw':()=>`/loan/loanee/withdraw`
+    'lambda/MsgLoaneeWithDraw':()=>`/loan/loanee/withdraw`,
+    'lambda/MsgLoanOrderRenewal':()=>`/loan/loanee/order_renew`
+    
     
   }[type]()
   const url = `${cosmosRESTURL}${path}`
