@@ -49,11 +49,11 @@ export default async function simulate (
     'lambda/MsgDigitalAssetDelegate':()=>`/dam/user/delegate`,
     'lambda/MsgDigitalAssetUndelegate':()=>`/dam/user/undelegate`,
     'lambda/MsgAssetInvest':()=>`/asset/invest`,
-    'lambda/MsgSupply':()=>`/loan/supplier/supply`,
-    'lambda/MsgSupplierAbort':()=>`/loan/supplier/abort`,
-    'lambda/MsgSupplierWithdraw':()=>`/loan/supplier/withdraw`,
-    'lambda/MsgLoaneeWithDraw':()=>`/loan/loanee/withdraw`,
-    'lambda/MsgLoanOrderRenewal':()=>`/loan/loanee/order_renew`
+    'lambda/MsgSupply':()=>`/pool/supplier/supply`,
+    'lambda/MsgSupplierAbort':()=>`/pool/supplier/abort`,
+    'lambda/MsgSupplierWithdraw':()=>`/pool/supplier/withdraw`,
+    'lambda/MsgLoaneeWithDraw':()=>`/pool/loanee/withdraw`,
+    'lambda/MsgPoolOrderRenewal':()=>`/pool/loanee/order_renew`
     
     
   }[type]()

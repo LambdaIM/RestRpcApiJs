@@ -442,23 +442,23 @@ export default function Getters (cosmosRESTURL) {
     loan
     */
    loanParams(){
-      return get(`/loan/params`)
+      return get(`/pool/params`)
    },
    loanmarkets(){
-      return get(`/loan/markets`)
+      return get(`/pool/markets`)
    },
    loansupplierreward(address,islatest_reward){
      //latest_reward is bool
-      return get(`/loan/supplier/${address}/${islatest_reward}`)
+      return get(`/pool/supplier/${address}/${islatest_reward}`)
    },
    loanloanee(address){
-    return get(`/loan/loanee/${address}`)
+    return get(`/pool/loanee/${address}`)
    },
    loanmatch_order_info(order_id){
-    return get(`/loan/match_order/${order_id}`)
+    return get(`/pool/match_order/${order_id}`)
    },
    loanmatch_match_orders(address,page,limit){
-    return get(`/loan/match_orders/${address}/${page}/${limit}`)
+    return get(`/pool/match_orders/${address}/${page}/${limit}`)
    }
 
 

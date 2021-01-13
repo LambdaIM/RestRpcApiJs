@@ -778,7 +778,7 @@ export function MsgLoaneeWithDraw  (
 }
 
 
-export function MsgLoanOrderRenewal(
+export function MsgPoolOrderRenewal(
   senderAddress,
   {
     marketName,
@@ -787,7 +787,7 @@ export function MsgLoanOrderRenewal(
 ) {
   
   return {
-    type: `lambda/MsgLoanOrderRenewal`,
+    type: `lambda/MsgPoolOrderRenewal`,
     value: {
       address: senderAddress,
       orderID:orderID,
@@ -847,5 +847,5 @@ export default {
   'MsgSupplierAbort':MsgSupplierAbort,
   'MsgSupplierWithdraw':MsgSupplierWithdraw,
   'MsgLoaneeWithDraw':MsgLoaneeWithDraw,
-  'MsgLoanOrderRenewal':MsgLoanOrderRenewal
+  'MsgPoolOrderRenewal':MsgPoolOrderRenewal
 }
