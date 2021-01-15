@@ -48,7 +48,13 @@ export default async function simulate (
     'lambda/MsgDamMinerWithDrawCount':()=>`/dam/miner/withdraw_count`,
     'lambda/MsgDigitalAssetDelegate':()=>`/dam/user/delegate`,
     'lambda/MsgDigitalAssetUndelegate':()=>`/dam/user/undelegate`,
-    'lambda/MsgAssetInvest':()=>`/asset/invest`
+    'lambda/MsgAssetInvest':()=>`/asset/invest`,
+    'lambda/MsgSupply':()=>`/pool/supplier/supply`,
+    'lambda/MsgSupplierAbort':()=>`/pool/supplier/abort`,
+    'lambda/MsgSupplierWithdraw':()=>`/pool/supplier/withdraw`,
+    'lambda/MsgLoaneeWithDraw':()=>`/pool/loanee/withdraw`,
+    'lambda/MsgPoolOrderRenewal':()=>`/pool/loanee/order_renew`
+    
     
   }[type]()
   const url = `${cosmosRESTURL}${path}`

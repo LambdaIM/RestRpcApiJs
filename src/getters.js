@@ -393,9 +393,16 @@ export default function Getters (cosmosRESTURL) {
     damorderinfo: function (orderID) {
       return get(`/dam/match_order/${orderID}`)
     },
-    damMinerInfo: function (address) {
+   
+    marketMinerInfo: function (address) {
       return get(`/market/miner/minerinfo/${address}`)
     },
+    pdpStoragepower: function (address) {
+      var MinerAddress = hdkeyjs.address.MinerAddress(address)
+      return get(`/pdp/storagepower/${MinerAddress}`)
+    },
+
+
     damUserDelegatorRewards:function(address){
       return get(`/distribution/asset/${address}/rewards`)
     },
@@ -431,6 +438,29 @@ export default function Getters (cosmosRESTURL) {
     damfileReceiver: function (address,page=1,limit=10) {
       return get(`/txs?action=transferOwnership&receiver=${address}&page=${page}&limit=${limit}`)
     },
+    /*
+    loan
+    */
+   loanParams(){
+      return get(`/pool/params`)
+   },
+   loanmarkets(){
+      return get(`/pool/markets`)
+   },
+   loansupplierreward(address,islatest_reward){
+     //latest_reward is bool
+      return get(`/pool/supplier/${address}/${islatest_reward}`)
+   },
+   loanloanee(address){
+    return get(`/pool/loanee/${address}`)
+   },
+   loanmatch_order_info(order_id){
+    return get(`/pool/match_order/${order_id}`)
+   },
+   loanmatch_match_orders(address,page,limit){
+    return get(`/pool/match_orders/${address}/${page}/${limit}`)
+   }
+
 
   }
 }
